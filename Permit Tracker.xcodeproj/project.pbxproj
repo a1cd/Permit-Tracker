@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B83F322226C19D3A00A56E26 /* Permit_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F322126C19D3A00A56E26 /* Permit_TrackerApp.swift */; };
+		B810B8C826C1EC28005D4335 /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B810B8C726C1EC28005D4335 /* Tracker.swift */; };
+		B83F322226C19D3A00A56E26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F322126C19D3A00A56E26 /* AppDelegate.swift */; };
 		B83F322426C19D3A00A56E26 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F322326C19D3A00A56E26 /* ContentView.swift */; };
 		B83F322626C19D3C00A56E26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B83F322526C19D3C00A56E26 /* Assets.xcassets */; };
 		B83F322926C19D3C00A56E26 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B83F322826C19D3C00A56E26 /* Preview Assets.xcassets */; };
@@ -15,6 +16,10 @@
 		B83F322E26C19D3C00A56E26 /* Permit_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B83F322C26C19D3C00A56E26 /* Permit_Tracker.xcdatamodeld */; };
 		B83F323926C19D3C00A56E26 /* Permit_TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F323826C19D3C00A56E26 /* Permit_TrackerTests.swift */; };
 		B83F324426C19D3C00A56E26 /* Permit_TrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F324326C19D3C00A56E26 /* Permit_TrackerUITests.swift */; };
+		B83F326326C1C7E800A56E26 /* Drive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F326226C1C7E800A56E26 /* Drive.swift */; };
+		B83F326826C1C83600A56E26 /* DriveDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F326726C1C83600A56E26 /* DriveDetails.swift */; };
+		B83F326D26C1CCE600A56E26 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F326C26C1CCE600A56E26 /* MapView.swift */; };
+		B8612FC726C2EDC800C4513C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8612FC626C2EDC800C4513C /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B810B8C726C1EC28005D4335 /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		B83F321E26C19D3A00A56E26 /* Permit Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Permit Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B83F322126C19D3A00A56E26 /* Permit_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permit_TrackerApp.swift; sourceTree = "<group>"; };
+		B83F322126C19D3A00A56E26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B83F322326C19D3A00A56E26 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B83F322526C19D3C00A56E26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B83F322826C19D3C00A56E26 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -49,6 +55,11 @@
 		B83F323F26C19D3C00A56E26 /* Permit TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Permit TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B83F324326C19D3C00A56E26 /* Permit_TrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permit_TrackerUITests.swift; sourceTree = "<group>"; };
 		B83F324526C19D3C00A56E26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B83F326226C1C7E800A56E26 /* Drive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive.swift; sourceTree = "<group>"; };
+		B83F326726C1C83600A56E26 /* DriveDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveDetails.swift; sourceTree = "<group>"; };
+		B83F326C26C1CCE600A56E26 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		B8612FC626C2EDC800C4513C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B8612FCC26C2F0E400C4513C /* Permit Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Permit Tracker.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8612FC726C2EDC800C4513C /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +95,7 @@
 				B83F323726C19D3C00A56E26 /* Permit TrackerTests */,
 				B83F324226C19D3C00A56E26 /* Permit TrackerUITests */,
 				B83F321F26C19D3A00A56E26 /* Products */,
+				B8612FC526C2EDC800C4513C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,9 +112,14 @@
 		B83F322026C19D3A00A56E26 /* Permit Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				B83F322126C19D3A00A56E26 /* Permit_TrackerApp.swift */,
+				B8612FCC26C2F0E400C4513C /* Permit Tracker.entitlements */,
+				B83F322126C19D3A00A56E26 /* AppDelegate.swift */,
 				B83F322326C19D3A00A56E26 /* ContentView.swift */,
 				B83F322526C19D3C00A56E26 /* Assets.xcassets */,
+				B83F326226C1C7E800A56E26 /* Drive.swift */,
+				B83F326C26C1CCE600A56E26 /* MapView.swift */,
+				B83F326726C1C83600A56E26 /* DriveDetails.swift */,
+				B810B8C726C1EC28005D4335 /* Tracker.swift */,
 				B83F322A26C19D3C00A56E26 /* Persistence.swift */,
 				B83F322F26C19D3C00A56E26 /* Info.plist */,
 				B83F322C26C19D3C00A56E26 /* Permit_Tracker.xcdatamodeld */,
@@ -134,6 +152,14 @@
 				B83F324526C19D3C00A56E26 /* Info.plist */,
 			);
 			path = "Permit TrackerUITests";
+			sourceTree = "<group>";
+		};
+		B8612FC526C2EDC800C4513C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B8612FC626C2EDC800C4513C /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,9 +291,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B83F326D26C1CCE600A56E26 /* MapView.swift in Sources */,
 				B83F322B26C19D3C00A56E26 /* Persistence.swift in Sources */,
+				B83F326326C1C7E800A56E26 /* Drive.swift in Sources */,
 				B83F322426C19D3A00A56E26 /* ContentView.swift in Sources */,
-				B83F322226C19D3A00A56E26 /* Permit_TrackerApp.swift in Sources */,
+				B810B8C826C1EC28005D4335 /* Tracker.swift in Sources */,
+				B83F326826C1C83600A56E26 /* DriveDetails.swift in Sources */,
+				B83F322226C19D3A00A56E26 /* AppDelegate.swift in Sources */,
 				B83F322E26C19D3C00A56E26 /* Permit_Tracker.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,6 +455,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Permit Tracker/Permit Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Permit Tracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8LM4R9G4S4;
@@ -447,6 +478,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Permit Tracker/Permit Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Permit Tracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8LM4R9G4S4;
