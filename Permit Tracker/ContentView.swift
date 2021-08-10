@@ -11,6 +11,7 @@ import CoreLocation
 import BackgroundTasks
 
 struct ContentView: View {
+	@StateObject var locationViewModel = LocationViewModel()
 //    @Environment(\.managedObjectContext) private var viewContext
 //
 //    @FetchRequest(
@@ -20,48 +21,35 @@ struct ContentView: View {
 //
 	let locationManager = CLLocationManager()
 	
-    var body: some View {
-        List {
-			ForEach(0..<3) { num in
-				Drive(driveDetails: DriveDetails(Date: Date(), Interval: Date().distance(to: Date()), locations: []))
-            }
-//            .onDelete(perform: deleteItems)
-        }
-        .toolbar {
-			ToolbarItem(placement: .bottomBar) {
-				Button(action: startRecording) {
-					Label("Record", systemImage: "record.circle")
-				}
-			}
-			
-        }
-    }
-//	private func addItem() {
-//		withAnimation {
-//			let newItem = Item(context: viewContext)
-//			newItem.timestamp = Date()
-//
-//			do {
-//				try viewContext.save()
-//			} catch {
-//				// Replace this implementation with code to handle the error appropriately.
-//				// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//				let nsError = error as NSError
-//				fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//			}
-//		}
-//	}
-//
+	var body: some View {
+		switch locationViewModel.authorizationStatus {
+		case .notDetermined:
+			AnyView(RequestLocationView())
+				.environmentObject(locationViewModel)
+		case .restricted:
+			ErrorView(errorText: "Location use is restricted.")
+		case .denied:
+			ErrorView(errorText: "The app does not have location permissions. Please enable them in settings.")
+		case .authorizedAlways, .authorizedWhenInUse:
+			TrackingView()
+				.environmentObject(locationViewModel)
+		default:
+			Text("Unexpected status")
+		}
+	}
     private func startRecording() {
 		
 		// Ask for Authorisation from the User.
 		self.locationManager.requestAlwaysAuthorization()
 
 		if CLLocationManager.locationServicesEnabled() {
+			locationManager.allowsBackgroundLocationUpdates = true
 			locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+			locationManager.distanceFilter = 30 // 2 secs 30mph 1sec 60mph
 			locationManager.startUpdatingLocation()
+		} else {
+			print("location denied")
 		}
-//		task
     }
 //
 //    private func deleteItems(offsets: IndexSet) {
