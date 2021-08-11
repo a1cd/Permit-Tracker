@@ -50,18 +50,13 @@ struct ErrorView: View {
 }
 
 struct TrackingView: View {
-	@EnvironmentObject var locationViewModel: LocationViewModel
+	@ObservedObject var locationViewModel: LocationViewModel
 	
 	
 	var body: some View {
 		VStack {
 			VStack {
-				Text(String(coordinate?.latitude ?? 0))
-				Text(String(coordinate?.longitude ?? 0))
-				Text(String(locationViewModel.lastSeenLocation?.altitude ?? 0))
-				Text(String(locationViewModel.lastSeenLocation?.speed ?? 0))
-				Text(locationViewModel.currentPlacemark?.country ?? "")
-				Text(locationViewModel.currentPlacemark?.administrativeArea ?? "")
+				Drive(locationViewModel: locationViewModel)
 			}
 			.padding()
 		}

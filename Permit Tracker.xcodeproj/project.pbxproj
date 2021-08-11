@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B810B8C826C1EC28005D4335 /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B810B8C726C1EC28005D4335 /* Tracker.swift */; };
 		B83F322226C19D3A00A56E26 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F322126C19D3A00A56E26 /* App.swift */; };
 		B83F322426C19D3A00A56E26 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F322326C19D3A00A56E26 /* ContentView.swift */; };
 		B83F322626C19D3C00A56E26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B83F322526C19D3C00A56E26 /* Assets.xcassets */; };
@@ -42,7 +41,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B810B8C726C1EC28005D4335 /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		B83F321E26C19D3A00A56E26 /* Permit Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Permit Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B83F322126C19D3A00A56E26 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		B83F322326C19D3A00A56E26 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -127,7 +125,6 @@
 				B83F326226C1C7E800A56E26 /* Drive.swift */,
 				B83F326C26C1CCE600A56E26 /* MapView.swift */,
 				B83F326726C1C83600A56E26 /* DriveDetails.swift */,
-				B810B8C726C1EC28005D4335 /* Tracker.swift */,
 				B83F322A26C19D3C00A56E26 /* Persistence.swift */,
 				B83F322F26C19D3C00A56E26 /* Info.plist */,
 				B83F322C26C19D3C00A56E26 /* Permit_Tracker.xcdatamodeld */,
@@ -304,7 +301,6 @@
 				B83F322B26C19D3C00A56E26 /* Persistence.swift in Sources */,
 				B83F326326C1C7E800A56E26 /* Drive.swift in Sources */,
 				B83F322426C19D3A00A56E26 /* ContentView.swift in Sources */,
-				B810B8C826C1EC28005D4335 /* Tracker.swift in Sources */,
 				B83F326826C1C83600A56E26 /* DriveDetails.swift in Sources */,
 				B83F322226C19D3A00A56E26 /* App.swift in Sources */,
 				B861302B26C3007200C4513C /* LocationViewModel.swift in Sources */,

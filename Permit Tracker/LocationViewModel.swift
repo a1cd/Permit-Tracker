@@ -13,6 +13,7 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 	@Published var lastSeenLocation: CLLocation?
 	@Published var currentPlacemark: CLPlacemark?
 	@Published var allLocations: [CLLocation] = []
+	@Published var driveDetail: DriveDetails = DriveDetails(locations: [])
 
 	private let locationManager: CLLocationManager
 	
@@ -38,6 +39,11 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		lastSeenLocation = locations.first
 		fetchCountryAndCity(for: locations.first)
+		if let location = locations.first {
+			allLocations.append(location)
+			print(allLocations)
+			driveDetail = DriveDetails(locations: allLocations)
+		}
 	}
 
 	func fetchCountryAndCity(for location: CLLocation?) {

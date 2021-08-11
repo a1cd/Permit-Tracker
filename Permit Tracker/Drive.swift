@@ -9,20 +9,24 @@ import SwiftUI
 import MapKit
 
 struct Drive: View {
-	var driveDetails: DriveDetails
+	@ObservedObject var locationViewModel: LocationViewModel
+	
+	@State var ShowMap: Bool = false
+	
 	var label: some View {
 		Text("Drive on \(Date().description(with: .autoupdatingCurrent))")
 	}
+	
     var body: some View {
 		GroupBox(label: label) {
-			MapView()
+			MapView(driveDetails: locationViewModel.driveDetail, isDriving: true)
 				.frame(height: 200)
 		}
     }
 }
 
-struct Drive_Previews: PreviewProvider {
-    static var previews: some View {
-		Drive(driveDetails: DriveDetails(Date: Date(), Interval: Date().distance(to: Date()), locations: []))
-    }
-}
+//struct Drive_Previews: PreviewProvider {
+//    static var previews: some View {
+//		Drive(locationViewModel: <#Binding<LocationViewModel>#>, DriveDetail: DriveDetails(locations: []))
+//    }
+//}

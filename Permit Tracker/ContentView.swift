@@ -12,12 +12,12 @@ import BackgroundTasks
 
 struct ContentView: View {
 	@StateObject var locationViewModel = LocationViewModel()
-//    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.managedObjectContext) private var viewContext
 //
-//    @FetchRequest(
-//        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-//        animation: .default)
-//    private var items: FetchedResults<Item>
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        animation: .default)
+    private var items: FetchedResults<Item>
 //
 	let locationManager = CLLocationManager()
 	
@@ -31,7 +31,7 @@ struct ContentView: View {
 		case .denied:
 			ErrorView(errorText: "The app does not have location permissions. Please enable them in settings.")
 		case .authorizedAlways, .authorizedWhenInUse:
-			TrackingView()
+			TrackingView(locationViewModel: locationViewModel)
 				.environmentObject(locationViewModel)
 		default:
 			Text("Unexpected status")
