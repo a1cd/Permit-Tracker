@@ -13,9 +13,9 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 	@Published var lastSeenLocation: CLLocation?
 	@Published var currentPlacemark: CLPlacemark?
 	@Published var allLocations: [CLLocation] = []
-	@Published var driveDetail: DriveDetails = DriveDetails(locations: [])
-
-	private let locationManager: CLLocationManager
+	@Published var driveDetail: DriveDetails = DriveDetails(Locations: [])
+	
+	let locationManager: CLLocationManager
 	
 	func requestPermission() {
 		locationManager.requestWhenInUseAuthorization()
@@ -23,6 +23,9 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 
 	func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
 		authorizationStatus = manager.authorizationStatus
+		if authorizationStatus == .authorizedWhenInUse {
+			locationManager.requestAlwaysAuthorization()
+		}
 	}
 	
 	override init() {
@@ -32,7 +35,6 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 		super.init()
 		locationManager.delegate = self
 		locationManager.desiredAccuracy = kCLLocationAccuracyBest
-		locationManager.startUpdatingLocation()
 	}
 	
 	// Methods
@@ -42,7 +44,7 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 		if let location = locations.first {
 			allLocations.append(location)
 			print(allLocations)
-			driveDetail = DriveDetails(locations: allLocations)
+			driveDetail = DriveDetails(Locations: allLocations)
 		}
 	}
 

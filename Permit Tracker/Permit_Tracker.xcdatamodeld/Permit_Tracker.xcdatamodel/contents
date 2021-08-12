@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H1323" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="date" optional="YES" attributeType="Date" defaultDateTimeInterval="650473260" usesScalarValueType="NO"/>
+        <attribute name="location" attributeType="Transformable" valueTransformerName="LocationToDataTransformer" customClassName=".locationDelist"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="58"/>
+        <element name="Item" positionX="-348.85546875" positionY="-138.375" width="150.41015625" height="73"/>
     </elements>
 </model>

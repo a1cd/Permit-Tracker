@@ -21,6 +21,7 @@
 		B8612FC726C2EDC800C4513C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8612FC626C2EDC800C4513C /* MapKit.framework */; };
 		B861302B26C3007200C4513C /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B861302A26C3007200C4513C /* LocationViewModel.swift */; };
 		B861303026C3016D00C4513C /* RequestLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B861302F26C3016D00C4513C /* RequestLocationView.swift */; };
+		B8844B4A26C45A0A00AB30FB /* ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8844B4926C45A0A00AB30FB /* ToolBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		B861302A26C3007200C4513C /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		B861302F26C3016D00C4513C /* RequestLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocationView.swift; sourceTree = "<group>"; };
 		B861303426C30B1900C4513C /* MapMyRoute (1).gpx */ = {isa = PBXFileReference; lastKnownFileType = text; name = "MapMyRoute (1).gpx"; path = "../../../../Downloads/MapMyRoute (1).gpx"; sourceTree = "<group>"; };
+		B8844B4926C45A0A00AB30FB /* ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,8 +120,9 @@
 			children = (
 				B8612FCC26C2F0E400C4513C /* Permit Tracker.entitlements */,
 				B83F322126C19D3A00A56E26 /* App.swift */,
-				B861302A26C3007200C4513C /* LocationViewModel.swift */,
 				B83F322326C19D3A00A56E26 /* ContentView.swift */,
+				B8844B4926C45A0A00AB30FB /* ToolBar.swift */,
+				B861302A26C3007200C4513C /* LocationViewModel.swift */,
 				B861302F26C3016D00C4513C /* RequestLocationView.swift */,
 				B83F322526C19D3C00A56E26 /* Assets.xcassets */,
 				B83F326226C1C7E800A56E26 /* Drive.swift */,
@@ -303,6 +306,7 @@
 				B83F322426C19D3A00A56E26 /* ContentView.swift in Sources */,
 				B83F326826C1C83600A56E26 /* DriveDetails.swift in Sources */,
 				B83F322226C19D3A00A56E26 /* App.swift in Sources */,
+				B8844B4A26C45A0A00AB30FB /* ToolBar.swift in Sources */,
 				B861302B26C3007200C4513C /* LocationViewModel.swift in Sources */,
 				B83F322E26C19D3C00A56E26 /* Permit_Tracker.xcdatamodeld in Sources */,
 			);

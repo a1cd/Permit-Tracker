@@ -17,7 +17,7 @@ struct MapView: UIViewRepresentable {
 		let mapView = MKMapView()
 		mapView.delegate = context.coordinator
 		
-		let polyline = MKPolyline(coordinates: driveDetails.Locations2d, count: driveDetails.locations.count)
+		let polyline = MKPolyline(coordinates: driveDetails.Locations2d, count: driveDetails.Locations.count)
 		mapView.addOverlay(polyline)
 		if isDriving {
 			mapView.showsUserLocation = true
@@ -33,7 +33,7 @@ struct MapView: UIViewRepresentable {
 	func updateUIView(_ uiView: MKMapView, context: Context) {
 		print("updating map ui - function: ", #function)
 		
-		let polyline = MKPolyline(coordinates: driveDetails.Locations2d, count: driveDetails.locations.count)
+		let polyline = MKPolyline(coordinates: driveDetails.Locations2d, count: driveDetails.Locations.count)
 		
 		if let overlay = uiView.overlays.first {
 			uiView.addOverlay(polyline)
