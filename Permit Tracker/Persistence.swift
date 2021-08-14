@@ -15,7 +15,7 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
 //        for _ in 0..<10 {
 //            let newItem = Item(context: viewContext)
-//			newItem.coordinate = Date()
+//			newItem.coordinate = StartDate()
 //        }
         do {
             try viewContext.save()

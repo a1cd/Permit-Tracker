@@ -17,20 +17,13 @@ struct ToolBar: View {
 	var StartRecording: () -> Void
 	var StopRecording: () -> Void
 	
-	func RecordImage() -> Image {
+	func RecordImage() -> some View {
 		if (self.Recording) {
-			return Image(systemName: "pause.circle")
+			return Image(systemName: "stop.circle")
+				.font(.system(size: 40))
 		} else {
 			return Image(systemName: "record.circle")
-		}
-	}
-	func SaveImage() -> Image {
-		if (viewContext.hasChanges) {
-			return Image(systemName: "externaldrive.badge.xmark")
-		} else if (Saving) {
-			return Image(systemName: "arrow.triangle.2.circlepath")
-		} else {
-			return Image(systemName: "externaldrive.badge.checkmark")
+				.font(.system(size: 40))
 		}
 	}
 	
@@ -47,21 +40,6 @@ struct ToolBar: View {
 						StartRecording()
 					}
 					Recording.toggle()
-				}
-			SaveImage()
-				.padding(.all)
-				.imageScale(.large)
-				.foregroundColor(.red)
-				.rotationEffect(.degrees(Saving ? 360: 0))
-				.animation(.interactiveSpring(), value: Saving)
-				.onTapGesture {
-					Saving = true
-					do {
-						try viewContext.save()
-						Saving = false
-					} catch {
-						Saving = false
-					}
 				}
 		}
     }

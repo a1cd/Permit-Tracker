@@ -20,11 +20,32 @@ struct MapView: UIViewRepresentable {
 		let polyline = MKPolyline(coordinates: driveDetails.Locations2d, count: driveDetails.Locations.count)
 		mapView.addOverlay(polyline)
 		if isDriving {
+			mapView.pointOfInterestFilter = .init(including: [.evCharger, .gasStation, .hospital, .marina, .park, .parking, .postOffice, .school, .restroom])
+			mapView.showsTraffic = true
 			mapView.showsUserLocation = true
-			mapView.setUserTrackingMode(.follow, animated: true)
+			mapView.setUserTrackingMode(.followWithHeading, animated: true)
 			mapView.region = .init(center: driveDetails.Locations2d.first ?? CLLocationCoordinate2D(), latitudinalMeters: 4, longitudinalMeters: 4)
+			let compass = MKCompassButton(mapView: mapView)
+			let track = MKUserTrackingButton(mapView: mapView)
+			mapView.addSubview(compass)
+			mapView.addSubview(track)
 		} else {
-			mapView.region = .init(center: polyline.coordinate, latitudinalMeters: 1, longitudinalMeters: 1)
+			var regionRect = polyline.boundingMapRect
+
+
+			let wPadding = regionRect.size.width * 0.25
+			let hPadding = regionRect.size.height * 0.25
+
+			//Add padding to the region
+			regionRect.size.width += wPadding
+			regionRect.size.height += hPadding
+
+			//Center the region on the line
+			regionRect.origin.x -= wPadding / 2
+			regionRect.origin.y -= hPadding / 2
+
+			let regionThatFits = mapView.regionThatFits(MKCoordinateRegion(regionRect))
+			mapView.setRegion(regionThatFits, animated: true)
 		}
 		
 		return mapView
@@ -44,7 +65,7 @@ struct MapView: UIViewRepresentable {
 		
 		if isDriving {
 			
-//			if let location = driveDetails.locations.last {
+//			if let location = driveDetails.Locations.last {
 //				let camera = uiView.camera
 //				camera.pitch = 40
 //				camera.heading = location.course
@@ -54,18 +75,17 @@ struct MapView: UIViewRepresentable {
 			
 		} else {
 			print("user is not driving")
-			uiView.region.center = polyline.coordinate
+			let Start = MKPointAnnotation()
+			Start.coordinate = polyline.points()[0].coordinate
+			Start.title = "Start"
+			
+			//MARK - End Annotation
+			let End = MKPointAnnotation()
+			End.coordinate = polyline.points()[polyline.pointCount-1].coordinate
+			End.title = "End"
+			
+			uiView.addAnnotations([Start, End])
 		}
-//		let Start = MKPointAnnotation()
-//		Start.coordinate = Locations[0]
-//		Start.title = "Start"
-//		
-//		//MARK - End Annotation
-//		let End = MKPointAnnotation()
-//		End.coordinate = Locations[Locations.count - 2]
-//		End.title = "End"
-//		
-//		uiView.addAnnotations([Start, End])
 	}
 	
 	func makeCoordinator() -> Coordinator {
@@ -91,4 +111,6 @@ class Coordinator: NSObject, MKMapViewDelegate {
 		
 		return MKOverlayRenderer()
 	}
+	
+	
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import Dispatch
 
 class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 	@Published var authorizationStatus: CLAuthorizationStatus
@@ -39,12 +40,11 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 	
 	// Methods
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-		lastSeenLocation = locations.first
-		fetchCountryAndCity(for: locations.first)
+		self.lastSeenLocation = locations.first
+		self.fetchCountryAndCity(for: locations.first)
 		if let location = locations.first {
-			allLocations.append(location)
-			print(allLocations)
-			driveDetail = DriveDetails(Locations: allLocations)
+			self.allLocations.append(location)
+			self.driveDetail = DriveDetails(Locations: self.allLocations)
 		}
 	}
 

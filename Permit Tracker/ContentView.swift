@@ -9,39 +9,98 @@ import SwiftUI
 import CoreData
 import CoreLocation
 import BackgroundTasks
+import Dispatch
 
 struct ContentView: View {
 	@StateObject var locationViewModel = LocationViewModel()
     @Environment(\.managedObjectContext) private var viewContext
 	
     @FetchRequest(
-		sortDescriptors: [NSSortDescriptor(keyPath: \Item.date, ascending: true)],
+		sortDescriptors: [NSSortDescriptor(keyPath: \Item.date, ascending: false)],
         animation: .default
 	)
-    private var items: FetchedResults<Item>
+    private var Drives: FetchedResults<Item>
 
 	@State var Recording = false
-	@State var AllDrives: [DriveDetails] = []
+	var AllDrives: [DriveDetails] {
+		get {
+			var list: [DriveDetails] = []
+			for drive in Drives {
+				 list.append(DriveDetails(item: drive))
+			}
+			return list
+		}
+	}
 	
 	let locationManager = CLLocationManager()
+	
+	func CalculateStats(AllDrives: [DriveDetails]) -> Measurement<UnitLength> {
+		var totalDistance: Double = 0
+		for drive in AllDrives {
+//			DispatchQueue.global(qos: .userInitiated).async {
+				if var lastLocation = drive.Locations.first {
+					for location in drive.Locations {
+						totalDistance += location.distance(from: lastLocation)
+						lastLocation = location
+					}
+				}
+//			}
+		}
+		return Measurement(value: totalDistance, unit: UnitLength.meters)
+	}
+	func CalculateTotalTime(AllDrives: [DriveDetails]) -> TimeInterval {
+		var totalTime: TimeInterval = TimeInterval()
+		for drive in AllDrives {
+			totalTime += drive.TimeInterval
+		}
+		return totalTime
+	}
 	
 	var body: some View {
 		Group {
 			VStack {
-				if (Recording) {
-					TrackingView(locationViewModel: locationViewModel)
-						.onAppear(perform: {
-							print("appeared recording")
-						})
-				} else {
-					List {
-						ForEach(0..<items.count, content: {i in
-							Drive(locationViewModel: locationViewModel, driveDetail: items[i].location?.driveDetail)
-						})
+				VStack {
+					if (Recording) {
+						TrackingView(locationViewModel: locationViewModel)
 					}
-					.onAppear(perform: {
-						print("appeared list", items.first?.date as Any)
-					})
+					if !Recording {
+						NavigationView {
+							ScrollView {
+								UserStats(
+									DistanceTraveled: CalculateStats(AllDrives: AllDrives),
+									TimeTraveled: CalculateTotalTime(AllDrives: AllDrives)
+								)
+									.background(Color.white)
+									.scaledToFit()
+										
+									.clipped()
+									.cornerRadius(30)
+									.shadow(color: Color(UIColor.systemGray), radius: 1.5, x: 0, y: 2)
+									.padding(.bottom, 3.5)
+								Divider()
+								NavigationLink(destination: DriveList(locationViewModel: locationViewModel, Drives: Drives, deleteItems: deleteItems)) {
+									Image(systemName: "map")
+										.padding(.leading)
+										.imageScale(.large)
+									Text("Drive History")
+										.multilineTextAlignment(.leading)
+										.padding(.trailing)
+									Spacer()
+								}
+								Divider()
+								NavigationLink(destination: DriveList(locationViewModel: locationViewModel, Drives: Drives, deleteItems: deleteItems)) {
+									Image(systemName: "chart.bar")
+										.padding(.leading)
+										.imageScale(.large)
+									Text("Stats")
+										.multilineTextAlignment(.leading)
+										.padding(.trailing)
+									Spacer()
+								}
+								Spacer()
+							}
+						}
+					}
 				}
 				HStack {
 					ToolBar(Recording: $Recording, StartRecording: startRecording, StopRecording: stopRecording)
@@ -52,10 +111,12 @@ struct ContentView: View {
 			locationViewModel.requestPermission()
 		})
 	}
+	
     private func startRecording() {
 		if CLLocationManager.locationServicesEnabled() {
 			locationViewModel.locationManager.activityType = .automotiveNavigation
 			locationViewModel.locationManager.startUpdatingLocation()
+			locationViewModel.locationManager.startUpdatingHeading()
 		} else {
 			print("location denied")
 		}
@@ -64,14 +125,18 @@ struct ContentView: View {
 	private func stopRecording() {
 		if CLLocationManager.locationServicesEnabled() {
 			
-			
+			locationViewModel.locationManager.stopUpdatingHeading()
 			locationViewModel.locationManager.stopUpdatingLocation()
 			let allLocations = locationViewModel.allLocations
-			let newDrive = locationDelist(locations: allLocations, date: allLocations.first?.timestamp ?? Date())
+			let newDrive = DriveDetails(Locations: allLocations)
 			
-			let newItem = Item(context: viewContext)
-			newItem.location = newDrive
-			newItem.date = (allLocations.first?.timestamp ?? Date())
+			let driveSave = Item(context: viewContext)
+			
+			let saveLocations = newDrive.convertToCoreData(context: viewContext)
+			
+			driveSave.date = newDrive.StartDate
+			driveSave.id = UUID()
+			driveSave.locations = .init(array: saveLocations)
 			
 			print(
 				"hasChanges:", viewContext.hasChanges,
@@ -94,27 +159,28 @@ struct ContentView: View {
 		}
 	}
 //
-//    private func deleteItems(offsets: IndexSet) {
-//        withAnimation {
-//            offsets.map { items[$0] }.forEach(viewContext.delete)
-//
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                // Replace this implementation with code to handle the error appropriately.
-//                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//                let nsError = error as NSError
-//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//            }
-//        }
-//    }
+    private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { Drives[$0] }.forEach(viewContext.delete)
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
 	
 }
 
-private let itemFormatter: DateFormatter = {
+let itemFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .short
+	formatter.doesRelativeDateFormatting = true
     return formatter
 }()
 

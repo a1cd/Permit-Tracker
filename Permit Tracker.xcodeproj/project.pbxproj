@@ -22,6 +22,8 @@
 		B861302B26C3007200C4513C /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B861302A26C3007200C4513C /* LocationViewModel.swift */; };
 		B861303026C3016D00C4513C /* RequestLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B861302F26C3016D00C4513C /* RequestLocationView.swift */; };
 		B8844B4A26C45A0A00AB30FB /* ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8844B4926C45A0A00AB30FB /* ToolBar.swift */; };
+		B8844BA226C6F50E00AB30FB /* UserStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8844BA126C6F50E00AB30FB /* UserStats.swift */; };
+		B88F068926C73AD400C33C1B /* DriveList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F068826C73AD400C33C1B /* DriveList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		B861302F26C3016D00C4513C /* RequestLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocationView.swift; sourceTree = "<group>"; };
 		B861303426C30B1900C4513C /* MapMyRoute (1).gpx */ = {isa = PBXFileReference; lastKnownFileType = text; name = "MapMyRoute (1).gpx"; path = "../../../../Downloads/MapMyRoute (1).gpx"; sourceTree = "<group>"; };
 		B8844B4926C45A0A00AB30FB /* ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBar.swift; sourceTree = "<group>"; };
+		B8844BA126C6F50E00AB30FB /* UserStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStats.swift; sourceTree = "<group>"; };
+		B88F068826C73AD400C33C1B /* DriveList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,8 @@
 				B8612FCC26C2F0E400C4513C /* Permit Tracker.entitlements */,
 				B83F322126C19D3A00A56E26 /* App.swift */,
 				B83F322326C19D3A00A56E26 /* ContentView.swift */,
+				B88F068826C73AD400C33C1B /* DriveList.swift */,
+				B8844BA626C6F90700AB30FB /* Stats */,
 				B8844B4926C45A0A00AB30FB /* ToolBar.swift */,
 				B861302A26C3007200C4513C /* LocationViewModel.swift */,
 				B861302F26C3016D00C4513C /* RequestLocationView.swift */,
@@ -168,6 +174,14 @@
 				B8612FC626C2EDC800C4513C /* MapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B8844BA626C6F90700AB30FB /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				B8844BA126C6F50E00AB30FB /* UserStats.swift */,
+			);
+			path = Stats;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,11 +315,13 @@
 			files = (
 				B83F326D26C1CCE600A56E26 /* MapView.swift in Sources */,
 				B861303026C3016D00C4513C /* RequestLocationView.swift in Sources */,
+				B8844BA226C6F50E00AB30FB /* UserStats.swift in Sources */,
 				B83F322B26C19D3C00A56E26 /* Persistence.swift in Sources */,
 				B83F326326C1C7E800A56E26 /* Drive.swift in Sources */,
 				B83F322426C19D3A00A56E26 /* ContentView.swift in Sources */,
 				B83F326826C1C83600A56E26 /* DriveDetails.swift in Sources */,
 				B83F322226C19D3A00A56E26 /* App.swift in Sources */,
+				B88F068926C73AD400C33C1B /* DriveList.swift in Sources */,
 				B8844B4A26C45A0A00AB30FB /* ToolBar.swift in Sources */,
 				B861302B26C3007200C4513C /* LocationViewModel.swift in Sources */,
 				B83F322E26C19D3C00A56E26 /* Permit_Tracker.xcdatamodeld in Sources */,
