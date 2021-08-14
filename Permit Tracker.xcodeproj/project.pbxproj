@@ -24,6 +24,9 @@
 		B8844B4A26C45A0A00AB30FB /* ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8844B4926C45A0A00AB30FB /* ToolBar.swift */; };
 		B8844BA226C6F50E00AB30FB /* UserStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8844BA126C6F50E00AB30FB /* UserStats.swift */; };
 		B88F068926C73AD400C33C1B /* DriveList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F068826C73AD400C33C1B /* DriveList.swift */; };
+		B88F06BB26C8197F00C33C1B /* GagueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F06BA26C8197F00C33C1B /* GagueView.swift */; };
+		B88F06C526C829C700C33C1B /* GoalsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F06C426C829C700C33C1B /* GoalsDict.swift */; };
+		B88F06D926C82DE700C33C1B /* Goals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F06D826C82DE700C33C1B /* Goals.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,10 @@
 		B8844B4926C45A0A00AB30FB /* ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBar.swift; sourceTree = "<group>"; };
 		B8844BA126C6F50E00AB30FB /* UserStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStats.swift; sourceTree = "<group>"; };
 		B88F068826C73AD400C33C1B /* DriveList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveList.swift; sourceTree = "<group>"; };
+		B88F069426C8159E00C33C1B /* CloudKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B88F06BA26C8197F00C33C1B /* GagueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GagueView.swift; sourceTree = "<group>"; };
+		B88F06C426C829C700C33C1B /* GoalsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsDict.swift; sourceTree = "<group>"; };
+		B88F06D826C82DE700C33C1B /* Goals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goals.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +95,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B83F323C26C19D3C00A56E26 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B88F069126C8159E00C33C1B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -115,6 +129,7 @@
 				B83F321E26C19D3A00A56E26 /* Permit Tracker.app */,
 				B83F323426C19D3C00A56E26 /* Permit TrackerTests.xctest */,
 				B83F323F26C19D3C00A56E26 /* Permit TrackerUITests.xctest */,
+				B88F069426C8159E00C33C1B /* CloudKitDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,6 +144,7 @@
 				B8844BA626C6F90700AB30FB /* Stats */,
 				B8844B4926C45A0A00AB30FB /* ToolBar.swift */,
 				B861302A26C3007200C4513C /* LocationViewModel.swift */,
+				B88F06BA26C8197F00C33C1B /* GagueView.swift */,
 				B861302F26C3016D00C4513C /* RequestLocationView.swift */,
 				B83F322526C19D3C00A56E26 /* Assets.xcassets */,
 				B83F326226C1C7E800A56E26 /* Drive.swift */,
@@ -180,6 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				B8844BA126C6F50E00AB30FB /* UserStats.swift */,
+				B88F06C426C829C700C33C1B /* GoalsDict.swift */,
+				B88F06D826C82DE700C33C1B /* Goals.swift */,
 			);
 			path = Stats;
 			sourceTree = "<group>";
@@ -240,6 +258,23 @@
 			productReference = B83F323F26C19D3C00A56E26 /* Permit TrackerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		B88F069326C8159E00C33C1B /* CloudKitDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B88F06A526C815A000C33C1B /* Build configuration list for PBXNativeTarget "CloudKitDemo" */;
+			buildPhases = (
+				B88F069026C8159E00C33C1B /* Sources */,
+				B88F069126C8159E00C33C1B /* Frameworks */,
+				B88F069226C8159E00C33C1B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CloudKitDemo;
+			productName = CloudKitDemo;
+			productReference = B88F069426C8159E00C33C1B /* CloudKitDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -260,6 +295,9 @@
 						CreatedOnToolsVersion = 12.4;
 						TestTargetID = B83F321D26C19D3A00A56E26;
 					};
+					B88F069326C8159E00C33C1B = {
+						CreatedOnToolsVersion = 12.4;
+					};
 				};
 			};
 			buildConfigurationList = B83F321926C19D3A00A56E26 /* Build configuration list for PBXProject "Permit Tracker" */;
@@ -278,6 +316,7 @@
 				B83F321D26C19D3A00A56E26 /* Permit Tracker */,
 				B83F323326C19D3C00A56E26 /* Permit TrackerTests */,
 				B83F323E26C19D3C00A56E26 /* Permit TrackerUITests */,
+				B88F069326C8159E00C33C1B /* CloudKitDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -306,6 +345,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B88F069226C8159E00C33C1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -318,12 +364,15 @@
 				B8844BA226C6F50E00AB30FB /* UserStats.swift in Sources */,
 				B83F322B26C19D3C00A56E26 /* Persistence.swift in Sources */,
 				B83F326326C1C7E800A56E26 /* Drive.swift in Sources */,
+				B88F06D926C82DE700C33C1B /* Goals.swift in Sources */,
 				B83F322426C19D3A00A56E26 /* ContentView.swift in Sources */,
+				B88F06BB26C8197F00C33C1B /* GagueView.swift in Sources */,
 				B83F326826C1C83600A56E26 /* DriveDetails.swift in Sources */,
 				B83F322226C19D3A00A56E26 /* App.swift in Sources */,
 				B88F068926C73AD400C33C1B /* DriveList.swift in Sources */,
 				B8844B4A26C45A0A00AB30FB /* ToolBar.swift in Sources */,
 				B861302B26C3007200C4513C /* LocationViewModel.swift in Sources */,
+				B88F06C526C829C700C33C1B /* GoalsDict.swift in Sources */,
 				B83F322E26C19D3C00A56E26 /* Permit_Tracker.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +390,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B83F324426C19D3C00A56E26 /* Permit_TrackerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B88F069026C8159E00C33C1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,6 +662,50 @@
 			};
 			name = Release;
 		};
+		B88F06A626C815A000C33C1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"CloudKitDemo/Preview Content\"";
+				DEVELOPMENT_TEAM = 8LM4R9G4S4;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = CloudKitDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.everettwilber.CloudKitDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B88F06A726C815A000C33C1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"CloudKitDemo/Preview Content\"";
+				DEVELOPMENT_TEAM = 8LM4R9G4S4;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = CloudKitDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.everettwilber.CloudKitDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -641,6 +741,15 @@
 			buildConfigurations = (
 				B83F324F26C19D3C00A56E26 /* Debug */,
 				B83F325026C19D3C00A56E26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B88F06A526C815A000C33C1B /* Build configuration list for PBXNativeTarget "CloudKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B88F06A626C815A000C33C1B /* Debug */,
+				B88F06A726C815A000C33C1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

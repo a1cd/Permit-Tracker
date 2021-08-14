@@ -3,7 +3,7 @@
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="date" attributeType="Date" defaultDateTimeInterval="650473260" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
-        <relationship name="locations" toMany="YES" minCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="LocationEntity" inverseName="item" inverseEntity="LocationEntity"/>
+        <relationship name="locations" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="LocationEntity" inverseName="item" inverseEntity="LocationEntity"/>
     </entity>
     <entity name="LocationEntity" representedClassName="LocationEntity" syncable="YES" codeGenerationType="class">
         <attribute name="altitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>

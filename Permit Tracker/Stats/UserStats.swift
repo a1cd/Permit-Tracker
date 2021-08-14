@@ -17,7 +17,7 @@ struct UserStats: View {
 					Image(systemName: "car.fill")
 						.imageScale(.large)
 						.font(.system(size: 100))
-					Text("Your Total Driving Stats")
+					Text("Your Driving Stats")
 						.font(.largeTitle)
 						.fontWeight(.semibold)
 						.multilineTextAlignment(.leading)
@@ -35,10 +35,8 @@ struct UserStats: View {
 					Spacer()
 					Text(TimeTraveled.stringFromTimeInterval()).padding(.all)
 				}
-				Spacer()
 			}
 		}
-		
     }
 }
 struct UserStats_Previews: PreviewProvider {

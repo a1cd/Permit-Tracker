@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct ToolBar: View {
 	
@@ -16,6 +17,7 @@ struct ToolBar: View {
 	
 	var StartRecording: () -> Void
 	var StopRecording: () -> Void
+//	@State var locationAccess: CL
 	
 	func RecordImage() -> some View {
 		if (self.Recording) {
@@ -39,12 +41,14 @@ struct ToolBar: View {
 					} else {
 						StartRecording()
 					}
-					Recording.toggle()
 				}
 		}
     }
 }
 
+func Nothing(_ Nothing: Any?) {
+	
+}
 func Nothing() {
 	
 }

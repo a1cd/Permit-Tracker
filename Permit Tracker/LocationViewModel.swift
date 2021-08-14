@@ -15,6 +15,7 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 	@Published var currentPlacemark: CLPlacemark?
 	@Published var allLocations: [CLLocation] = []
 	@Published var driveDetail: DriveDetails = DriveDetails(Locations: [])
+	var AuthChange: () -> Void = Nothing
 	
 	let locationManager: CLLocationManager
 	
@@ -23,6 +24,8 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 	}
 
 	func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+		AuthChange()
+		
 		authorizationStatus = manager.authorizationStatus
 		if authorizationStatus == .authorizedWhenInUse {
 			locationManager.requestAlwaysAuthorization()

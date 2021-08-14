@@ -74,6 +74,7 @@ struct MapView: UIViewRepresentable {
 //			}
 			
 		} else {
+			
 			print("user is not driving")
 			let Start = MKPointAnnotation()
 			Start.coordinate = polyline.points()[0].coordinate

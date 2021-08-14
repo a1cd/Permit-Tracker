@@ -62,8 +62,7 @@ struct ContentView: View {
 				VStack {
 					if (Recording) {
 						TrackingView(locationViewModel: locationViewModel)
-					}
-					if !Recording {
+					} else {
 						NavigationView {
 							ScrollView {
 								UserStats(
@@ -112,54 +111,73 @@ struct ContentView: View {
 		})
 	}
 	
-    private func startRecording() {
-		if CLLocationManager.locationServicesEnabled() {
+    func startRecording() {
+		if isAuthorized() {
+			locationViewModel.AuthChange = stopRecording
+			Recording = true
 			locationViewModel.locationManager.activityType = .automotiveNavigation
 			locationViewModel.locationManager.startUpdatingLocation()
 			locationViewModel.locationManager.startUpdatingHeading()
+			locationManager.pausesLocationUpdatesAutomatically = false
 		} else {
-			print("location denied")
+			locationViewModel.locationManager.requestLocation()
 		}
     }
 	
-	private func stopRecording() {
-		if CLLocationManager.locationServicesEnabled() {
-			
-			locationViewModel.locationManager.stopUpdatingHeading()
-			locationViewModel.locationManager.stopUpdatingLocation()
-			let allLocations = locationViewModel.allLocations
-			let newDrive = DriveDetails(Locations: allLocations)
-			
-			let driveSave = Item(context: viewContext)
-			
-			let saveLocations = newDrive.convertToCoreData(context: viewContext)
-			
-			driveSave.date = newDrive.StartDate
-			driveSave.id = UUID()
-			driveSave.locations = .init(array: saveLocations)
-			
-			print(
-				"hasChanges:", viewContext.hasChanges,
-				"\ninsertedObjects:", viewContext.insertedObjects
-			)
-			viewContext.userInfo.setValue("data", forKey: "use")
-			
-			do {
-				try viewContext.save()
-			} catch {
-				// Replace this implementation with code to handle the error appropriately.
-				// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+	func Save() {
+		locationViewModel.locationManager.stopUpdatingHeading()
+		locationViewModel.locationManager.stopUpdatingLocation()
+		let allLocations = locationViewModel.allLocations
+		let newDrive = DriveDetails(Locations: allLocations)
+		
+		let driveSave = Item(context: viewContext)
+		
+		let saveLocations = newDrive.convertToCoreData(context: viewContext)
+		
+		driveSave.date = newDrive.StartDate
+		driveSave.id = UUID()
+		driveSave.locations = .init(array: saveLocations)
+		
+		print(
+			"hasChanges:", viewContext.hasChanges,
+			"\ninsertedObjects:", viewContext.insertedObjects
+		)
+		viewContext.userInfo.setValue("data", forKey: "use")
+		
+		do {
+			try viewContext.save()
+		} catch {
+			// Replace this implementation with code to handle the error appropriately.
+			// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
 //				let nsError = error as NSError
-				print("error", error)
+			print("error", error)
 //				fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-			}
-			locationViewModel.allLocations = []
+		}
+		locationViewModel.allLocations = []
+	}
+	func isAuthorized() -> Bool {
+		print(locationViewModel.authorizationStatus.rawValue)
+		switch locationViewModel.authorizationStatus {
+		case .authorizedAlways:
+			print("true")
+			return true
+		case .authorizedWhenInUse:
+			return true
+		default:
+			return false
+		}
+	}
+	func stopRecording() {
+		if isAuthorized() {
+			locationViewModel.AuthChange = Nothing
+			Save()
+			Recording = false
 		} else {
-			print("location denied")
+			print("Not authorized")
 		}
 	}
 //
-    private func deleteItems(offsets: IndexSet) {
+    func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { Drives[$0] }.forEach(viewContext.delete)
 

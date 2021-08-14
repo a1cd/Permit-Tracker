@@ -17,7 +17,11 @@ struct DriveList: View {
     var body: some View {
 		List {
 			ForEach(0..<Drives.count, content: {i in
-				Drive(locationViewModel: locationViewModel, driveDetail: DriveDetails(item: Drives[i]))
+				if Drives[i].locations != nil {
+					if Drives[i].locations!.count > 0 {
+						Drive(locationViewModel: locationViewModel, driveDetail: DriveDetails(item: Drives[i]))
+					}
+				}
 			})
 			.onDelete(perform: deleteItems)
 		}
