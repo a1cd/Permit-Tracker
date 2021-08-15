@@ -64,7 +64,6 @@ class DriveDetails {
 	}
 	func SpeedGraph(_ num: Int = 15) -> [CGFloat] {
 		let chunks = chunkIt(LocationList: Locations, num: num)
-		var speeds = [1]
 		
 		var chunkAverages: [CGFloat] = []
 		for chunk in chunks {
@@ -76,7 +75,15 @@ class DriveDetails {
 		}
 		return chunkAverages
 	}
-	func chunkIt(LocationList: [CLLocation], num: Int)  -> [[CLLocation]]{
+	func chunkIt(LocationList: [CLLocation], num: Int)  -> [[CLLocation]] {
+		if (LocationList.count <= num) {
+			var end: [[CLLocation]] = []
+			for location in LocationList {
+				end.append([location])
+			}
+			return end
+		}
+		
 		let EndEstCount = Int(floor(Double(LocationList.count)/Double(num)))
 		var out: [[CLLocation]] = [[]]
 		out.remove(at: 0)

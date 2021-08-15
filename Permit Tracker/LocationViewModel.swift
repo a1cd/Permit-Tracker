@@ -29,6 +29,8 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 		authorizationStatus = manager.authorizationStatus
 		if authorizationStatus == .authorizedWhenInUse {
 			locationManager.requestAlwaysAuthorization()
+		} else if authorizationStatus == .authorizedAlways {
+			locationManager.allowsBackgroundLocationUpdates = true
 		}
 	}
 	
@@ -43,19 +45,23 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 	
 	// Methods
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-		self.lastSeenLocation = locations.first
-		self.fetchCountryAndCity(for: locations.first)
-		if let location = locations.first {
-			self.allLocations.append(location)
-			self.driveDetail = DriveDetails(Locations: self.allLocations)
-		}
+		self.lastSeenLocation = locations.last
+		self.fetchCountryAndCity(for: locations.last)
+		self.allLocations.append(contentsOf: locations)
+		self.driveDetail = DriveDetails(Locations: self.allLocations)
 	}
 
 	func fetchCountryAndCity(for location: CLLocation?) {
 		guard let location = location else { return }
 		let geocoder = CLGeocoder()
-		geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+		geocoder.reverseGeocodeLocation(location) { [self] (placemarks, error) in
 			self.currentPlacemark = placemarks?.first
+			if placemarks != nil {
+				if let printerPlacemark = placemarks!.first {
+					print(printerPlacemark)
+					print(printerPlacemark.subThoroughfare)
+				}
+			}
 		}
 	}
 //	func newVisitReceived(_ visit: CLVisit, description: String) {

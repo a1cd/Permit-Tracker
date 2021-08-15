@@ -69,7 +69,7 @@ struct ContentView: View {
 									DistanceTraveled: CalculateStats(AllDrives: AllDrives),
 									TimeTraveled: CalculateTotalTime(AllDrives: AllDrives)
 								)
-									.background(Color.white)
+								.background(Color(UIColor.systemBackground))
 									.scaledToFit()
 										
 									.clipped()
@@ -77,6 +77,7 @@ struct ContentView: View {
 									.shadow(color: Color(UIColor.systemGray), radius: 1.5, x: 0, y: 2)
 									.padding(.bottom, 3.5)
 								Divider()
+								// Drive list
 								NavigationLink(destination: DriveList(locationViewModel: locationViewModel, Drives: Drives, deleteItems: deleteItems)) {
 									Image(systemName: "map")
 										.padding(.leading)
@@ -87,6 +88,7 @@ struct ContentView: View {
 									Spacer()
 								}
 								Divider()
+								// Stats
 								NavigationLink(destination: Stats(DistanceTraveled: CalculateStats(AllDrives: AllDrives), TimeTraveled: CalculateTotalTime(AllDrives: AllDrives), AllDrives: AllDrives)) {
 									Image(systemName: "chart.bar")
 										.padding(.leading)
@@ -110,7 +112,9 @@ struct ContentView: View {
 						cannotAccessLocation: !isAuthorized()
 					)
 				}
+				.background(Color.clear)
 			}
+			.background(Blur(style: .systemUltraThinMaterial))
 		}
 		.onAppear(perform: {
 			locationViewModel.requestPermission()
@@ -124,7 +128,7 @@ struct ContentView: View {
 			locationViewModel.locationManager.activityType = .automotiveNavigation
 			locationViewModel.locationManager.startUpdatingLocation()
 			locationViewModel.locationManager.startUpdatingHeading()
-			locationManager.pausesLocationUpdatesAutomatically = false
+//			locationManager.pausesLocationUpdatesAutomatically = false
 		} else {
 			locationViewModel.locationManager.requestLocation()
 		}

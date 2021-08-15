@@ -13,9 +13,11 @@ struct Stats: View {
 	@State var AllDrives: [DriveDetails]
 	
     var body: some View {
-		VStack {
-			UserStats(DistanceTraveled: DistanceTraveled, TimeTraveled: TimeTraveled)
-			Graph(List: AllDrives.first?.SpeedGraph(16) ?? [])
+		ScrollView {
+			VStack {
+				UserStats(DistanceTraveled: DistanceTraveled, TimeTraveled: TimeTraveled)
+				Graph(List: AllDrives.first?.SpeedGraph(16) ?? [])
+			}
 		}
     }
 }
