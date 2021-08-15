@@ -69,11 +69,12 @@ struct Drive: View {
 			return realDriveDetail.TimeInterval.stringFromTimeInterval(isApptx: !isDriving)
 		}
 	}
+	
 	@State var SpeedTimer = Timer.publish(every: 0.1, tolerance: 0.05, on: .current, in: .default).autoconnect()
     var body: some View {
 		GroupBox(label: label) {
 			VStack {
-				if (driveDetail == nil) {
+				if isDriving {
 					MapView(driveDetails: locationViewModel.driveDetail, isDriving: true)
 						.frame(height: 400)
 				} else {
@@ -100,6 +101,7 @@ struct Drive: View {
 					Spacer()
 					Text(GetTimeInterval())
 				}
+				
 			}
 		}
     }

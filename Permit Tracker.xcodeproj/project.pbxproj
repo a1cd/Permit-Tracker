@@ -27,6 +27,9 @@
 		B88F06BB26C8197F00C33C1B /* GagueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F06BA26C8197F00C33C1B /* GagueView.swift */; };
 		B88F06C526C829C700C33C1B /* GoalsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F06C426C829C700C33C1B /* GoalsDict.swift */; };
 		B88F06D926C82DE700C33C1B /* Goals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F06D826C82DE700C33C1B /* Goals.swift */; };
+		B8E5B14226C85E8E00BC21A0 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14126C85E8E00BC21A0 /* Stats.swift */; };
+		B8E5B14826C85F0500BC21A0 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14726C85F0500BC21A0 /* Graph.swift */; };
+		B8E5B14E26C8B3EE00BC21A0 /* FullDriveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14D26C8B3ED00BC21A0 /* FullDriveData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +79,9 @@
 		B88F06BA26C8197F00C33C1B /* GagueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GagueView.swift; sourceTree = "<group>"; };
 		B88F06C426C829C700C33C1B /* GoalsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsDict.swift; sourceTree = "<group>"; };
 		B88F06D826C82DE700C33C1B /* Goals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goals.swift; sourceTree = "<group>"; };
+		B8E5B14126C85E8E00BC21A0 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
+		B8E5B14726C85F0500BC21A0 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		B8E5B14D26C8B3ED00BC21A0 /* FullDriveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullDriveData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,16 +146,12 @@
 				B8612FCC26C2F0E400C4513C /* Permit Tracker.entitlements */,
 				B83F322126C19D3A00A56E26 /* App.swift */,
 				B83F322326C19D3A00A56E26 /* ContentView.swift */,
-				B88F068826C73AD400C33C1B /* DriveList.swift */,
+				B8E5B15426C8B40700BC21A0 /* Drive */,
 				B8844BA626C6F90700AB30FB /* Stats */,
 				B8844B4926C45A0A00AB30FB /* ToolBar.swift */,
 				B861302A26C3007200C4513C /* LocationViewModel.swift */,
-				B88F06BA26C8197F00C33C1B /* GagueView.swift */,
 				B861302F26C3016D00C4513C /* RequestLocationView.swift */,
 				B83F322526C19D3C00A56E26 /* Assets.xcassets */,
-				B83F326226C1C7E800A56E26 /* Drive.swift */,
-				B83F326C26C1CCE600A56E26 /* MapView.swift */,
-				B83F326726C1C83600A56E26 /* DriveDetails.swift */,
 				B83F322A26C19D3C00A56E26 /* Persistence.swift */,
 				B83F322F26C19D3C00A56E26 /* Info.plist */,
 				B83F322C26C19D3C00A56E26 /* Permit_Tracker.xcdatamodeld */,
@@ -196,10 +198,25 @@
 			isa = PBXGroup;
 			children = (
 				B8844BA126C6F50E00AB30FB /* UserStats.swift */,
+				B8E5B14126C85E8E00BC21A0 /* Stats.swift */,
+				B8E5B14726C85F0500BC21A0 /* Graph.swift */,
 				B88F06C426C829C700C33C1B /* GoalsDict.swift */,
 				B88F06D826C82DE700C33C1B /* Goals.swift */,
+				B88F06BA26C8197F00C33C1B /* GagueView.swift */,
 			);
 			path = Stats;
+			sourceTree = "<group>";
+		};
+		B8E5B15426C8B40700BC21A0 /* Drive */ = {
+			isa = PBXGroup;
+			children = (
+				B88F068826C73AD400C33C1B /* DriveList.swift */,
+				B8E5B14D26C8B3ED00BC21A0 /* FullDriveData.swift */,
+				B83F326226C1C7E800A56E26 /* Drive.swift */,
+				B83F326726C1C83600A56E26 /* DriveDetails.swift */,
+				B83F326C26C1CCE600A56E26 /* MapView.swift */,
+			);
+			path = Drive;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,13 +377,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B83F326D26C1CCE600A56E26 /* MapView.swift in Sources */,
+				B8E5B14E26C8B3EE00BC21A0 /* FullDriveData.swift in Sources */,
 				B861303026C3016D00C4513C /* RequestLocationView.swift in Sources */,
 				B8844BA226C6F50E00AB30FB /* UserStats.swift in Sources */,
 				B83F322B26C19D3C00A56E26 /* Persistence.swift in Sources */,
 				B83F326326C1C7E800A56E26 /* Drive.swift in Sources */,
+				B8E5B14226C85E8E00BC21A0 /* Stats.swift in Sources */,
 				B88F06D926C82DE700C33C1B /* Goals.swift in Sources */,
 				B83F322426C19D3A00A56E26 /* ContentView.swift in Sources */,
 				B88F06BB26C8197F00C33C1B /* GagueView.swift in Sources */,
+				B8E5B14826C85F0500BC21A0 /* Graph.swift in Sources */,
 				B83F326826C1C83600A56E26 /* DriveDetails.swift in Sources */,
 				B83F322226C19D3A00A56E26 /* App.swift in Sources */,
 				B88F068926C73AD400C33C1B /* DriveList.swift in Sources */,

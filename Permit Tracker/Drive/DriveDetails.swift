@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 import CoreData
+import SwiftUI
 
 class DriveDetails {
 	init(item: Item) {
@@ -60,6 +61,41 @@ class DriveDetails {
 			}
 			return locs
 		}
+	}
+	func SpeedGraph(_ num: Int = 15) -> [CGFloat] {
+		let chunks = chunkIt(LocationList: Locations, num: num)
+		var speeds = [1]
+		
+		var chunkAverages: [CGFloat] = []
+		for chunk in chunks {
+			var total: Double = 0
+			for location in chunk {
+				total += location.speed
+			}
+			chunkAverages.append(CGFloat(total/Double(chunk.count)))
+		}
+		return chunkAverages
+	}
+	func chunkIt(LocationList: [CLLocation], num: Int)  -> [[CLLocation]]{
+		let EndEstCount = Int(floor(Double(LocationList.count)/Double(num)))
+		var out: [[CLLocation]] = [[]]
+		out.remove(at: 0)
+		
+		var last = 0
+		for i in 0..<num {
+			let aStart = EndEstCount * i
+			let aEnd = aStart + EndEstCount
+			out.append(Array(LocationList[aStart..<aEnd]))
+			last += 1
+		}
+		let remaining = Array(LocationList[(EndEstCount * last)..<LocationList.count])
+		for (i, location) in remaining.enumerated() {
+			var chunk = out[i]
+			chunk.append(location)
+			out[i] = chunk
+		}
+		
+		return out
 	}
 	func convertToCoreData(context: NSManagedObjectContext) -> [LocationEntity]{
 		var locationEntities: [LocationEntity] = []

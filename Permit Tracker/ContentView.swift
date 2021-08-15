@@ -87,7 +87,7 @@ struct ContentView: View {
 									Spacer()
 								}
 								Divider()
-								NavigationLink(destination: DriveList(locationViewModel: locationViewModel, Drives: Drives, deleteItems: deleteItems)) {
+								NavigationLink(destination: Stats(DistanceTraveled: CalculateStats(AllDrives: AllDrives), TimeTraveled: CalculateTotalTime(AllDrives: AllDrives), AllDrives: AllDrives)) {
 									Image(systemName: "chart.bar")
 										.padding(.leading)
 										.imageScale(.large)
@@ -102,7 +102,13 @@ struct ContentView: View {
 					}
 				}
 				HStack {
-					ToolBar(Recording: $Recording, StartRecording: startRecording, StopRecording: stopRecording)
+					ToolBar(
+						Recording: $Recording,
+						StartRecording: startRecording,
+						StopRecording: stopRecording,
+						locationAccess: locationViewModel.authorizationStatus,
+						cannotAccessLocation: !isAuthorized()
+					)
 				}
 			}
 		}
