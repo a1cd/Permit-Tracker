@@ -70,6 +70,9 @@ struct FullDriveData: View {
 		}
 	}
 	
+	var rows: [GridItem] =
+			Array(repeating: .init(.fixed(20)), count: 3)
+	
 	@State private var SpeedTimer = Timer.publish(every: 0.1, tolerance: 0.05, on: .current, in: .default).autoconnect()
 	var body: some View {
 		ScrollView {
@@ -83,31 +86,23 @@ struct FullDriveData: View {
 							MapView(driveDetails: realDriveDetail, isDriving: false)
 								.frame(height: 200)
 						}
-						HStack {
-							Image(systemName: "ruler")
-							Text("Distance")
-							Spacer()
-							if isDriving {
-								Text(distFormatter.string(from: Distance) )
-									.onReceive(SpeedTimer, perform: { _ in
-										Distance = Measurement(value: PredictedDistance, unit: UnitLength.meters)
-									})
-									.font(.system(Font.TextStyle.body, design: Font.Design.monospaced))
-							} else {
-								Text(distFormatter.string(from: GetDriveDistance().0))
+						Group {
+							HStack {
+								Image(systemName: "ruler")
+								Text("Distance")
+								Spacer()
+								if isDriving {
+									Text(distFormatter.string(from: Distance) )
+										.onReceive(SpeedTimer, perform: { _ in
+											Distance = Measurement(value: PredictedDistance, unit: UnitLength.meters)
+										})
+										.font(.system(Font.TextStyle.body, design: Font.Design.monospaced))
+								} else {
+									Text(distFormatter.string(from: GetDriveDistance().0))
+								}
 							}
-						}
-						HStack {
-							Image(systemName: "stopwatch")
-							Text("Time")
-							Spacer()
-							Text(GetTimeInterval())
-						}
-						HStack {
-							Image(systemName: "moon.stars.fill")
-							Text("Night Driving")
-							Spacer()
-							Text(realDriveDetail.TotalNightTime.stringFromTimeInterval())
+							MiniStat(icon: "stopwatch", text: "Time", value: GetTimeInterval())
+							MiniStat(icon: "moon.stars.fill", text: "Night Driving", value: realDriveDetail.TotalNightTime.stringFromTimeInterval())
 						}
 					}
 				}
@@ -142,4 +137,18 @@ var lengthFormatter: LengthFormatter {
 	let formatter = LengthFormatter()
 	formatter.unitStyle = .long
 	return formatter
+}
+
+struct MiniStat: View {
+	@State var icon: String
+	@State var text: String
+	@State var value: String
+	var body: some View {
+		HStack {
+			Image(systemName: icon)
+			Text(text)
+			Spacer()
+			Text(value)
+		}
+	}
 }

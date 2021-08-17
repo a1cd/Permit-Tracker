@@ -74,22 +74,14 @@ struct Drive: View {
 	}
 	
 	@State var SpeedTimer = Timer.publish(every: 0.1, tolerance: 0.05, on: .current, in: .default).autoconnect()
+	@State var SecondTimer = Timer.publish(every: 0.1, tolerance: 0.05, on: .current, in: .default).autoconnect()
     var body: some View {
 		GroupBox(label: label) {
 			VStack {
 				HStack {
 					Spacer()
 					ForEach(0..<realDriveDetail.Badges.count, content: { i in
-						if (realDriveDetail.Badges[i].icon.1 || (colorScheme == .dark)) {
-							Image(systemName: realDriveDetail.Badges[i].icon.0)
-								.renderingMode(.original)
-								.padding(.all, 1.5)
-						} else {
-							Image(systemName: realDriveDetail.Badges[i].icon.0)
-								.padding(.all, 1.5)
-								.foregroundColor(realDriveDetail.Badges[i].icon.2 ?? Color(UIColor.systemFill))
-						}
-						
+						Badge(icon: realDriveDetail.Badges[i].icon)
 					})
 				}
 				.padding(.horizontal)
@@ -130,6 +122,11 @@ struct Drive: View {
 					Spacer()
 					Text(realDriveDetail.TotalNightTime.stringFromTimeInterval())
 				}
+				.onReceive(SecondTimer, perform: { _ in
+					if isDriving {
+						locationViewModel.driveDetail.TotalNightTime = locationViewModel.driveDetail.getTotalNightTime()
+					}
+				})
 				.foregroundColor(Color(UIColor.systemBlue))
 			}
 		}
@@ -179,6 +176,6 @@ func TimeIntervalFrom(Days: Double = 0, Hours: Double = 0, Minuites: Double = 0,
 
 //struct Drive_Previews: PreviewProvider {
 //    static var previews: some View {
-//		Drive(locationViewModel: <#Binding<LocationViewModel>#>, DriveDetail: DriveDetails(Locations: []))
+//
 //    }
 //}

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,6 +31,7 @@
 		B88F06C526C829C700C33C1B /* GoalsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F06C426C829C700C33C1B /* GoalsDict.swift */; };
 		B88F06D926C82DE700C33C1B /* Goals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F06D826C82DE700C33C1B /* Goals.swift */; };
 		B8BD9BB626C955B600D286FF /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BD9BB526C955B600D286FF /* Blur.swift */; };
+		B8D7C29F26CBFF8100255583 /* DriveBadges.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D7C29E26CBFF8100255583 /* DriveBadges.swift */; };
 		B8E5B14226C85E8E00BC21A0 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14126C85E8E00BC21A0 /* Stats.swift */; };
 		B8E5B14826C85F0500BC21A0 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14726C85F0500BC21A0 /* Graph.swift */; };
 		B8E5B14E26C8B3EE00BC21A0 /* FullDriveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14D26C8B3ED00BC21A0 /* FullDriveData.swift */; };
@@ -101,6 +102,7 @@
 		B88F06C426C829C700C33C1B /* GoalsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsDict.swift; sourceTree = "<group>"; };
 		B88F06D826C82DE700C33C1B /* Goals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goals.swift; sourceTree = "<group>"; };
 		B8BD9BB526C955B600D286FF /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
+		B8D7C29E26CBFF8100255583 /* DriveBadges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveBadges.swift; sourceTree = "<group>"; };
 		B8E5B14126C85E8E00BC21A0 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		B8E5B14726C85F0500BC21A0 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
 		B8E5B14D26C8B3ED00BC21A0 /* FullDriveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullDriveData.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				B88F068826C73AD400C33C1B /* DriveList.swift */,
 				B8E5B14D26C8B3ED00BC21A0 /* FullDriveData.swift */,
 				B83F326226C1C7E800A56E26 /* Drive.swift */,
+				B8D7C29E26CBFF8100255583 /* DriveBadges.swift */,
 				B83F326726C1C83600A56E26 /* DriveDetails.swift */,
 				B83F326C26C1CCE600A56E26 /* MapView.swift */,
 			);
@@ -263,7 +266,6 @@
 				C7F7649550CFF23C24C32588 /* Pods-Permit TrackerTests.debug.xcconfig */,
 				01C0484EBB6F0008B42631CA /* Pods-Permit TrackerTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -509,6 +511,7 @@
 				B8E5B14E26C8B3EE00BC21A0 /* FullDriveData.swift in Sources */,
 				B861303026C3016D00C4513C /* RequestLocationView.swift in Sources */,
 				B8844BA226C6F50E00AB30FB /* UserStats.swift in Sources */,
+				B8D7C29F26CBFF8100255583 /* DriveBadges.swift in Sources */,
 				B83F322B26C19D3C00A56E26 /* Persistence.swift in Sources */,
 				B83F326326C1C7E800A56E26 /* Drive.swift in Sources */,
 				B8E5B14226C85E8E00BC21A0 /* Stats.swift in Sources */,

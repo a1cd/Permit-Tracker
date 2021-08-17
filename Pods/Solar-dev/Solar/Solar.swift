@@ -33,7 +33,7 @@ public struct Solar {
     public let coordinate: CLLocationCoordinate2D
     
     /// The date to generate sunrise / sunset times for
-    public fileprivate(set) var date: Date
+	public fileprivate(set) var date: Date
     
     public fileprivate(set) var sunrise: Date?
     public fileprivate(set) var sunset: Date?

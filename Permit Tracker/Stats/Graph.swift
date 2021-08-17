@@ -29,7 +29,7 @@ struct Graph: View {
 	func Normalize(_ list: [CGFloat]) -> [CGFloat] {
 		var NewList: [CGFloat] = []
 		let max = list.max() ?? 0
-		let min = list.min() ?? 0
+		_ = list.min() ?? 0
 		for val in list {
 			NewList.append(val/max)
 		}

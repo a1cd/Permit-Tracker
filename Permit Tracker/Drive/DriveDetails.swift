@@ -12,7 +12,12 @@ import SwiftUI
 import Solar
 
 class DriveDetails {
-	init(item: Item) {
+	var test: Bool = true
+	convenience init(_ locations: [CLLocation], test: Bool) {
+		self.init(Locations: locations)
+		self.test = test
+	}
+	convenience init(item: Item) {
 		
 		var newLocationList: [CLLocation] = []
 		
@@ -39,34 +44,34 @@ class DriveDetails {
 				newLocationList.append(location)
 			}
 		}
-		self.Locations = newLocationList
-//		self.init(Locations: newLocationList)
+//		self.Locations = newLocationList
+		self.init(Locations: newLocationList)
 	}
 	init(Locations: [CLLocation]) {
 		self.Locations = Locations
-//		
-//		var locationList: [CLLocation] = []
-//		var inaccurateLocations: [(CLLocation, CLLocation)] = []
-//		if var previousLocation = Locations.first {
-//			for location in Locations {
-//				if location.timestamp.distance(to: previousLocation.timestamp) > 10 {
-//					inaccurateLocations.append((previousLocation, location))
-//				}
-//				if location.distance(from: previousLocation) > sqrt(pow(location.verticalAccuracy, 2) + pow(location.horizontalAccuracy, 2)) {
-//					locationList.append(location)
-//					previousLocation = location
-//				}
-//			}
-//		}
-//		self.filteredLocations = locationList
-//		self.innacurateLocations = inaccurateLocations
+		
+		var locationList: [CLLocation] = []
+		var inaccurateLocations: [(CLLocation, CLLocation)] = []
+		if var previousLocation = Locations.first {
+			for location in Locations {
+				if location.timestamp.distance(to: previousLocation.timestamp) > 10 {
+					inaccurateLocations.append((previousLocation, location))
+				}
+				if location.distance(from: previousLocation) > sqrt(pow(location.verticalAccuracy, 2) + pow(location.horizontalAccuracy, 2)) {
+					locationList.append(location)
+					previousLocation = location
+				}
+			}
+		}
+		self.filteredLocations = locationList
+		self.innacurateLocations = inaccurateLocations
 	}
-	var StartDate: Date {
+	lazy var StartDate: Date = {
 		return Locations.first?.timestamp ?? Foundation.Date()
-   }
+	}()
 	var EndDate: Date {
 		return Locations.last?.timestamp ?? Foundation.Date()
-   }
+	}
 	var TimeInterval: TimeInterval {
 		return self.StartDate.distance(to: self.EndDate)
 	}
@@ -78,6 +83,8 @@ class DriveDetails {
 		case Cloudy
 		case Rain
 		case Snow
+		case Fog
+		case Sleet
 		var icon: (String, Bool, Color?) {
 			switch self {
 			case .Cloudy:
@@ -90,34 +97,47 @@ class DriveDetails {
 				return ("cloud.rain.fill", true, nil)
 			case .Twilight:
 				return ("sun.haze.fill", true, nil)
+			case .Fog:
+				return("cloud.fog.fill", false, Color(UIColor.systemGray))
+			case .Snow:
+				return ("cloud.snow.fill", false, Color(UIColor.systemGray))
 			default:
 				return ("questionmark.diamond.fill", false, Color(UIColor.systemYellow))
 			}
 		}
+		var all: [Badge] {
+			return [.Day, .Twilight, .Night, .Sun, .Cloudy, .Rain, .Snow, .Fog, .Sleet]
+		}
 	}
-	var TotalNightTime: TimeInterval {
-		var total: TimeInterval = 0
-		for (i, Location) in Locations.enumerated() {
-			if var solar = Solar(for: Location.timestamp, coordinate: Location.coordinate) {
-				solar.calculate()
-				if !solar.isDaytime {
-					if (i != 0) && (i != Locations.count) {
-						let prevLoc = Locations[i-1]
-						if let prevSol = Solar(for: prevLoc.timestamp, coordinate: prevLoc.coordinate) {
-							if !prevSol.isDaytime {
-								total += 1
-							}
-						}
-					}
+	var driveInterval: DateInterval {DateInterval(start: self.StartDate, end: self.EndDate)}
+	func isLocationAtNight(_ Location: CLLocation) -> Bool {
+		let calendar = Calendar.init(identifier: .gregorian)
+		var sunset: Date = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: firstLocation.timestamp) ?? firstLocation.timestamp.advanced(by: TimeIntervalFrom(Days: 1)))
+		if let solar = Solar(for: Location.timestamp, coordinate: Location.coordinate) {
+			if let sunset = solar.sunset {
+				// if it is past sunset
+				if sunset < Location.timestamp {
+					
 				}
 			}
 		}
+		return false
+	}
+	func getTotalNightTime() -> TimeInterval {
+		var total: TimeInterval = 0
+		let nightInterval: DateInterval
+		driveInterval.intersection(with: <#T##DateInterval#>)
 		return total
 	}
-	var Badges: [Badge] {
+	lazy var TotalNightTime: TimeInterval = getTotalNightTime()
+	lazy var Badges: [Badge] = {
+		if self.test {
+			return Badge.Cloudy.all
+		}
+		// FIXME: -
 		// time badges
 		var badges: [Badge] = []
-		for (i, Location) in Locations.enumerated() {
+		for (_, Location) in filteredLocations.enumerated() {
 			if var solar = Solar(for: Location.timestamp, coordinate: Location.coordinate) {
 				solar.calculate()
 				if !badges.contains(.Day) && solar.isDaytime {
@@ -134,7 +154,7 @@ class DriveDetails {
 			}
 		}
 		return badges
-	}
+	}()
 	var Locations: [CLLocation] = []
 	var Locations2d: [CLLocationCoordinate2D] {
 		get {
@@ -145,19 +165,19 @@ class DriveDetails {
 			return locs
 		}
 	}
-//	var innacurateLocations: [(CLLocation, CLLocation)]
-//	var filteredLocations: [CLLocation]
-	var maxSpeed: CLLocationSpeed {
-		var max: CLLocationSpeed = 0
-		for location in Locations {
-			if max < (location.speed - (location.speedAccuracy/2)) {
-				max = location.speed - (location.speedAccuracy/2)
+	var innacurateLocations: [(CLLocation, CLLocation)]
+	var filteredLocations: [CLLocation]
+	lazy var maxSpeed: CLLocationSpeed = {
+		var maxSpeed: CLLocationSpeed = 0
+		for location in filteredLocations {
+			if maxSpeed < (location.speed - (location.speedAccuracy/2)) {
+				maxSpeed = location.speed - (location.speedAccuracy/2)
 			}
 		}
-		return max
-	}
+		return maxSpeed
+	}()
 	func SpeedGraph(_ num: Int = 15) -> [CGFloat] {
-		let chunks = chunkIt(LocationList: Locations, num: num)
+		let chunks = chunkIt(LocationList: filteredLocations, num: num)
 		
 		var chunkAverages: [CGFloat] = []
 		for chunk in chunks {
