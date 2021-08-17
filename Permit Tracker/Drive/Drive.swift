@@ -79,7 +79,7 @@ struct Drive: View {
 			VStack {
 				HStack {
 					Spacer()
-					ForEach(0..<realDriveDetail.Badges.count, content: {i in
+					ForEach(0..<realDriveDetail.Badges.count, content: { i in
 						if (realDriveDetail.Badges[i].icon.1 || (colorScheme == .dark)) {
 							Image(systemName: realDriveDetail.Badges[i].icon.0)
 								.renderingMode(.original)
@@ -87,7 +87,7 @@ struct Drive: View {
 						} else {
 							Image(systemName: realDriveDetail.Badges[i].icon.0)
 								.padding(.all, 1.5)
-								.color(realDriveDetail.Badges[i].icon.2 ?? Color(UIColor.systemFill))
+								.foregroundColor(realDriveDetail.Badges[i].icon.2 ?? Color(UIColor.systemFill))
 						}
 						
 					})
