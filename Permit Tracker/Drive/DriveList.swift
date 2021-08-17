@@ -30,7 +30,8 @@ struct DriveList: View {
 							{
 								Drive(
 									locationViewModel: locationViewModel,
-									driveDetail: DriveDetails(item: Drives[i])
+									driveDetail: DriveDetails(item: Drives[i]),
+									showMap: i < 2
 								)
 							}
 						}
@@ -38,6 +39,8 @@ struct DriveList: View {
 				})
 				.onDelete(perform: deleteItems)
 			}
+			.navigationTitle("Driving History")
+			.listStyle(GroupedListStyle())
 //		}
     }
 }

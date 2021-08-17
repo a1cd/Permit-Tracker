@@ -72,40 +72,74 @@ struct FullDriveData: View {
 	
 	@State private var SpeedTimer = Timer.publish(every: 0.1, tolerance: 0.05, on: .current, in: .default).autoconnect()
 	var body: some View {
-		VStack {
-			GroupBox(label: label) {
-				VStack {
-					if isDriving {
-						MapView(driveDetails: realDriveDetail, isDriving: true)
-							.frame(height: 400)
-					} else {
-					MapView(driveDetails: realDriveDetail, isDriving: false)
-						.frame(height: 200)
-					}
-					HStack {
-						Image(systemName: "ruler")
-						Text("Distance")
-						Spacer()
+		ScrollView {
+			VStack {
+				GroupBox(label: label) {
+					VStack {
 						if isDriving {
-							Text(distFormatter.string(from: Distance) )
-								.onReceive(SpeedTimer, perform: { _ in
-									Distance = Measurement(value: PredictedDistance, unit: UnitLength.meters)
-								})
-								.font(.system(Font.TextStyle.body, design: Font.Design.monospaced))
+							MapView(driveDetails: realDriveDetail, isDriving: true)
+								.frame(height: 400)
 						} else {
-							Text(distFormatter.string(from: GetDriveDistance().0))
+							MapView(driveDetails: realDriveDetail, isDriving: false)
+								.frame(height: 200)
+						}
+						HStack {
+							Image(systemName: "ruler")
+							Text("Distance")
+							Spacer()
+							if isDriving {
+								Text(distFormatter.string(from: Distance) )
+									.onReceive(SpeedTimer, perform: { _ in
+										Distance = Measurement(value: PredictedDistance, unit: UnitLength.meters)
+									})
+									.font(.system(Font.TextStyle.body, design: Font.Design.monospaced))
+							} else {
+								Text(distFormatter.string(from: GetDriveDistance().0))
+							}
+						}
+						HStack {
+							Image(systemName: "stopwatch")
+							Text("Time")
+							Spacer()
+							Text(GetTimeInterval())
+						}
+						HStack {
+							Image(systemName: "moon.stars.fill")
+							Text("Night Driving")
+							Spacer()
+							Text(realDriveDetail.TotalNightTime.stringFromTimeInterval())
 						}
 					}
-					HStack {
-						Image(systemName: "stopwatch")
-						Text("Time")
-						Spacer()
-						Text(GetTimeInterval())
-					}
-					
 				}
+				Text("Speed Graph")
+					.font(.headline)
+					.fontWeight(.semibold)
+					.multilineTextAlignment(.leading)
+				HStack{
+					Graph(List: realDriveDetail.SpeedGraph(50))
+					VStack {
+						Text(String(Measurement(value: realDriveDetail.maxSpeed, unit: UnitSpeed.metersPerSecond).converted(to: .milesPerHour).value.rounded()) + " mph")
+							.font(.caption)
+							.fontWeight(.light)
+							.multilineTextAlignment(.trailing)
+							.lineLimit(1)
+						Spacer()
+						Text("0 mph")
+							.font(.caption)
+							.fontWeight(.light)
+					}
+					.padding()
+				}
+				.padding(.top)
+				.frame(height: 300.0)
+				
 			}
-			Graph(List: realDriveDetail.SpeedGraph(25))
 		}
 	}
+}
+
+var lengthFormatter: LengthFormatter {
+	let formatter = LengthFormatter()
+	formatter.unitStyle = .long
+	return formatter
 }

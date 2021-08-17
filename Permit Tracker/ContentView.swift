@@ -48,6 +48,13 @@ struct ContentView: View {
 		}
 		return Measurement(value: totalDistance, unit: UnitLength.meters)
 	}
+	func CalculateNightDriving(AllDrives: [DriveDetails]) -> TimeInterval {
+		var time: TimeInterval = 0
+		for drive in AllDrives {
+			time += drive.TotalNightTime
+		}
+		return time
+	}
 	func CalculateTotalTime(AllDrives: [DriveDetails]) -> TimeInterval {
 		var totalTime: TimeInterval = TimeInterval()
 		for drive in AllDrives {
@@ -67,7 +74,8 @@ struct ContentView: View {
 							ScrollView {
 								UserStats(
 									DistanceTraveled: CalculateStats(AllDrives: AllDrives),
-									TimeTraveled: CalculateTotalTime(AllDrives: AllDrives)
+									TimeTraveled: CalculateTotalTime(AllDrives: AllDrives),
+									TotalNightTime: CalculateNightDriving(AllDrives: AllDrives)
 								)
 								.background(Color(UIColor.systemBackground))
 									.scaledToFit()
@@ -87,9 +95,10 @@ struct ContentView: View {
 										.padding(.trailing)
 									Spacer()
 								}
+								.foregroundColor(.primary)
 								Divider()
 								// Stats
-								NavigationLink(destination: Stats(DistanceTraveled: CalculateStats(AllDrives: AllDrives), TimeTraveled: CalculateTotalTime(AllDrives: AllDrives), AllDrives: AllDrives)) {
+								NavigationLink(destination: Stats(DistanceTraveled: CalculateStats(AllDrives: AllDrives), TimeTraveled: CalculateTotalTime(AllDrives: AllDrives), TotalNightTime: CalculateNightDriving(AllDrives: AllDrives), AllDrives: AllDrives)) {
 									Image(systemName: "chart.bar")
 										.padding(.leading)
 										.imageScale(.large)
@@ -98,6 +107,7 @@ struct ContentView: View {
 										.padding(.trailing)
 									Spacer()
 								}
+								.foregroundColor(.primary)
 								Spacer()
 							}
 						}
@@ -112,9 +122,8 @@ struct ContentView: View {
 						cannotAccessLocation: !isAuthorized()
 					)
 				}
-				.background(Color.clear)
+				.background(Color(UIColor.systemBackground))
 			}
-			.background(Blur(style: .systemUltraThinMaterial))
 		}
 		.onAppear(perform: {
 			locationViewModel.requestPermission()
@@ -148,10 +157,6 @@ struct ContentView: View {
 		driveSave.id = UUID()
 		driveSave.locations = .init(array: saveLocations)
 		
-		print(
-			"hasChanges:", viewContext.hasChanges,
-			"\ninsertedObjects:", viewContext.insertedObjects
-		)
 		viewContext.userInfo.setValue("data", forKey: "use")
 		
 		do {
@@ -166,10 +171,9 @@ struct ContentView: View {
 		locationViewModel.allLocations = []
 	}
 	func isAuthorized() -> Bool {
-		print(locationViewModel.authorizationStatus.rawValue)
+		print(locationViewModel.authorizationStatus.rawValue, "at: ", #file, #line)
 		switch locationViewModel.authorizationStatus {
 		case .authorizedAlways:
-			print("true")
 			return true
 		case .authorizedWhenInUse:
 			return true

@@ -41,7 +41,7 @@ struct Graph: View {
 	}
 	
     var body: some View {
-		HStack(alignment: .bottom) {
+		HStack(alignment: .bottom, spacing: 3) {
 			ForEach(0..<NormalizedList.count) {i in
 				Capsule()
 					.fill(

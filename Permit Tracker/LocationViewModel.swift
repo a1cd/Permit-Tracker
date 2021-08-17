@@ -56,12 +56,12 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 		let geocoder = CLGeocoder()
 		geocoder.reverseGeocodeLocation(location) { [self] (placemarks, error) in
 			self.currentPlacemark = placemarks?.first
-			if placemarks != nil {
-				if let printerPlacemark = placemarks!.first {
-					print(printerPlacemark)
-					print(printerPlacemark.subThoroughfare)
-				}
-			}
+//			if placemarks != nil {
+//				if let printerPlacemark = placemarks!.first {
+//					print(printerPlacemark)
+//					print(printerPlacemark.subThoroughfare)
+//				}
+//			}
 		}
 	}
 //	func newVisitReceived(_ visit: CLVisit, description: String) {

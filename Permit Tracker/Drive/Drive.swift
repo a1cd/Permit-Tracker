@@ -9,9 +9,12 @@ import SwiftUI
 import MapKit
 
 struct Drive: View {
+	@Environment(\.colorScheme) var colorScheme
 	@ObservedObject var locationViewModel: LocationViewModel
 	
 	@State var driveDetail: DriveDetails?
+	
+	@State var showMap: Bool = true
 	
 	var realDriveDetail: DriveDetails {
 		if (driveDetail == nil) {
@@ -74,12 +77,30 @@ struct Drive: View {
     var body: some View {
 		GroupBox(label: label) {
 			VStack {
-				if isDriving {
-					MapView(driveDetails: locationViewModel.driveDetail, isDriving: true)
-						.frame(height: 400)
-				} else {
-					MapView(driveDetails: driveDetail!, isDriving: false)
-						.frame(height: 200)
+				HStack {
+					Spacer()
+					ForEach(0..<realDriveDetail.Badges.count, content: {i in
+						if (realDriveDetail.Badges[i].icon.1 || (colorScheme == .dark)) {
+							Image(systemName: realDriveDetail.Badges[i].icon.0)
+								.renderingMode(.original)
+								.padding(.all, 1.5)
+						} else {
+							Image(systemName: realDriveDetail.Badges[i].icon.0)
+								.padding(.all, 1.5)
+								.color(realDriveDetail.Badges[i].icon.2 ?? Color(UIColor.systemFill))
+						}
+						
+					})
+				}
+				.padding(.horizontal)
+				if showMap {
+					if isDriving {
+						MapView(driveDetails: locationViewModel.driveDetail, isDriving: true)
+							.frame(height: 400)
+					} else {
+						MapView(driveDetails: driveDetail!, isDriving: false)
+							.frame(height: 200)
+					}
 				}
 				HStack {
 					Image(systemName: "ruler")
@@ -95,13 +116,21 @@ struct Drive: View {
 						Text(distFormatter.string(from: GetDriveDistance().0))
 					}
 				}
+				.foregroundColor(Color(UIColor.systemGreen))
 				HStack {
 					Image(systemName: "stopwatch")
 					Text("Time")
 					Spacer()
 					Text(GetTimeInterval())
 				}
-				
+				.foregroundColor(Color(UIColor.systemOrange))
+				HStack {
+					Image(systemName: "moon.stars.fill")
+					Text("Night Driving")
+					Spacer()
+					Text(realDriveDetail.TotalNightTime.stringFromTimeInterval())
+				}
+				.foregroundColor(Color(UIColor.systemBlue))
 			}
 		}
     }
@@ -129,6 +158,23 @@ extension TimeInterval{
 		
 		return formatter.string(from: self.rounded())!
 	}
+}
+
+func TimeIntervalFrom(Days: Double = 0, Hours: Double = 0, Minuites: Double = 0, Seconds: Double = 0) -> TimeInterval {
+	var interval: TimeInterval = TimeInterval()
+	interval += Days
+	interval *= 24
+	
+	interval += Hours
+	interval *= 60
+	
+	interval += Minuites
+	interval *= 60
+	
+	interval += Seconds
+	interval *= 60
+	
+	return interval
 }
 
 //struct Drive_Previews: PreviewProvider {
