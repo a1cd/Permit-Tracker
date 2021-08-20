@@ -64,15 +64,6 @@ struct Drive: View {
 	
 	@State var Distance: Measurement<UnitLength> = Measurement.init(value: 0, unit: UnitLength.meters)
 	
-	func GetTimeInterval() -> String {
-		if (isDriving) {
-			return realDriveDetail.TimeInterval.stringFromTimeInterval(isApptx: !isDriving)
-		} else {
-			// dont show while driving because location refresh is not exactly 1 second
-			return realDriveDetail.TimeInterval.stringFromTimeInterval(isApptx: !isDriving)
-		}
-	}
-	
 	@State var SpeedTimer = Timer.publish(every: 0.1, tolerance: 0.05, on: .current, in: .default).autoconnect()
 	@State var SecondTimer = Timer.publish(every: 0.1, tolerance: 0.05, on: .current, in: .default).autoconnect()
     var body: some View {
@@ -110,23 +101,18 @@ struct Drive: View {
 				}
 				.foregroundColor(Color(UIColor.systemGreen))
 				HStack {
-					Image(systemName: "stopwatch")
-					Text("Time")
+					Image(systemName: "sun.max.fill")
+					Text("Day Driving")
 					Spacer()
-					Text(GetTimeInterval())
+					Text(realDriveDetail.TotalDayTime.stringFromTimeInterval())
 				}
 				.foregroundColor(Color(UIColor.systemOrange))
-				HStack {
-					Image(systemName: "moon.stars.fill")
-					Text("Night Driving")
-					Spacer()
-					Text(realDriveDetail.TotalNightTime.stringFromTimeInterval())
-				}
-				.onReceive(SecondTimer, perform: { _ in
-					if isDriving {
-						locationViewModel.driveDetail.TotalNightTime = locationViewModel.driveDetail.getTotalNightTime()
-					}
-				})
+				MiniStat(icon: "moon.stars.fill", text: "Night Driving", value: realDriveDetail.TotalNightTime.stringFromTimeInterval())
+//				.onReceive(SecondTimer, perform: { _ in
+//					if isDriving {
+//						locationViewModel.driveDetail.TotalNightTime = locationViewModel.driveDetail.getTotalNightTime()
+//					}
+//				})
 				.foregroundColor(Color(UIColor.systemBlue))
 			}
 		}

@@ -10,7 +10,7 @@ import SwiftUI
 struct DriveBadges: View {
 	@State var Badges: [DriveDetails.Badge]
 	var rows: [GridItem] =
-			Array(repeating: .init(.fixed(20)), count: 3)
+		Array(repeating: GridItem(), count: 3)
     var body: some View {
 		LazyHGrid(rows: rows) {
 			ForEach(Badges, id: \.hashValue, content: {badge in

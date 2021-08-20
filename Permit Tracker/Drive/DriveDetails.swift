@@ -112,7 +112,7 @@ class DriveDetails {
 	var driveInterval: DateInterval {DateInterval(start: self.StartDate, end: self.EndDate)}
 	func isLocationAtNight(_ Location: CLLocation) -> Bool {
 		let calendar = Calendar.init(identifier: .gregorian)
-		var sunset: Date = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: firstLocation.timestamp) ?? firstLocation.timestamp.advanced(by: TimeIntervalFrom(Days: 1)))
+		var sunset: Date = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: Location.timestamp) ?? Location.timestamp.advanced(by: TimeIntervalFrom(Days: 1)))
 		if let solar = Solar(for: Location.timestamp, coordinate: Location.coordinate) {
 			if let sunset = solar.sunset {
 				// if it is past sunset
@@ -123,13 +123,43 @@ class DriveDetails {
 		}
 		return false
 	}
+	
 	func getTotalNightTime() -> TimeInterval {
 		var total: TimeInterval = 0
-		let nightInterval: DateInterval
-		driveInterval.intersection(with: <#T##DateInterval#>)
+		if let firstLoc = Locations.first {
+			if let lastLoc = Locations.last {
+				if let firstSol = Solar(for: firstLoc.timestamp, coordinate: firstLoc.coordinate) {
+					let firstInterval = DateInterval(start: firstSol.sunrise ?? firstLoc.timestamp.previousDay().advanced(by: TimeIntervalFrom(Hours: 5)), end: firstSol.sunset ?? firstLoc.timestamp.nextDay())
+					if let lastSol = Solar(for: lastLoc.timestamp, coordinate: lastLoc.coordinate) {
+						let lastInterval = DateInterval(start: lastSol.sunrise ?? lastLoc.timestamp.previousDay().advanced(by: TimeIntervalFrom(Hours: 5)), end: lastSol.sunset ?? lastLoc.timestamp.nextDay())
+						let firstIntervalIntersect = driveInterval.intersection(with: firstInterval)
+						let lastIntervalIntersect = driveInterval.intersection(with: lastInterval)
+						
+						var totalIntervalIntersect: TimeInterval = 0
+						
+						// check to see if they are the same
+						if (firstInterval.start == lastInterval.start) && (firstInterval.end == lastInterval.end) {
+							totalIntervalIntersect = firstIntervalIntersect?.duration ?? 0
+						} else {
+							totalIntervalIntersect += firstIntervalIntersect?.duration ?? 0
+							totalIntervalIntersect += lastIntervalIntersect?.duration ?? 0
+							
+							// subtract intersection intersection from total intersection
+							if (firstIntervalIntersect != nil) && (lastIntervalIntersect != nil) {
+								totalIntervalIntersect -= firstIntervalIntersect!.intersection(with: lastIntervalIntersect!)?.duration ?? 0
+							}
+						}
+						// set the total to the total driving time
+						total = driveInterval.duration
+						total -= totalIntervalIntersect
+					}
+				}
+			}
+		}
 		return total
 	}
 	lazy var TotalNightTime: TimeInterval = getTotalNightTime()
+	lazy var TotalDayTime: TimeInterval = self.TimeInterval - self.TotalNightTime
 	lazy var Badges: [Badge] = {
 		if self.test {
 			return Badge.Cloudy.all
@@ -239,5 +269,18 @@ class DriveDetails {
 			locationEntities.append(entity)
 		}
 		return locationEntities
+	}
+}
+
+extension Date {
+	func nextDay(_ i: Int = 1) -> Date {
+		let calendar = Calendar(identifier: .gregorian)
+		let nextDate = self.advanced(by: 60*60*24*Double(i))
+		let nextDay = calendar.startOfDay(for: nextDate)
+		return nextDay
+	}
+	
+	func previousDay(_ i: Int = 1) -> Date {
+		return nextDay(-i)
 	}
 }

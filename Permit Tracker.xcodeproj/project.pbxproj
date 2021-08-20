@@ -10,6 +10,8 @@
 		67E4E3C653AB994DD017DA6F /* Pods_Permit_TrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2147DF3E3F0C3E9137DAD1B /* Pods_Permit_TrackerTests.framework */; };
 		93B5B7895EB7354E509B9AD6 /* Pods_Permit_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0435E6C9A22BC68672D0B4C8 /* Pods_Permit_Tracker.framework */; };
 		984C062779071DCD7A05BA93 /* Pods_Permit_Tracker_Permit_TrackerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF991A9A23EE2B522A4826B6 /* Pods_Permit_Tracker_Permit_TrackerUITests.framework */; };
+		B80C86AE26CEB1AB00CE46B4 /* EndOfDrive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80C86AD26CEB1AB00CE46B4 /* EndOfDrive.swift */; };
+		B80C86B726CEB54300CE46B4 /* WeatherChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80C86B626CEB54300CE46B4 /* WeatherChoice.swift */; };
 		B83F322226C19D3A00A56E26 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F322126C19D3A00A56E26 /* App.swift */; };
 		B83F322426C19D3A00A56E26 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F322326C19D3A00A56E26 /* ContentView.swift */; };
 		B83F322626C19D3C00A56E26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B83F322526C19D3C00A56E26 /* Assets.xcassets */; };
@@ -73,6 +75,8 @@
 		3F4C28BC56287995DB30816E /* Pods-Permit Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Permit Tracker.release.xcconfig"; path = "Target Support Files/Pods-Permit Tracker/Pods-Permit Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		7845895F03D49A00350E216F /* Pods-Permit Tracker-Permit TrackerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Permit Tracker-Permit TrackerUITests.release.xcconfig"; path = "Target Support Files/Pods-Permit Tracker-Permit TrackerUITests/Pods-Permit Tracker-Permit TrackerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A2147DF3E3F0C3E9137DAD1B /* Pods_Permit_TrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Permit_TrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B80C86AD26CEB1AB00CE46B4 /* EndOfDrive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndOfDrive.swift; sourceTree = "<group>"; };
+		B80C86B626CEB54300CE46B4 /* WeatherChoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherChoice.swift; sourceTree = "<group>"; };
 		B83F321E26C19D3A00A56E26 /* Permit Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Permit Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B83F322126C19D3A00A56E26 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		B83F322326C19D3A00A56E26 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -141,6 +145,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B80C86B226CEB1B000CE46B4 /* EndOfDrive */ = {
+			isa = PBXGroup;
+			children = (
+				B80C86AD26CEB1AB00CE46B4 /* EndOfDrive.swift */,
+				B80C86B626CEB54300CE46B4 /* WeatherChoice.swift */,
+			);
+			path = EndOfDrive;
+			sourceTree = "<group>";
+		};
 		B83F321526C19D3A00A56E26 = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +259,7 @@
 		B8E5B15426C8B40700BC21A0 /* Drive */ = {
 			isa = PBXGroup;
 			children = (
+				B80C86B226CEB1B000CE46B4 /* EndOfDrive */,
 				B88F068826C73AD400C33C1B /* DriveList.swift */,
 				B8E5B14D26C8B3ED00BC21A0 /* FullDriveData.swift */,
 				B83F326226C1C7E800A56E26 /* Drive.swift */,
@@ -521,11 +535,13 @@
 				B88F06BB26C8197F00C33C1B /* GagueView.swift in Sources */,
 				B8E5B14826C85F0500BC21A0 /* Graph.swift in Sources */,
 				B83F326826C1C83600A56E26 /* DriveDetails.swift in Sources */,
+				B80C86B726CEB54300CE46B4 /* WeatherChoice.swift in Sources */,
 				B83F322226C19D3A00A56E26 /* App.swift in Sources */,
 				B88F068926C73AD400C33C1B /* DriveList.swift in Sources */,
 				B8844B4A26C45A0A00AB30FB /* ToolBar.swift in Sources */,
 				B861302B26C3007200C4513C /* LocationViewModel.swift in Sources */,
 				B88F06C526C829C700C33C1B /* GoalsDict.swift in Sources */,
+				B80C86AE26CEB1AB00CE46B4 /* EndOfDrive.swift in Sources */,
 				B83F322E26C19D3C00A56E26 /* Permit_Tracker.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

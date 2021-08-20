@@ -22,14 +22,13 @@ struct ContentView: View {
     private var Drives: FetchedResults<Item>
 
 	@State var Recording = false
+	
 	var AllDrives: [DriveDetails] {
-		get {
-			var list: [DriveDetails] = []
-			for drive in Drives {
-				 list.append(DriveDetails(item: drive))
-			}
-			return list
+		var list: [DriveDetails] = []
+		for drive in Drives {
+			 list.append(DriveDetails(item: drive))
 		}
+		return list
 	}
 	
 	let locationManager = CLLocationManager()
@@ -63,6 +62,13 @@ struct ContentView: View {
 		return totalTime
 	}
 	
+//	func AsyncCacheDrivingValues() {
+//		for drive in
+//	}
+	
+	func DataChange() {
+		
+	}
 	var body: some View {
 		Group {
 			VStack {
@@ -169,6 +175,7 @@ struct ContentView: View {
 //				fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
 		}
 		locationViewModel.allLocations = []
+		DataChange()
 	}
 	func isAuthorized() -> Bool {
 		print(locationViewModel.authorizationStatus.rawValue, "at: ", #file, #line)
@@ -203,6 +210,7 @@ struct ContentView: View {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
+			DataChange()
         }
     }
 	

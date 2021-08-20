@@ -62,12 +62,7 @@ struct FullDriveData: View {
 	@State private var Distance: Measurement<UnitLength> = Measurement.init(value: 0, unit: UnitLength.meters)
 	
 	func GetTimeInterval() -> String {
-		if (isDriving) {
-			return realDriveDetail.TimeInterval.stringFromTimeInterval(isApptx: !isDriving)
-		} else {
-			// dont show while driving because location refresh is not exactly 1 second
-			return realDriveDetail.TimeInterval.stringFromTimeInterval(isApptx: !isDriving)
-		}
+		return realDriveDetail.TotalDayTime.stringFromTimeInterval(isApptx: !isDriving)
 	}
 	
 	var rows: [GridItem] =
