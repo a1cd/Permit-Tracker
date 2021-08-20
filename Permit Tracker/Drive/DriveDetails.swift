@@ -110,19 +110,19 @@ class DriveDetails {
 		}
 	}
 	var driveInterval: DateInterval {DateInterval(start: self.StartDate, end: self.EndDate)}
-	func isLocationAtNight(_ Location: CLLocation) -> Bool {
-		let calendar = Calendar.init(identifier: .gregorian)
-		var sunset: Date = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: Location.timestamp) ?? Location.timestamp.advanced(by: TimeIntervalFrom(Days: 1)))
-		if let solar = Solar(for: Location.timestamp, coordinate: Location.coordinate) {
-			if let sunset = solar.sunset {
-				// if it is past sunset
-				if sunset < Location.timestamp {
-					
-				}
-			}
-		}
-		return false
-	}
+//	func isLocationAtNight(_ Location: CLLocation) -> Bool {
+//		let calendar = Calendar.init(identifier: .gregorian)
+//		var sunset: Date = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: Location.timestamp) ?? Location.timestamp.advanced(by: TimeIntervalFrom(Days: 1)))
+//		if let solar = Solar(for: Location.timestamp, coordinate: Location.coordinate) {
+//			if let sunset = solar.sunset {
+//				// if it is past sunset
+//				if sunset < Location.timestamp {
+//					
+//				}
+//			}
+//		}
+//		return false
+//	}
 	
 	func getTotalNightTime() -> TimeInterval {
 		var total: TimeInterval = 0

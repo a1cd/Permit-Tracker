@@ -9,9 +9,12 @@ import SwiftUI
 
 struct EndOfDrive: View {
 	@Binding var working: Bool
+	@State var Weather: Int = 0
     var body: some View {
 		VStack {
-//			Button("OK", action: working.toggle())
+			GroupBox(label: Text("Weather").font(.largeTitle), content: {
+				WeatherChoice(Select: $Weather)
+			})
 		}
     }
 }
