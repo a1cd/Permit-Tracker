@@ -14,6 +14,7 @@ import Dispatch
 struct ContentView: View {
 	@StateObject var locationViewModel = LocationViewModel()
     @Environment(\.managedObjectContext) private var viewContext
+	@Environment(\.colorScheme) var colorScheme
 	
     @FetchRequest(
 		sortDescriptors: [NSSortDescriptor(keyPath: \Item.date, ascending: false)],
@@ -89,12 +90,12 @@ struct ContentView: View {
 									TimeTraveled: CalculateTotalTime(AllDrives: AllDrives),
 									TotalNightTime: CalculateNightDriving(AllDrives: AllDrives)
 								)
-									.background(Color(UIColor.systemBackground))
+								.background(Color((colorScheme == ColorScheme.dark) ? UIColor.secondarySystemBackground : UIColor.systemBackground))
 									.scaledToFit()
 										
 									.clipped()
 									.cornerRadius(30)
-									.shadow(color: Color(UIColor.systemGray), radius: 1.5, x: 0, y: 2)
+									.shadow(radius: 1.5, x: 0, y: 2)
 									.padding(.bottom, 3.5)
 								Divider()
 								// Drive list
