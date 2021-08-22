@@ -1,0 +1,6 @@
+framework module Pods_Permit_Tracker_Permit_TrackerUITests {
+  umbrella header "Pods-Permit Tracker-Permit TrackerUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

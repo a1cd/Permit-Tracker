@@ -12,7 +12,30 @@ struct DriveList: View {
 	var locationViewModel: LocationViewModel
 	var Drives: FetchedResults<Item>
 	
+	@State var tryingToDelete: Bool = false
+	@State var deleteOffset: IndexSet? = nil
+	
 	let deleteItems: (_ offsets: IndexSet) -> Void
+	
+	func userIsSureOkToDelete() {
+		if deleteOffset != nil {
+			deleteItems(deleteOffset!)
+		}
+	}
+	
+	func areYouSure(_ offsets: IndexSet) {
+		tryingToDelete = true
+		deleteOffset = offsets
+	}
+	
+	func alert() -> Alert {
+		return Alert(
+			title: Text("Are you sure?"),
+			message: Text("Are you sure you want to delete this drive?\n") + Text("You cannot undo this action.").foregroundColor(Color(UIColor.systemRed)),
+			primaryButton: Alert.Button.cancel({tryingToDelete = false}),
+			secondaryButton: Alert.Button.destructive(Text("Delete"), action: userIsSureOkToDelete)
+		)
+	}
 	
     var body: some View {
 //		NavigationView {
@@ -30,14 +53,18 @@ struct DriveList: View {
 							{
 								Drive(
 									locationViewModel: locationViewModel,
-									driveDetail: DriveDetails(item: Drives[i])
+									driveDetail: DriveDetails(item: Drives[i]),
+									showMap: i < 2
 								)
 							}
 						}
 					}
 				})
-				.onDelete(perform: deleteItems)
+				.onDelete(perform: areYouSure)
+				.alert(isPresented: $tryingToDelete, content: alert)
 			}
+			.navigationTitle("Driving History")
+//			.listStyle(GroupedListStyle())
 //		}
     }
 }

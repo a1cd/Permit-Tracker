@@ -14,6 +14,7 @@ import Dispatch
 struct ContentView: View {
 	@StateObject var locationViewModel = LocationViewModel()
     @Environment(\.managedObjectContext) private var viewContext
+	@Environment(\.colorScheme) var colorScheme
 	
     @FetchRequest(
 		sortDescriptors: [NSSortDescriptor(keyPath: \Item.date, ascending: false)],
@@ -21,15 +22,20 @@ struct ContentView: View {
 	)
     private var Drives: FetchedResults<Item>
 
+	@State var mostRecentDrive: Item?
+	
 	@State var Recording = false
+	@State var WriteNotes = false
+	@State var WeatherInt = 0
+	@State var NotesString = ""
+	@State var Supervisor = ""
+	
 	var AllDrives: [DriveDetails] {
-		get {
-			var list: [DriveDetails] = []
-			for drive in Drives {
-				 list.append(DriveDetails(item: drive))
-			}
-			return list
+		var list: [DriveDetails] = []
+		for drive in Drives {
+			 list.append(DriveDetails(item: drive))
 		}
+		return list
 	}
 	
 	let locationManager = CLLocationManager()
@@ -48,6 +54,13 @@ struct ContentView: View {
 		}
 		return Measurement(value: totalDistance, unit: UnitLength.meters)
 	}
+	func CalculateNightDriving(AllDrives: [DriveDetails]) -> TimeInterval {
+		var time: TimeInterval = 0
+		for drive in AllDrives {
+			time += drive.TotalNightTime
+		}
+		return time
+	}
 	func CalculateTotalTime(AllDrives: [DriveDetails]) -> TimeInterval {
 		var totalTime: TimeInterval = TimeInterval()
 		for drive in AllDrives {
@@ -56,6 +69,13 @@ struct ContentView: View {
 		return totalTime
 	}
 	
+//	func AsyncCacheDrivingValues() {
+//		for drive in
+//	}
+	
+	func DataChange() {
+		
+	}
 	var body: some View {
 		Group {
 			VStack {
@@ -67,14 +87,15 @@ struct ContentView: View {
 							ScrollView {
 								UserStats(
 									DistanceTraveled: CalculateStats(AllDrives: AllDrives),
-									TimeTraveled: CalculateTotalTime(AllDrives: AllDrives)
+									TimeTraveled: CalculateTotalTime(AllDrives: AllDrives),
+									TotalNightTime: CalculateNightDriving(AllDrives: AllDrives)
 								)
-								.background(Color(UIColor.systemBackground))
+								.background(Color((colorScheme == ColorScheme.dark) ? UIColor.secondarySystemBackground : UIColor.systemBackground))
 									.scaledToFit()
 										
 									.clipped()
 									.cornerRadius(30)
-									.shadow(color: Color(UIColor.systemGray), radius: 1.5, x: 0, y: 2)
+									.shadow(radius: 1.5, x: 0, y: 2)
 									.padding(.bottom, 3.5)
 								Divider()
 								// Drive list
@@ -87,9 +108,10 @@ struct ContentView: View {
 										.padding(.trailing)
 									Spacer()
 								}
+									.foregroundColor(.primary)
 								Divider()
 								// Stats
-								NavigationLink(destination: Stats(DistanceTraveled: CalculateStats(AllDrives: AllDrives), TimeTraveled: CalculateTotalTime(AllDrives: AllDrives), AllDrives: AllDrives)) {
+								NavigationLink(destination: Stats(DistanceTraveled: CalculateStats(AllDrives: AllDrives), TimeTraveled: CalculateTotalTime(AllDrives: AllDrives), TotalNightTime: CalculateNightDriving(AllDrives: AllDrives), AllDrives: AllDrives)) {
 									Image(systemName: "chart.bar")
 										.padding(.leading)
 										.imageScale(.large)
@@ -98,6 +120,7 @@ struct ContentView: View {
 										.padding(.trailing)
 									Spacer()
 								}
+									.foregroundColor(.primary)
 								Spacer()
 							}
 						}
@@ -109,12 +132,39 @@ struct ContentView: View {
 						StartRecording: startRecording,
 						StopRecording: stopRecording,
 						locationAccess: locationViewModel.authorizationStatus,
-						cannotAccessLocation: !isAuthorized()
+						cannotAccessLocation: !isAuthorized(true)
 					)
+					.sheet(isPresented: $WriteNotes) {
+						EndOfDrive(working: $WriteNotes, weather: $WeatherInt, notes: $NotesString, Supervisor: $Supervisor)
+							.onDisappear(perform: {
+								print(mostRecentDrive != nil)
+								if mostRecentDrive != nil {
+									print("Saving to most recent drive")
+									print("Weather", WeatherInt)
+									print("Notes", NotesString)
+									mostRecentDrive!.weather = Int16(WeatherInt)
+									mostRecentDrive!.notes = NotesString
+									
+									// save the new data
+									do {
+										print("saving context")
+										try viewContext.save()
+										print("Context Saved")
+									} catch {
+										print("context error")
+										// Replace this implementation with code to handle the error appropriately.
+										// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+							//				let nsError = error as NSError
+										print("error", error)
+							//				fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+									}
+									
+								}
+							})
+					}
 				}
-				.background(Color.clear)
+				.background(Color(UIColor.systemBackground))
 			}
-			.background(Blur(style: .systemUltraThinMaterial))
 		}
 		.onAppear(perform: {
 			locationViewModel.requestPermission()
@@ -122,6 +172,7 @@ struct ContentView: View {
 	}
 	
     func startRecording() {
+		mostRecentDrive = nil
 		if isAuthorized() {
 			locationViewModel.AuthChange = stopRecording
 			Recording = true
@@ -138,7 +189,7 @@ struct ContentView: View {
 		locationViewModel.locationManager.stopUpdatingHeading()
 		locationViewModel.locationManager.stopUpdatingLocation()
 		let allLocations = locationViewModel.allLocations
-		let newDrive = DriveDetails(Locations: allLocations)
+		let newDrive = DriveDetails(allLocations)
 		
 		let driveSave = Item(context: viewContext)
 		
@@ -148,14 +199,11 @@ struct ContentView: View {
 		driveSave.id = UUID()
 		driveSave.locations = .init(array: saveLocations)
 		
-		print(
-			"hasChanges:", viewContext.hasChanges,
-			"\ninsertedObjects:", viewContext.insertedObjects
-		)
-		viewContext.userInfo.setValue("data", forKey: "use")
+		mostRecentDrive = driveSave
 		
 		do {
 			try viewContext.save()
+			locationViewModel.allLocations = []
 		} catch {
 			// Replace this implementation with code to handle the error appropriately.
 			// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -163,16 +211,23 @@ struct ContentView: View {
 			print("error", error)
 //				fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
 		}
-		locationViewModel.allLocations = []
+		
+		
+		DataChange()
 	}
-	func isAuthorized() -> Bool {
-		print(locationViewModel.authorizationStatus.rawValue)
+	func isAuthorized(_ andDetermined: Bool = false) -> Bool {
+		print(locationViewModel.authorizationStatus.rawValue, "at: ", #file, #line)
 		switch locationViewModel.authorizationStatus {
 		case .authorizedAlways:
-			print("true")
 			return true
 		case .authorizedWhenInUse:
 			return true
+		case .notDetermined:
+			if andDetermined {
+				return true
+			} else {
+				return false
+			}
 		default:
 			return false
 		}
@@ -182,6 +237,7 @@ struct ContentView: View {
 			locationViewModel.AuthChange = Nothing
 			Save()
 			Recording = false
+			WriteNotes = true
 		} else {
 			print("Not authorized")
 		}
@@ -199,6 +255,8 @@ struct ContentView: View {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
+			DataChange()
+			
         }
     }
 	

@@ -13,7 +13,7 @@ struct MapView: UIViewRepresentable {
 	var driveDetails: DriveDetails
 	var isDriving: Bool
 	func makeUIView(context: Context) -> MKMapView {
-		print("making map view - function: ", #function)
+//		print("making map view - function: ", #function)
 		let mapView = MKMapView()
 		mapView.delegate = context.coordinator
 		
@@ -48,11 +48,27 @@ struct MapView: UIViewRepresentable {
 			mapView.setRegion(regionThatFits, animated: true)
 		}
 		
+//		var polylines: [MKPolyline] = []
+//		for (start, end) in driveDetails.innacurateLocations {
+//			let request = MKDirections.Request()
+//			request.source = MKMapItem(placemark: MKPlacemark(coordinate: start.coordinate))
+//			request.destination = MKMapItem(placemark: MKPlacemark(coordinate: end.coordinate))
+//			let directions = MKDirections(request: request)
+//			directions.calculate { (Response, Error) in
+//				if Response != nil {
+//					if let estimatedRoute = Response?.routes.first?.polyline {
+//						polylines.append(estimatedRoute)
+//					}
+//				}
+//			}
+//		}
+//		mapView.addOverlays(polylines)
+		
 		return mapView
 	}
 
 	func updateUIView(_ uiView: MKMapView, context: Context) {
-		print("updating map ui - function: ", #function)
+//		print("updating map ui - function: ", #function)
 		
 		let polyline = MKPolyline(coordinates: driveDetails.Locations2d, count: driveDetails.Locations.count)
 		
@@ -75,7 +91,7 @@ struct MapView: UIViewRepresentable {
 			
 		} else {
 			
-			print("user is not driving")
+//			print("user is not driving")
 			let Start = MKPointAnnotation()
 			Start.coordinate = polyline.points()[0].coordinate
 			Start.title = "Start"
@@ -102,11 +118,12 @@ class Coordinator: NSObject, MKMapViewDelegate {
 	}
 	
 	func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-		print("update overlay")
+//		print("update overlay")
 		if let routePolyline = overlay as? MKPolyline {
 			let renderer = MKPolylineRenderer(polyline: routePolyline)
 			renderer.strokeColor = UIColor.systemRed
 			renderer.lineWidth = 5
+			renderer.lineDashPattern = [20, 10, 0, 10]
 			return renderer
 		}
 		

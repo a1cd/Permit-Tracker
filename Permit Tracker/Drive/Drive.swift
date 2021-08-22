@@ -9,9 +9,12 @@ import SwiftUI
 import MapKit
 
 struct Drive: View {
+	@Environment(\.colorScheme) var colorScheme
 	@ObservedObject var locationViewModel: LocationViewModel
 	
 	@State var driveDetail: DriveDetails?
+	
+	@State var showMap: Bool = true
 	
 	var realDriveDetail: DriveDetails {
 		if (driveDetail == nil) {
@@ -61,25 +64,26 @@ struct Drive: View {
 	
 	@State var Distance: Measurement<UnitLength> = Measurement.init(value: 0, unit: UnitLength.meters)
 	
-	func GetTimeInterval() -> String {
-		if (isDriving) {
-			return realDriveDetail.TimeInterval.stringFromTimeInterval(isApptx: !isDriving)
-		} else {
-			// dont show while driving because location refresh is not exactly 1 second
-			return realDriveDetail.TimeInterval.stringFromTimeInterval(isApptx: !isDriving)
-		}
-	}
-	
 	@State var SpeedTimer = Timer.publish(every: 0.1, tolerance: 0.05, on: .current, in: .default).autoconnect()
+	@State var SecondTimer = Timer.publish(every: 0.1, tolerance: 0.05, on: .current, in: .default).autoconnect()
     var body: some View {
 		GroupBox(label: label) {
 			VStack {
-				if isDriving {
-					MapView(driveDetails: locationViewModel.driveDetail, isDriving: true)
-						.frame(height: 400)
-				} else {
-					MapView(driveDetails: driveDetail!, isDriving: false)
-						.frame(height: 200)
+				HStack {
+					Spacer()
+					ForEach(0..<realDriveDetail.Badges.count, content: { i in
+						Badge(icon: realDriveDetail.Badges[i].icon)
+					})
+				}
+				.padding(.horizontal)
+				if showMap {
+					if isDriving {
+						MapView(driveDetails: locationViewModel.driveDetail, isDriving: true)
+							.frame(height: 400)
+					} else {
+						MapView(driveDetails: driveDetail!, isDriving: false)
+							.frame(height: 200)
+					}
 				}
 				HStack {
 					Image(systemName: "ruler")
@@ -95,13 +99,21 @@ struct Drive: View {
 						Text(distFormatter.string(from: GetDriveDistance().0))
 					}
 				}
+				.foregroundColor(Color(UIColor.systemGreen))
 				HStack {
-					Image(systemName: "stopwatch")
-					Text("Time")
+					Image(systemName: "sun.max.fill")
+					Text("Day Driving")
 					Spacer()
-					Text(GetTimeInterval())
+					Text(realDriveDetail.TotalDayTime.stringFromTimeInterval())
 				}
-				
+				.foregroundColor(Color(UIColor.systemOrange))
+				MiniStat(icon: "moon.stars.fill", text: "Night Driving", value: realDriveDetail.TotalNightTime.stringFromTimeInterval())
+//				.onReceive(SecondTimer, perform: { _ in
+//					if isDriving {
+//						locationViewModel.driveDetail.TotalNightTime = locationViewModel.driveDetail.getTotalNightTime()
+//					}
+//				})
+				.foregroundColor(Color(UIColor.systemBlue))
 			}
 		}
     }
@@ -131,8 +143,25 @@ extension TimeInterval{
 	}
 }
 
+func TimeIntervalFrom(Days: Double = 0, Hours: Double = 0, Minuites: Double = 0, Seconds: Double = 0) -> TimeInterval {
+	var interval: TimeInterval = TimeInterval()
+	interval += Days
+	interval *= 24
+	
+	interval += Hours
+	interval *= 60
+	
+	interval += Minuites
+	interval *= 60
+	
+	interval += Seconds
+	interval *= 60
+	
+	return interval
+}
+
 //struct Drive_Previews: PreviewProvider {
 //    static var previews: some View {
-//		Drive(locationViewModel: <#Binding<LocationViewModel>#>, DriveDetail: DriveDetails(Locations: []))
+//
 //    }
 //}

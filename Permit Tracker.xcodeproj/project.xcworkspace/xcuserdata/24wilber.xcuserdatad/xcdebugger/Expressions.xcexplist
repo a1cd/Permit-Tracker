@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "ContentView.stopRecording():ContentView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(NSError)nsError">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in ToolBar.body.getter:ToolBar.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
