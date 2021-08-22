@@ -12,7 +12,7 @@ import SwiftUI
 import Solar
 
 class DriveDetails {
-	var test: Bool = true
+	var test: Bool = false
 	convenience init(_ locations: [CLLocation], test: Bool) {
 		self.init(locations)
 		self.test = test
