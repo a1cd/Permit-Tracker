@@ -13,7 +13,7 @@ struct MapView: UIViewRepresentable {
 	var driveDetails: DriveDetails
 	var isDriving: Bool
 	func makeUIView(context: Context) -> MKMapView {
-		print("making map view - function: ", #function)
+//		print("making map view - function: ", #function)
 		let mapView = MKMapView()
 		mapView.delegate = context.coordinator
 		

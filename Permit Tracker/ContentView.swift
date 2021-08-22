@@ -21,7 +21,13 @@ struct ContentView: View {
 	)
     private var Drives: FetchedResults<Item>
 
+	@State var mostRecentDrive: Item?
+	
 	@State var Recording = false
+	@State var WriteNotes = false
+	@State var WeatherInt = 0
+	@State var NotesString = ""
+	@State var Supervisor = ""
 	
 	var AllDrives: [DriveDetails] {
 		var list: [DriveDetails] = []
@@ -83,7 +89,7 @@ struct ContentView: View {
 									TimeTraveled: CalculateTotalTime(AllDrives: AllDrives),
 									TotalNightTime: CalculateNightDriving(AllDrives: AllDrives)
 								)
-								.background(Color(UIColor.systemBackground))
+									.background(Color(UIColor.systemBackground))
 									.scaledToFit()
 										
 									.clipped()
@@ -101,7 +107,7 @@ struct ContentView: View {
 										.padding(.trailing)
 									Spacer()
 								}
-								.foregroundColor(.primary)
+									.foregroundColor(.primary)
 								Divider()
 								// Stats
 								NavigationLink(destination: Stats(DistanceTraveled: CalculateStats(AllDrives: AllDrives), TimeTraveled: CalculateTotalTime(AllDrives: AllDrives), TotalNightTime: CalculateNightDriving(AllDrives: AllDrives), AllDrives: AllDrives)) {
@@ -113,7 +119,7 @@ struct ContentView: View {
 										.padding(.trailing)
 									Spacer()
 								}
-								.foregroundColor(.primary)
+									.foregroundColor(.primary)
 								Spacer()
 							}
 						}
@@ -125,8 +131,36 @@ struct ContentView: View {
 						StartRecording: startRecording,
 						StopRecording: stopRecording,
 						locationAccess: locationViewModel.authorizationStatus,
-						cannotAccessLocation: !isAuthorized()
+						cannotAccessLocation: !isAuthorized(true)
 					)
+					.sheet(isPresented: $WriteNotes) {
+						EndOfDrive(working: $WriteNotes, weather: $WeatherInt, notes: $NotesString, Supervisor: $Supervisor)
+							.onDisappear(perform: {
+								print(mostRecentDrive != nil)
+								if mostRecentDrive != nil {
+									print("Saving to most recent drive")
+									print("Weather", WeatherInt)
+									print("Notes", NotesString)
+									mostRecentDrive!.weather = Int16(WeatherInt)
+									mostRecentDrive!.notes = NotesString
+									
+									// save the new data
+									do {
+										print("saving context")
+										try viewContext.save()
+										print("Context Saved")
+									} catch {
+										print("context error")
+										// Replace this implementation with code to handle the error appropriately.
+										// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+							//				let nsError = error as NSError
+										print("error", error)
+							//				fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+									}
+									
+								}
+							})
+					}
 				}
 				.background(Color(UIColor.systemBackground))
 			}
@@ -137,6 +171,7 @@ struct ContentView: View {
 	}
 	
     func startRecording() {
+		mostRecentDrive = nil
 		if isAuthorized() {
 			locationViewModel.AuthChange = stopRecording
 			Recording = true
@@ -153,7 +188,7 @@ struct ContentView: View {
 		locationViewModel.locationManager.stopUpdatingHeading()
 		locationViewModel.locationManager.stopUpdatingLocation()
 		let allLocations = locationViewModel.allLocations
-		let newDrive = DriveDetails(Locations: allLocations)
+		let newDrive = DriveDetails(allLocations)
 		
 		let driveSave = Item(context: viewContext)
 		
@@ -163,10 +198,11 @@ struct ContentView: View {
 		driveSave.id = UUID()
 		driveSave.locations = .init(array: saveLocations)
 		
-		viewContext.userInfo.setValue("data", forKey: "use")
+		mostRecentDrive = driveSave
 		
 		do {
 			try viewContext.save()
+			locationViewModel.allLocations = []
 		} catch {
 			// Replace this implementation with code to handle the error appropriately.
 			// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -174,16 +210,23 @@ struct ContentView: View {
 			print("error", error)
 //				fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
 		}
-		locationViewModel.allLocations = []
+		
+		
 		DataChange()
 	}
-	func isAuthorized() -> Bool {
+	func isAuthorized(_ andDetermined: Bool = false) -> Bool {
 		print(locationViewModel.authorizationStatus.rawValue, "at: ", #file, #line)
 		switch locationViewModel.authorizationStatus {
 		case .authorizedAlways:
 			return true
 		case .authorizedWhenInUse:
 			return true
+		case .notDetermined:
+			if andDetermined {
+				return true
+			} else {
+				return false
+			}
 		default:
 			return false
 		}
@@ -193,6 +236,7 @@ struct ContentView: View {
 			locationViewModel.AuthChange = Nothing
 			Save()
 			Recording = false
+			WriteNotes = true
 		} else {
 			print("Not authorized")
 		}
@@ -211,6 +255,7 @@ struct ContentView: View {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
 			DataChange()
+			
         }
     }
 	

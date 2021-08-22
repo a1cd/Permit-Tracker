@@ -101,6 +101,10 @@ struct FullDriveData: View {
 						}
 					}
 				}
+				WeatherView(Weather: realDriveDetail.weather)
+				NotesView(notes: realDriveDetail.notes)
+				
+				
 				Text("Speed Graph")
 					.font(.headline)
 					.fontWeight(.semibold)

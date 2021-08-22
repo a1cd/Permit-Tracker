@@ -24,7 +24,6 @@ struct WeatherDescription: View {
 			VStack{
 				Text(weather.Description().text)
 					.font(.title)
-					.fontWeight(.bold)
 					.multilineTextAlignment(.center)
 				Text(weather.Description().description)
 					.multilineTextAlignment(.leading)

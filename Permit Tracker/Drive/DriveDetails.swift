@@ -14,7 +14,7 @@ import Solar
 class DriveDetails {
 	var test: Bool = true
 	convenience init(_ locations: [CLLocation], test: Bool) {
-		self.init(Locations: locations)
+		self.init(locations)
 		self.test = test
 	}
 	convenience init(item: Item) {
@@ -44,10 +44,9 @@ class DriveDetails {
 				newLocationList.append(location)
 			}
 		}
-//		self.Locations = newLocationList
-		self.init(Locations: newLocationList)
+		self.init(newLocationList, weather: Weather(rawValue: Int(item.weather)) ?? .Normal, notes: item.notes ?? "")
 	}
-	init(Locations: [CLLocation]) {
+	init(_ Locations: [CLLocation], weather: Weather = .Normal, notes: String = "") {
 		self.Locations = Locations
 		
 		var locationList: [CLLocation] = []
@@ -63,9 +62,13 @@ class DriveDetails {
 				}
 			}
 		}
+		self.notes = notes
+		self.weather = weather
 		self.filteredLocations = locationList
 		self.innacurateLocations = inaccurateLocations
 	}
+	var weather: Weather = .Normal
+	var notes: String = ""
 	lazy var StartDate: Date = {
 		return Locations.first?.timestamp ?? Foundation.Date()
 	}()

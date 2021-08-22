@@ -8,15 +8,26 @@
 import SwiftUI
 
 enum Weather: Int {
-	case Normal = 0
-	case Rain = 1
-	case Snow = 2
-	case Hail = 3
-	case Sleet = 4
-	case FreezingRain = 5
-	case Fog = 6
+	case None = 0
+	case Normal = 1
+	case Rain = 2
+	case Snow = 3
+	case Hail = 4
+	case Sleet = 5
+	case FreezingRain = 6
+	case Fog = 7
+	func Color() -> Color? {
+		switch self {
+		case .None:
+			return UIColor.white.color
+		default:
+			return nil
+		}
+	}
 	func Icon() -> String {
 		switch self {
+		case .None:
+			return "questionmark.circle.fill"
 		case .Normal:
 			return "sun.max.fill"
 		case .Rain:
@@ -36,6 +47,8 @@ enum Weather: Int {
 	}
 	func Text() -> String {
 		switch self {
+		case .None:
+			return "None"
 		case .Normal:
 			return "Normal"
 		case .Rain:
@@ -55,6 +68,8 @@ enum Weather: Int {
 	}
 	func Description() -> Description {
 		switch self {
+		case .None:
+			return .init("None", "No option selected")
 		case .Normal:
 			return .init("Normal",
 						 "For normal weather: cloudy, sunny, etc.")
@@ -90,7 +105,7 @@ enum Weather: Int {
 		return .init("None", "No weather? (Possible error)")
 	}
 }
-let allWeather: [Weather] = [.Normal, .Rain, .Snow, .Hail, .Sleet, .FreezingRain, .Fog]
+let allWeather: [Weather] = [.Normal, .Rain, .Snow, .Hail, .Sleet, .FreezingRain, .Fog, .None]
 struct WeatherChoice: View {
 	@Binding var Select: Int
 	private var item: GridItem {
@@ -102,11 +117,14 @@ struct WeatherChoice: View {
 		VStack {
 			LazyHGrid(rows: [item, item]) {
 				ForEach(allWeather, id: \.rawValue, content: {weather in
-					let isSelect = (weather.rawValue == Select)
-					WeatherIcon(isSelect: isSelect, weather: weather)
-					.onTapGesture {
+					Button(action: {
+						print("set Select to the raw value of: " + weather.Description().text + ". aka:", weather.rawValue)
 						Select = weather.rawValue
-					}
+						print("Select will be",_Select.projectedValue.wrappedValue)
+						print("Select is now",Select)
+					}, label: {
+						WeatherIcon(isSelect: weather.rawValue == Select, weather: weather)
+					})
 					
 				})
 			}
@@ -114,6 +132,7 @@ struct WeatherChoice: View {
 			.scaledToFit()
 			WeatherDescription(Weather: Select)
 				.padding()
+			Text(String(Select))
 		}
     }
 }
@@ -123,7 +142,7 @@ struct WeatherChoice_Previews: PreviewProvider {
     static var previews: some View {
 		VStack {
 			Spacer()
-			WeatherChoice(Select: .constant(6))
+			WeatherChoice(Select: .constant(0))
 			Spacer()
 		}
     }

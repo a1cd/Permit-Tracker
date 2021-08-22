@@ -31,11 +31,14 @@
 		B88959BB26D04D3C00864F63 /* WeatherDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959BA26D04D3C00864F63 /* WeatherDescription.swift */; };
 		B88959C026D04F8400864F63 /* WeatherIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959BF26D04F8400864F63 /* WeatherIcon.swift */; };
 		B88959C526D050CA00864F63 /* Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959C426D050CA00864F63 /* Description.swift */; };
+		B88959D126D0667C00864F63 /* DrivingNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959D026D0667C00864F63 /* DrivingNotes.swift */; };
+		B88959D926D07A4700864F63 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959D826D07A4700864F63 /* WeatherView.swift */; };
+		B88959DE26D07B5A00864F63 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959DD26D07B5A00864F63 /* NotesView.swift */; };
+		B88959E726D2921F00864F63 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959E626D2921F00864F63 /* Helpers.swift */; };
 		B88F068926C73AD400C33C1B /* DriveList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F068826C73AD400C33C1B /* DriveList.swift */; };
 		B88F06BB26C8197F00C33C1B /* GagueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F06BA26C8197F00C33C1B /* GagueView.swift */; };
 		B88F06C526C829C700C33C1B /* GoalsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F06C426C829C700C33C1B /* GoalsDict.swift */; };
 		B88F06D926C82DE700C33C1B /* Goals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F06D826C82DE700C33C1B /* Goals.swift */; };
-		B8BD9BB626C955B600D286FF /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BD9BB526C955B600D286FF /* Blur.swift */; };
 		B8D7C29F26CBFF8100255583 /* DriveBadges.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D7C29E26CBFF8100255583 /* DriveBadges.swift */; };
 		B8E5B14226C85E8E00BC21A0 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14126C85E8E00BC21A0 /* Stats.swift */; };
 		B8E5B14826C85F0500BC21A0 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14726C85F0500BC21A0 /* Graph.swift */; };
@@ -107,11 +110,14 @@
 		B88959BA26D04D3C00864F63 /* WeatherDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDescription.swift; sourceTree = "<group>"; };
 		B88959BF26D04F8400864F63 /* WeatherIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIcon.swift; sourceTree = "<group>"; };
 		B88959C426D050CA00864F63 /* Description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Description.swift; sourceTree = "<group>"; };
+		B88959D026D0667C00864F63 /* DrivingNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingNotes.swift; sourceTree = "<group>"; };
+		B88959D826D07A4700864F63 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		B88959DD26D07B5A00864F63 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
+		B88959E626D2921F00864F63 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		B88F068826C73AD400C33C1B /* DriveList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveList.swift; sourceTree = "<group>"; };
 		B88F06BA26C8197F00C33C1B /* GagueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GagueView.swift; sourceTree = "<group>"; };
 		B88F06C426C829C700C33C1B /* GoalsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsDict.swift; sourceTree = "<group>"; };
 		B88F06D826C82DE700C33C1B /* Goals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goals.swift; sourceTree = "<group>"; };
-		B8BD9BB526C955B600D286FF /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 		B8D7C29E26CBFF8100255583 /* DriveBadges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveBadges.swift; sourceTree = "<group>"; };
 		B8E5B14126C85E8E00BC21A0 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		B8E5B14726C85F0500BC21A0 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
@@ -156,6 +162,7 @@
 			children = (
 				B80C86AD26CEB1AB00CE46B4 /* EndOfDrive.swift */,
 				B88959C426D050CA00864F63 /* Description.swift */,
+				B88959E226D07B6000864F63 /* Notes */,
 				B88959CC26D0633800864F63 /* Weather */,
 			);
 			path = EndOfDrive;
@@ -190,7 +197,7 @@
 				B8612FCC26C2F0E400C4513C /* Permit Tracker.entitlements */,
 				B83F322126C19D3A00A56E26 /* App.swift */,
 				B83F322326C19D3A00A56E26 /* ContentView.swift */,
-				B8BD9BB426C955AA00D286FF /* Effects */,
+				B88959E626D2921F00864F63 /* Helpers.swift */,
 				B8E5B15426C8B40700BC21A0 /* Drive */,
 				B8844BA626C6F90700AB30FB /* Stats */,
 				B8844B4926C45A0A00AB30FB /* ToolBar.swift */,
@@ -260,17 +267,19 @@
 			children = (
 				B88959BF26D04F8400864F63 /* WeatherIcon.swift */,
 				B88959BA26D04D3C00864F63 /* WeatherDescription.swift */,
+				B88959D826D07A4700864F63 /* WeatherView.swift */,
 				B80C86B626CEB54300CE46B4 /* WeatherChoice.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
 		};
-		B8BD9BB426C955AA00D286FF /* Effects */ = {
+		B88959E226D07B6000864F63 /* Notes */ = {
 			isa = PBXGroup;
 			children = (
-				B8BD9BB526C955B600D286FF /* Blur.swift */,
+				B88959D026D0667C00864F63 /* DrivingNotes.swift */,
+				B88959DD26D07B5A00864F63 /* NotesView.swift */,
 			);
-			path = Effects;
+			path = Notes;
 			sourceTree = "<group>";
 		};
 		B8E5B15426C8B40700BC21A0 /* Drive */ = {
@@ -539,17 +548,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				B83F326D26C1CCE600A56E26 /* MapView.swift in Sources */,
+				B88959D126D0667C00864F63 /* DrivingNotes.swift in Sources */,
 				B8E5B14E26C8B3EE00BC21A0 /* FullDriveData.swift in Sources */,
 				B861303026C3016D00C4513C /* RequestLocationView.swift in Sources */,
 				B8844BA226C6F50E00AB30FB /* UserStats.swift in Sources */,
 				B8D7C29F26CBFF8100255583 /* DriveBadges.swift in Sources */,
+				B88959D926D07A4700864F63 /* WeatherView.swift in Sources */,
 				B83F322B26C19D3C00A56E26 /* Persistence.swift in Sources */,
+				B88959E726D2921F00864F63 /* Helpers.swift in Sources */,
 				B83F326326C1C7E800A56E26 /* Drive.swift in Sources */,
 				B8E5B14226C85E8E00BC21A0 /* Stats.swift in Sources */,
 				B88F06D926C82DE700C33C1B /* Goals.swift in Sources */,
 				B88959BB26D04D3C00864F63 /* WeatherDescription.swift in Sources */,
-				B8BD9BB626C955B600D286FF /* Blur.swift in Sources */,
 				B83F322426C19D3A00A56E26 /* ContentView.swift in Sources */,
+				B88959DE26D07B5A00864F63 /* NotesView.swift in Sources */,
 				B88959C526D050CA00864F63 /* Description.swift in Sources */,
 				B88F06BB26C8197F00C33C1B /* GagueView.swift in Sources */,
 				B88959C026D04F8400864F63 /* WeatherIcon.swift in Sources */,
