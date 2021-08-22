@@ -44,9 +44,9 @@ class DriveDetails {
 				newLocationList.append(location)
 			}
 		}
-		self.init(newLocationList, weather: Weather(rawValue: Int(item.weather)) ?? .Normal, notes: item.notes ?? "")
+		self.init(newLocationList, weather: Weather(rawValue: Int(item.weather)) ?? .Normal, notes: item.notes ?? "", supervisor: item.supervisor ?? "")
 	}
-	init(_ Locations: [CLLocation], weather: Weather = .Normal, notes: String = "") {
+	init(_ Locations: [CLLocation], weather: Weather = .Normal, notes: String = "", supervisor: String = "") {
 		self.Locations = Locations
 		
 		var locationList: [CLLocation] = []
@@ -64,11 +64,13 @@ class DriveDetails {
 		}
 		self.notes = notes
 		self.weather = weather
+		self.supervisor = supervisor
 		self.filteredLocations = locationList
 		self.innacurateLocations = inaccurateLocations
 	}
 	var weather: Weather = .Normal
 	var notes: String = ""
+	var supervisor: String = ""
 	lazy var StartDate: Date = {
 		return Locations.first?.timestamp ?? Foundation.Date()
 	}()

@@ -103,7 +103,8 @@ struct FullDriveData: View {
 				}
 				WeatherView(Weather: realDriveDetail.weather)
 				NotesView(notes: realDriveDetail.notes)
-				
+				MiniStat(icon: "person.fill", text: "Supervisor", value: realDriveDetail.supervisor)
+					.padding()
 				
 				Text("Speed Graph")
 					.font(.headline)

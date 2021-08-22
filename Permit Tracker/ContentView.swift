@@ -144,6 +144,7 @@ struct ContentView: View {
 									print("Notes", NotesString)
 									mostRecentDrive!.weather = Int16(WeatherInt)
 									mostRecentDrive!.notes = NotesString
+									mostRecentDrive!.supervisor = Supervisor
 									
 									// save the new data
 									do {
