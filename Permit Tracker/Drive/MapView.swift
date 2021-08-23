@@ -70,7 +70,7 @@ struct MapView: UIViewRepresentable {
 	func updateUIView(_ uiView: MKMapView, context: Context) {
 //		print("updating map ui - function: ", #function)
 		
-		let polyline = MKPolyline(coordinates: driveDetails.Locations2d, count: driveDetails.Locations.count)
+		let polyline = MKPolyline(coordinates: driveDetails.filteredLocations2d, count: driveDetails.filteredLocations.count)
 		
 		if let overlay = uiView.overlays.first {
 			uiView.addOverlay(polyline)
@@ -92,16 +92,18 @@ struct MapView: UIViewRepresentable {
 		} else {
 			
 //			print("user is not driving")
-			let Start = MKPointAnnotation()
-			Start.coordinate = polyline.points()[0].coordinate
-			Start.title = "Start"
-			
-			//MARK - End Annotation
-			let End = MKPointAnnotation()
-			End.coordinate = polyline.points()[polyline.pointCount-1].coordinate
-			End.title = "End"
-			
-			uiView.addAnnotations([Start, End])
+			if polyline.pointCount > 0 {
+				let Start = MKPointAnnotation()
+				Start.coordinate = polyline.points()[0].coordinate
+				Start.title = "Start"
+				
+				//MARK - End Annotation
+				let End = MKPointAnnotation()
+				End.coordinate = polyline.points()[polyline.pointCount-1].coordinate
+				End.title = "End"
+				
+				uiView.addAnnotations([Start, End])
+			}
 		}
 	}
 	
@@ -129,6 +131,4 @@ class Coordinator: NSObject, MKMapViewDelegate {
 		
 		return MKOverlayRenderer()
 	}
-	
-	
 }

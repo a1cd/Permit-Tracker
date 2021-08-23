@@ -45,10 +45,14 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 	
 	// Methods
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-		self.lastSeenLocation = locations.last
-		self.fetchCountryAndCity(for: locations.last)
-		self.allLocations.append(contentsOf: locations)
-		self.driveDetail = DriveDetails(self.allLocations)
+		do {
+			self.lastSeenLocation = locations.last
+			self.fetchCountryAndCity(for: locations.last)
+			self.allLocations.append(contentsOf: locations)
+			self.driveDetail = DriveDetails(self.allLocations)
+		} catch {
+			
+		}
 	}
 
 	func fetchCountryAndCity(for location: CLLocation?) {

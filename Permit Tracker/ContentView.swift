@@ -40,35 +40,6 @@ struct ContentView: View {
 	
 	let locationManager = CLLocationManager()
 	
-	func CalculateStats(AllDrives: [DriveDetails]) -> Measurement<UnitLength> {
-		var totalDistance: Double = 0
-		for drive in AllDrives {
-//			DispatchQueue.global(qos: .userInitiated).async {
-				if var lastLocation = drive.Locations.first {
-					for location in drive.Locations {
-						totalDistance += location.distance(from: lastLocation)
-						lastLocation = location
-					}
-				}
-//			}
-		}
-		return Measurement(value: totalDistance, unit: UnitLength.meters)
-	}
-	func CalculateNightDriving(AllDrives: [DriveDetails]) -> TimeInterval {
-		var time: TimeInterval = 0
-		for drive in AllDrives {
-			time += drive.TotalNightTime
-		}
-		return time
-	}
-	func CalculateTotalTime(AllDrives: [DriveDetails]) -> TimeInterval {
-		var totalTime: TimeInterval = TimeInterval()
-		for drive in AllDrives {
-			totalTime += drive.TimeInterval
-		}
-		return totalTime
-	}
-	
 //	func AsyncCacheDrivingValues() {
 //		for drive in
 //	}
@@ -76,6 +47,7 @@ struct ContentView: View {
 	func DataChange() {
 		
 	}
+	
 	var body: some View {
 		Group {
 			VStack {
@@ -83,47 +55,11 @@ struct ContentView: View {
 					if (Recording) {
 						TrackingView(locationViewModel: locationViewModel)
 					} else {
-						NavigationView {
-							ScrollView {
-								UserStats(
-									DistanceTraveled: CalculateStats(AllDrives: AllDrives),
-									TimeTraveled: CalculateTotalTime(AllDrives: AllDrives),
-									TotalNightTime: CalculateNightDriving(AllDrives: AllDrives)
-								)
-								.background(Color((colorScheme == ColorScheme.dark) ? UIColor.secondarySystemBackground : UIColor.systemBackground))
-									.scaledToFit()
-										
-									.clipped()
-									.cornerRadius(30)
-									.shadow(radius: 1.5, x: 0, y: 2)
-									.padding(.bottom, 3.5)
-								Divider()
-								// Drive list
-								NavigationLink(destination: DriveList(locationViewModel: locationViewModel, Drives: Drives, deleteItems: deleteItems)) {
-									Image(systemName: "map")
-										.padding(.leading)
-										.imageScale(.large)
-									Text("Drive History")
-										.multilineTextAlignment(.leading)
-										.padding(.trailing)
-									Spacer()
-								}
-									.foregroundColor(.primary)
-								Divider()
-								// Stats
-								NavigationLink(destination: Stats(DistanceTraveled: CalculateStats(AllDrives: AllDrives), TimeTraveled: CalculateTotalTime(AllDrives: AllDrives), TotalNightTime: CalculateNightDriving(AllDrives: AllDrives), AllDrives: AllDrives)) {
-									Image(systemName: "chart.bar")
-										.padding(.leading)
-										.imageScale(.large)
-									Text("Stats")
-										.multilineTextAlignment(.leading)
-										.padding(.trailing)
-									Spacer()
-								}
-									.foregroundColor(.primary)
-								Spacer()
-							}
-						}
+						HomeView(
+							locationViewModel: locationViewModel,
+							Drives: Drives,
+							AllDrives: AllDrives, deleteItems: deleteItems
+						)
 					}
 				}
 				HStack {
@@ -142,8 +78,8 @@ struct ContentView: View {
 									print("Saving to most recent drive")
 									print("Weather", WeatherInt)
 									print("Notes", NotesString)
-									mostRecentDrive!.weather = Int16(WeatherInt)
-									mostRecentDrive!.notes = NotesString
+									mostRecentDrive?.weather = Int16(WeatherInt)
+									mostRecentDrive?.notes = NotesString
 									
 									// save the new data
 									do {
@@ -253,7 +189,7 @@ struct ContentView: View {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                print("Unresolved error \(nsError), \(nsError.userInfo)")
             }
 			DataChange()
 			

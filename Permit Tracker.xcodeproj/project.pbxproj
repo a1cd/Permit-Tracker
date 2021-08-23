@@ -40,6 +40,7 @@
 		B88F06C526C829C700C33C1B /* GoalsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F06C426C829C700C33C1B /* GoalsDict.swift */; };
 		B88F06D926C82DE700C33C1B /* Goals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F06D826C82DE700C33C1B /* Goals.swift */; };
 		B8D7C29F26CBFF8100255583 /* DriveBadges.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D7C29E26CBFF8100255583 /* DriveBadges.swift */; };
+		B8E1026926D3C6080067EF96 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1026826D3C6080067EF96 /* HomeView.swift */; };
 		B8E5B14226C85E8E00BC21A0 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14126C85E8E00BC21A0 /* Stats.swift */; };
 		B8E5B14826C85F0500BC21A0 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14726C85F0500BC21A0 /* Graph.swift */; };
 		B8E5B14E26C8B3EE00BC21A0 /* FullDriveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14D26C8B3ED00BC21A0 /* FullDriveData.swift */; };
@@ -73,6 +74,16 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B8E1029826D40CE30067EF96 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -104,7 +115,6 @@
 		B8612FCC26C2F0E400C4513C /* Permit Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Permit Tracker.entitlements"; sourceTree = "<group>"; };
 		B861302A26C3007200C4513C /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		B861302F26C3016D00C4513C /* RequestLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocationView.swift; sourceTree = "<group>"; };
-		B861303426C30B1900C4513C /* MapMyRoute (1).gpx */ = {isa = PBXFileReference; lastKnownFileType = text; name = "MapMyRoute (1).gpx"; path = "../../../../Downloads/MapMyRoute (1).gpx"; sourceTree = "<group>"; };
 		B8844B4926C45A0A00AB30FB /* ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBar.swift; sourceTree = "<group>"; };
 		B8844BA126C6F50E00AB30FB /* UserStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStats.swift; sourceTree = "<group>"; };
 		B88959BA26D04D3C00864F63 /* WeatherDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDescription.swift; sourceTree = "<group>"; };
@@ -119,6 +129,7 @@
 		B88F06C426C829C700C33C1B /* GoalsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsDict.swift; sourceTree = "<group>"; };
 		B88F06D826C82DE700C33C1B /* Goals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goals.swift; sourceTree = "<group>"; };
 		B8D7C29E26CBFF8100255583 /* DriveBadges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveBadges.swift; sourceTree = "<group>"; };
+		B8E1026826D3C6080067EF96 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B8E5B14126C85E8E00BC21A0 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		B8E5B14726C85F0500BC21A0 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
 		B8E5B14D26C8B3ED00BC21A0 /* FullDriveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullDriveData.swift; sourceTree = "<group>"; };
@@ -171,7 +182,6 @@
 		B83F321526C19D3A00A56E26 = {
 			isa = PBXGroup;
 			children = (
-				B861303426C30B1900C4513C /* MapMyRoute (1).gpx */,
 				B83F322026C19D3A00A56E26 /* Permit Tracker */,
 				B83F323726C19D3C00A56E26 /* Permit TrackerTests */,
 				B83F324226C19D3C00A56E26 /* Permit TrackerUITests */,
@@ -197,6 +207,7 @@
 				B8612FCC26C2F0E400C4513C /* Permit Tracker.entitlements */,
 				B83F322126C19D3A00A56E26 /* App.swift */,
 				B83F322326C19D3A00A56E26 /* ContentView.swift */,
+				B8E1026826D3C6080067EF96 /* HomeView.swift */,
 				B88959E626D2921F00864F63 /* Helpers.swift */,
 				B8E5B15426C8B40700BC21A0 /* Drive */,
 				B8844BA626C6F90700AB30FB /* Stats */,
@@ -322,6 +333,7 @@
 				B83F321C26C19D3A00A56E26 /* Resources */,
 				B8BD9BD126C9F39E00D286FF /* Embed App Extensions */,
 				43C627B1BC7E705B0CC25D41 /* [CP] Embed Pods Frameworks */,
+				B8E1029826D40CE30067EF96 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
@@ -559,6 +571,7 @@
 				B83F326326C1C7E800A56E26 /* Drive.swift in Sources */,
 				B8E5B14226C85E8E00BC21A0 /* Stats.swift in Sources */,
 				B88F06D926C82DE700C33C1B /* Goals.swift in Sources */,
+				B8E1026926D3C6080067EF96 /* HomeView.swift in Sources */,
 				B88959BB26D04D3C00864F63 /* WeatherDescription.swift in Sources */,
 				B83F322426C19D3A00A56E26 /* ContentView.swift in Sources */,
 				B88959DE26D07B5A00864F63 /* NotesView.swift in Sources */,

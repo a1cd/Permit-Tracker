@@ -53,9 +53,9 @@ class DriveDetails {
 		var inaccurateLocations: [(CLLocation, CLLocation)] = []
 		if var previousLocation = Locations.first {
 			for location in Locations {
-				if location.timestamp.distance(to: previousLocation.timestamp) > 10 {
-					inaccurateLocations.append((previousLocation, location))
-				}
+//				if location.timestamp.distance(to: previousLocation.timestamp) > 10 {
+//					inaccurateLocations.append((previousLocation, location))
+//				}
 				if location.distance(from: previousLocation) > sqrt(pow(location.verticalAccuracy, 2) + pow(location.horizontalAccuracy, 2)) {
 					locationList.append(location)
 					previousLocation = location
@@ -65,7 +65,7 @@ class DriveDetails {
 		self.notes = notes
 		self.weather = weather
 		self.filteredLocations = locationList
-		self.innacurateLocations = inaccurateLocations
+//		self.innacurateLocations = inaccurateLocations
 	}
 	var weather: Weather = .Normal
 	var notes: String = ""
@@ -129,8 +129,8 @@ class DriveDetails {
 	
 	func getTotalNightTime() -> TimeInterval {
 		var total: TimeInterval = 0
-		if let firstLoc = Locations.first {
-			if let lastLoc = Locations.last {
+		if let firstLoc = filteredLocations.first {
+			if let lastLoc = filteredLocations.last {
 				if let firstSol = Solar(for: firstLoc.timestamp, coordinate: firstLoc.coordinate) {
 					let firstInterval = DateInterval(start: firstSol.sunrise ?? firstLoc.timestamp.previousDay().advanced(by: TimeIntervalFrom(Hours: 5)), end: firstSol.sunset ?? firstLoc.timestamp.nextDay())
 					if let lastSol = Solar(for: lastLoc.timestamp, coordinate: lastLoc.coordinate) {
@@ -198,8 +198,15 @@ class DriveDetails {
 			return locs
 		}
 	}
-	var innacurateLocations: [(CLLocation, CLLocation)]
+//	var innacurateLocations: [(CLLocation, CLLocation)]
 	var filteredLocations: [CLLocation]
+	lazy var filteredLocations2d: [CLLocationCoordinate2D] = {
+		var locs: [CLLocationCoordinate2D] = []
+		for i in filteredLocations {
+			locs.append(i.coordinate)
+		}
+		return locs
+	}()
 	lazy var maxSpeed: CLLocationSpeed = {
 		var maxSpeed: CLLocationSpeed = 0
 		for location in filteredLocations {

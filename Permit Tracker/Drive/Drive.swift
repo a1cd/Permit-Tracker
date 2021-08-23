@@ -75,6 +75,7 @@ struct Drive: View {
 						Badge(icon: realDriveDetail.Badges[i].icon)
 					})
 				}
+				.drawingGroup()
 				.padding(.horizontal)
 				if showMap {
 					if isDriving {
@@ -99,6 +100,7 @@ struct Drive: View {
 						Text(distFormatter.string(from: GetDriveDistance().0))
 					}
 				}
+				.drawingGroup()
 				.foregroundColor(Color(UIColor.systemGreen))
 				HStack {
 					Image(systemName: "sun.max.fill")
@@ -106,6 +108,7 @@ struct Drive: View {
 					Spacer()
 					Text(realDriveDetail.TotalDayTime.stringFromTimeInterval())
 				}
+				.drawingGroup()
 				.foregroundColor(Color(UIColor.systemOrange))
 				MiniStat(icon: "moon.stars.fill", text: "Night Driving", value: realDriveDetail.TotalNightTime.stringFromTimeInterval())
 //				.onReceive(SecondTimer, perform: { _ in
@@ -113,7 +116,8 @@ struct Drive: View {
 //						locationViewModel.driveDetail.TotalNightTime = locationViewModel.driveDetail.getTotalNightTime()
 //					}
 //				})
-				.foregroundColor(Color(UIColor.systemBlue))
+					.foregroundColor(Color(UIColor.systemBlue))
+					.drawingGroup()
 			}
 		}
     }

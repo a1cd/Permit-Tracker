@@ -42,7 +42,7 @@ struct DriveList: View {
 			List {
 				ForEach(0..<Drives.count, content: {i in
 					if Drives[i].locations != nil {
-						if Drives[i].locations!.count > 0 {
+						if (Drives[i].locations?.count ?? 0) > 0 {
 							NavigationLink(
 								destination:
 									FullDriveData(
