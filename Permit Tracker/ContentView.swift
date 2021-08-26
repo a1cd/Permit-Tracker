@@ -29,14 +29,12 @@ struct ContentView: View {
 	@State var WeatherInt = 0
 	@State var NotesString = ""
 	@State var Supervisor = ""
+
+	@State var AllDrives: [DriveDetails] = []
 	
-	var AllDrives: [DriveDetails] {
-		var list: [DriveDetails] = []
-		for drive in Drives {
-			 list.append(DriveDetails(item: drive))
-		}
-		return list
-	}
+//	var AllDrives: [DriveDetails] {
+//		return AllDrivesCached
+//	}
 	
 	let locationManager = CLLocationManager()
 	
@@ -45,7 +43,11 @@ struct ContentView: View {
 //	}
 	
 	func DataChange() {
-		
+		var DriveList: [DriveDetails] = []
+		for drive in Drives {
+			DriveList.append(DriveDetails(item: drive))
+		}
+		AllDrives = DriveList
 	}
 	
 	var body: some View {
@@ -58,7 +60,7 @@ struct ContentView: View {
 						HomeView(
 							locationViewModel: locationViewModel,
 							Drives: Drives,
-							AllDrives: AllDrives, deleteItems: deleteItems
+							AllDrives: $AllDrives, deleteItems: deleteItems
 						)
 					}
 				}
@@ -97,12 +99,14 @@ struct ContentView: View {
 									
 								}
 							})
+							.environmentObject(locationViewModel)
 					}
 				}
 				.background(Color(UIColor.systemBackground))
 			}
 		}
 		.onAppear(perform: {
+			DataChange()
 			locationViewModel.requestPermission()
 		})
 	}
@@ -120,6 +124,8 @@ struct ContentView: View {
 			locationViewModel.locationManager.requestLocation()
 		}
     }
+	
+	
 	
 	func Save() {
 		locationViewModel.locationManager.stopUpdatingHeading()
@@ -141,11 +147,7 @@ struct ContentView: View {
 			try viewContext.save()
 			locationViewModel.allLocations = []
 		} catch {
-			// Replace this implementation with code to handle the error appropriately.
-			// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//				let nsError = error as NSError
-			print("error", error)
-//				fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+			
 		}
 		
 		

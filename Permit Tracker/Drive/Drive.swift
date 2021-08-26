@@ -13,7 +13,7 @@ struct Drive: View {
 	@ObservedObject var locationViewModel: LocationViewModel
 	
 	@State var driveDetail: DriveDetails?
-	
+	@State var isFull: Bool = false
 	@State var showMap: Bool = true
 	
 	var realDriveDetail: DriveDetails {
@@ -69,14 +69,16 @@ struct Drive: View {
     var body: some View {
 		GroupBox(label: label) {
 			VStack {
-				HStack {
-					Spacer()
-					ForEach(0..<realDriveDetail.Badges.count, content: { i in
-						Badge(icon: realDriveDetail.Badges[i].icon)
-					})
+				if realDriveDetail.Badges.count != 0 {
+					HStack {
+						Spacer()
+						ForEach(0..<realDriveDetail.Badges.count, content: { i in
+							Badge(icon: realDriveDetail.Badges[i].icon)
+						})
+					}
+					.drawingGroup()
+					.padding(.horizontal)
 				}
-				.drawingGroup()
-				.padding(.horizontal)
 				if showMap {
 					if isDriving {
 						MapView(driveDetails: locationViewModel.driveDetail, isDriving: true)

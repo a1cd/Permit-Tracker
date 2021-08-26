@@ -52,7 +52,6 @@ struct GagueView: View {
 						.opacity(Gagues[i].opacity)
 						.rotationEffect(.init(degrees: 90*3))
 						.frame(width: LevelToFrame(i), height: LevelToFrame(i))
-						.compositingGroup()
 				}
 			})
 		}

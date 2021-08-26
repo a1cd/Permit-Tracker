@@ -17,17 +17,17 @@ struct MapView: UIViewRepresentable {
 		let mapView = MKMapView()
 		mapView.delegate = context.coordinator
 		
-		let polyline = MKPolyline(coordinates: driveDetails.Locations2d, count: driveDetails.Locations.count)
+		let polyline = MKPolyline(coordinates: driveDetails.filteredLocations2d, count: driveDetails.filteredLocations.count)
 		mapView.addOverlay(polyline)
 		if isDriving {
 			mapView.pointOfInterestFilter = .init(including: [.evCharger, .gasStation, .hospital, .marina, .park, .parking, .postOffice, .school, .restroom])
 			mapView.showsTraffic = true
 			mapView.showsUserLocation = true
 			mapView.setUserTrackingMode(.followWithHeading, animated: true)
-			mapView.region = .init(center: driveDetails.Locations2d.first ?? CLLocationCoordinate2D(), latitudinalMeters: 4, longitudinalMeters: 4)
-			let compass = MKCompassButton(mapView: mapView)
+			mapView.region = .init(center: driveDetails.filteredLocations2d.first ?? CLLocationCoordinate2D(), latitudinalMeters: 4, longitudinalMeters: 4)
+//			let compass = MKCompassButton(mapView: mapView)
 			let track = MKUserTrackingButton(mapView: mapView)
-			mapView.addSubview(compass)
+//			mapView.addSubview(compass)
 			mapView.addSubview(track)
 		} else {
 			var regionRect = polyline.boundingMapRect

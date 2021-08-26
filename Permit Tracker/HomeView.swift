@@ -12,22 +12,32 @@ struct HomeView: View {
 	
 	@ObservedObject var locationViewModel: LocationViewModel
 	var Drives: FetchedResults<Item>
-	@State var AllDrives: [DriveDetails]
+	@Binding var AllDrives: [DriveDetails]
 	
 	let deleteItems: (_ offsets: IndexSet) -> Void
 	
 	func CalculateStats(AllDrives: [DriveDetails]) -> Measurement<UnitLength> {
+		let main = DispatchQueue.main
 		var totalDistance: Double = 0
-		for drive in AllDrives {
-//			DispatchQueue.global(qos: .userInitiated).async {
-				if var lastLocation = drive.Locations.first {
-					for location in drive.Locations {
+		let newAllDrives = AllDrives
+		let group = DispatchGroup()
+		for drive in newAllDrives {
+			DispatchQueue.global(qos: .userInitiated).async {
+				let DriveLocationDistance: Double = 0
+				if var lastLocation = drive.filteredLocations.first {
+					for location in drive.filteredLocations {
 						totalDistance += location.distance(from: lastLocation)
 						lastLocation = location
 					}
 				}
-//			}
+				group.enter()
+				main.async {
+					totalDistance += DriveLocationDistance
+					group.leave()
+				}
+			}
 		}
+		group.wait()
 		return Measurement(value: totalDistance, unit: UnitLength.meters)
 	}
 	func CalculateNightDriving(AllDrives: [DriveDetails]) -> TimeInterval {
@@ -49,9 +59,10 @@ struct HomeView: View {
 		NavigationView {
 			ScrollView {
 				UserStats(
-					DistanceTraveled: CalculateStats(AllDrives: AllDrives),
-					TimeTraveled: CalculateTotalTime(AllDrives: AllDrives),
-					TotalNightTime: CalculateNightDriving(AllDrives: AllDrives)
+					DistanceTraveled: CalculateStats,
+					TimeTraveled: CalculateTotalTime,
+					TotalNightTime: CalculateNightDriving,
+					AllDrives: $AllDrives
 				)
 				.background(Color((colorScheme == ColorScheme.dark) ? UIColor.secondarySystemBackground : UIColor.systemBackground))
 				.scaledToFit()
@@ -63,7 +74,7 @@ struct HomeView: View {
 				.padding(.bottom, 3.5)
 				Divider()
 				// Drive list
-				NavigationLink(destination: DriveList(locationViewModel: locationViewModel, Drives: Drives, deleteItems: deleteItems)) {
+				NavigationLink(destination: DriveList(locationViewModel: locationViewModel, AllDrives: $AllDrives, deleteItems: deleteItems)) {
 					Image(systemName: "map")
 						.padding(.leading)
 						.imageScale(.large)
@@ -75,7 +86,7 @@ struct HomeView: View {
 				.foregroundColor(.primary)
 				Divider()
 				// Stats
-				NavigationLink(destination: Stats(DistanceTraveled: CalculateStats(AllDrives: AllDrives), TimeTraveled: CalculateTotalTime(AllDrives: AllDrives), TotalNightTime: CalculateNightDriving(AllDrives: AllDrives), AllDrives: AllDrives)) {
+				NavigationLink(destination: Stats(DistanceTraveled: CalculateStats, TimeTraveled: CalculateTotalTime, TotalNightTime: CalculateNightDriving, AllDrives: $AllDrives)) {
 					Image(systemName: "chart.bar")
 						.padding(.leading)
 						.imageScale(.large)

@@ -107,7 +107,22 @@ enum Weather: Int {
 }
 let allWeather: [Weather] = [.Normal, .Rain, .Snow, .Hail, .Sleet, .FreezingRain, .Fog, .None]
 struct WeatherChoice: View {
+	@EnvironmentObject var locationViewModel: LocationViewModel
 	@Binding var Select: Int
+	var Weather: Void {
+//		locationViewModel.
+		
+		let url = URL(string: "api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid=\(WeatherKey)")!
+
+		let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+			guard let data = data else { return }
+			print(String(data: data, encoding: .utf8)!)
+		}
+
+		task.resume()
+
+		
+	}
 	private var item: GridItem {
 		var item = GridItem()
 		item.spacing = 5

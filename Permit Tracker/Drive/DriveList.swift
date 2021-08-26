@@ -10,7 +10,7 @@ import SwiftUI
 struct DriveList: View {
 	
 	var locationViewModel: LocationViewModel
-	var Drives: FetchedResults<Item>
+	@Binding var AllDrives: [DriveDetails]
 	
 	@State var tryingToDelete: Bool = false
 	@State var deleteOffset: IndexSet? = nil
@@ -40,25 +40,25 @@ struct DriveList: View {
     var body: some View {
 //		NavigationView {
 			List {
-				ForEach(0..<Drives.count, content: {i in
-					if Drives[i].locations != nil {
-						if (Drives[i].locations?.count ?? 0) > 0 {
+				ForEach(0..<AllDrives.count, content: {i in
+//					if AllDrives[i].Locations != nil {
+						if AllDrives[i].Locations.count > 2 {
 							NavigationLink(
 								destination:
 									FullDriveData(
 										locationViewModel: locationViewModel,
-										driveDetail: DriveDetails(item: Drives[i])
+										driveDetail: AllDrives[i]
 									)
 							)
 							{
 								Drive(
 									locationViewModel: locationViewModel,
-									driveDetail: DriveDetails(item: Drives[i]),
+									driveDetail: AllDrives[i],
 									showMap: i < 2
 								)
 							}
 						}
-					}
+//					}
 				})
 				.onDelete(perform: areYouSure)
 				.alert(isPresented: $tryingToDelete, content: alert)
