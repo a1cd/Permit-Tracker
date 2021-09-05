@@ -43,11 +43,14 @@ struct ContentView: View {
 //	}
 	
 	func DataChange() {
+		print("Data Change")
 		var DriveList: [DriveDetails] = []
 		for drive in Drives {
 			DriveList.append(DriveDetails(item: drive))
 		}
+		print(AllDrives.count)
 		AllDrives = DriveList
+		print(AllDrives.count)
 	}
 	
 	var body: some View {
@@ -60,7 +63,8 @@ struct ContentView: View {
 						HomeView(
 							locationViewModel: locationViewModel,
 							Drives: Drives,
-							AllDrives: $AllDrives, deleteItems: deleteItems
+							AllDrives: $AllDrives,
+							deleteItems: deleteItems
 						)
 					}
 				}

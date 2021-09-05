@@ -33,8 +33,8 @@ struct Drive: View {
 	}
 	func GetDriveDistance() -> (Measurement<UnitLength>, Double) {
 		var totalDistance: Double = 0
-		if var lastLocation = realDriveDetail.Locations.first {
-			for location in realDriveDetail.Locations {
+		if var lastLocation = realDriveDetail.filteredLocations.first {
+			for location in realDriveDetail.filteredLocations {
 				totalDistance += location.distance(from: lastLocation)
 				lastLocation = location
 			}

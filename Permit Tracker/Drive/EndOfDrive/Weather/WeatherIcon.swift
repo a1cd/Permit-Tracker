@@ -29,6 +29,7 @@ struct WeatherIcon: View {
 					.shadow(radius: 2, x: 1, y: 1)
 			}
 		}
+//		.border()
 		.frame(width: 65, height: 65)
 		.background(Color(isSelect ? UIColor.link : UIColor.systemGray2))
 		.cornerRadius(10)

@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import CoreLocation
+import Combine
 
 enum Weather: Int {
 	case None = 0
@@ -109,19 +111,29 @@ let allWeather: [Weather] = [.Normal, .Rain, .Snow, .Hail, .Sleet, .FreezingRain
 struct WeatherChoice: View {
 	@EnvironmentObject var locationViewModel: LocationViewModel
 	@Binding var Select: Int
-	var Weather: Void {
-//		locationViewModel.
-		
-		let url = URL(string: "api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid=\(WeatherKey)")!
+	@State var response: URLResponse?
+	func GetWeather(forLocation: CLLocation) {
+		let geocoder = CLGeocoder()
+		geocoder.reverseGeocodeLocation(forLocation) { [locationViewModel] (placemarks, error) in
+			if let currentPlacemark = placemarks?.first {
+				if let city = currentPlacemark.locality {
+					if let state = currentPlacemark.administrativeArea {
+						if let country = currentPlacemark.isoCountryCode {
+							let url = URL(string: "api.openweathermap.org/data/2.5/weather?q=\(city),\(state),\(country)&appid=\(WeatherKey)")!
 
-		let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-			guard let data = data else { return }
-			print(String(data: data, encoding: .utf8)!)
+							let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+								guard let data = data else { return }
+								self.response = response
+								print(String(data: data, encoding: .utf8)!)
+							}
+
+							task.resume()
+						}
+					}
+				}
+			}
 		}
-
-		task.resume()
-
-		
+//		return nil
 	}
 	private var item: GridItem {
 		var item = GridItem()
@@ -137,6 +149,7 @@ struct WeatherChoice: View {
 						Select = weather.rawValue
 						print("Select will be",_Select.projectedValue.wrappedValue)
 						print("Select is now",Select)
+//						print(Weather)
 					}, label: {
 						WeatherIcon(isSelect: weather.rawValue == Select, weather: weather)
 					})

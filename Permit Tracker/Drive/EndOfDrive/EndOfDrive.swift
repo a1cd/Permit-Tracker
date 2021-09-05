@@ -12,7 +12,7 @@ struct EndOfDrive: View {
 	@Binding var weather: Int
 	@Binding var notes: String
 	@Binding var Supervisor: String
-	@StateObject var locationViewModel: LocationViewModel
+	@EnvironmentObject var locationViewModel: LocationViewModel
     var body: some View {
 		VStack {
 			Group {

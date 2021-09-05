@@ -20,6 +20,7 @@ struct Permit_TrackerApp: App {
 		} else if state == .active {
 			return true
 		}
+		return false
 	}
 	
     var body: some Scene {

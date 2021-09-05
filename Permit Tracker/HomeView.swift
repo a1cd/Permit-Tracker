@@ -17,27 +17,28 @@ struct HomeView: View {
 	let deleteItems: (_ offsets: IndexSet) -> Void
 	
 	func CalculateStats(AllDrives: [DriveDetails]) -> Measurement<UnitLength> {
-		let main = DispatchQueue.main
+		print("ran drive calc", AllDrives.count)
+//		let main = DispatchQueue.main
 		var totalDistance: Double = 0
 		let newAllDrives = AllDrives
-		let group = DispatchGroup()
+//		let group = DispatchGroup()
 		for drive in newAllDrives {
-			DispatchQueue.global(qos: .userInitiated).async {
-				let DriveLocationDistance: Double = 0
-				if var lastLocation = drive.filteredLocations.first {
-					for location in drive.filteredLocations {
-						totalDistance += location.distance(from: lastLocation)
-						lastLocation = location
-					}
-				}
-				group.enter()
-				main.async {
-					totalDistance += DriveLocationDistance
-					group.leave()
+//			group.enter()
+//			DispatchQueue.global(qos: .userInitiated).async {
+			let DriveLocationDistance: Double = 0
+			if var lastLocation = drive.filteredLocations.first {
+				for location in drive.filteredLocations {
+					totalDistance += location.distance(from: lastLocation)
+					lastLocation = location
 				}
 			}
+//				main.async {
+			totalDistance += DriveLocationDistance
+//					group.leave()
+//				}
+//			}
 		}
-		group.wait()
+//		group.wait(timeout: .now() + 1)
 		return Measurement(value: totalDistance, unit: UnitLength.meters)
 	}
 	func CalculateNightDriving(AllDrives: [DriveDetails]) -> TimeInterval {
