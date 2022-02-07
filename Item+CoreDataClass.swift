@@ -28,7 +28,7 @@ public class Item: NSManagedObject {
 					}
 				}
 			}
-//			print("in ns, totalDist =",totalDistance)
+			print("in ns, totalDist =",totalDistance)
 			self.distance = totalDistance
 		}
 		return (Measurement(value: distance, unit: UnitLength.meters), distance)

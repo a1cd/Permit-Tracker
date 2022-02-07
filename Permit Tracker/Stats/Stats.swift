@@ -17,7 +17,7 @@ struct Stats: View {
 		ScrollView {
 			VStack {
 				UserStats(DistanceTraveled: DistanceTraveled, TimeTraveled: TimeTraveled, TotalNightTime: TotalNightTime)
-				Graph(List: AllDrives.first?.SpeedGraph(16) ?? [])
+//				Graph(List: AllDrives.first?.SpeedGraph(16) ?? [])
 			}
 		}
     }
