@@ -30,10 +30,10 @@ struct ContentView: View {
 	@State var NotesString = ""
 	@State var Supervisor = ""
 	
-	var AllDrives: [DriveDetails] {
+	func AllDrives() -> [DriveDetails] {
 		var list: [DriveDetails] = []
 		for drive in Drives {
-			 list.append(DriveDetails(item: drive))
+			list.append(DriveDetails(item: drive))
 		}
 		return list
 	}
@@ -86,9 +86,9 @@ struct ContentView: View {
 						NavigationView {
 							ScrollView {
 								UserStats(
-									DistanceTraveled: CalculateStats(AllDrives: AllDrives),
-									TimeTraveled: CalculateTotalTime(AllDrives: AllDrives),
-									TotalNightTime: CalculateNightDriving(AllDrives: AllDrives)
+									DistanceTraveled: CalculateStats(AllDrives: AllDrives()),
+									TimeTraveled: CalculateTotalTime(AllDrives: AllDrives()),
+									TotalNightTime: CalculateNightDriving(AllDrives: AllDrives())
 								)
 								.background(Color((colorScheme == ColorScheme.dark) ? UIColor.secondarySystemBackground : UIColor.systemBackground))
 									.scaledToFit()
@@ -111,7 +111,7 @@ struct ContentView: View {
 									.foregroundColor(.primary)
 								Divider()
 								// Stats
-								NavigationLink(destination: Stats(DistanceTraveled: CalculateStats(AllDrives: AllDrives), TimeTraveled: CalculateTotalTime(AllDrives: AllDrives), TotalNightTime: CalculateNightDriving(AllDrives: AllDrives), AllDrives: AllDrives)) {
+								NavigationLink(destination: Stats(DistanceTraveled: CalculateStats(AllDrives: AllDrives()), TimeTraveled: CalculateTotalTime(AllDrives: AllDrives()), TotalNightTime: CalculateNightDriving(AllDrives: AllDrives()), AllDrives: AllDrives())) {
 									Image(systemName: "chart.bar")
 										.padding(.leading)
 										.imageScale(.large)
@@ -121,6 +121,15 @@ struct ContentView: View {
 									Spacer()
 								}
 									.foregroundColor(.primary)
+								NavigationLink(destination: DebugDriveStatus()) {
+									Image(systemName: "ant.circle.fill")
+										.padding(.leading)
+										.imageScale(.large)
+									Text("Debug")
+										.multilineTextAlignment(.leading)
+										.padding(.trailing)
+									Spacer()
+								}
 								Spacer()
 							}
 						}
@@ -216,7 +225,7 @@ struct ContentView: View {
 		DataChange()
 	}
 	func isAuthorized(_ andDetermined: Bool = false) -> Bool {
-		print(locationViewModel.authorizationStatus.rawValue, "at: ", #file, #line)
+//		print("auth status = "+ locationViewModel.authorizationStatus)
 		switch locationViewModel.authorizationStatus {
 		case .authorizedAlways:
 			return true

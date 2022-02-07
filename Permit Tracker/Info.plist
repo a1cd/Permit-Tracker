@@ -26,14 +26,16 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MKDirectionsApplicationSupportedModes</key>
 	<array>
 		<string>MKDirectionsModeCar</string>
+		<string>MKDirectionsModeOther</string>
+		<string>MKDirectionsModeRideShare</string>
 		<string>MKDirectionsModeStreetCar</string>
 	</array>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
@@ -51,6 +53,7 @@
 	<true/>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
 		<string>location</string>
 		<string>processing</string>
 	</array>

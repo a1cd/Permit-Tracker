@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H1323" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="date" attributeType="Date" defaultDateTimeInterval="650473260" usesScalarValueType="NO"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Item" representedClassName=".Item" syncable="YES">
+        <attribute name="date" attributeType="Date" defaultDateTimeInterval="650473260" usesScalarValueType="NO" spotlightIndexingEnabled="YES"/>
+        <attribute name="distance" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="notes" optional="YES" attributeType="String"/>
-        <attribute name="supervisor" optional="YES" attributeType="String"/>
-        <attribute name="timeInterval" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
+        <attribute name="supervisor" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
+        <attribute name="timeInterval" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="weather" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="6" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="locations" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="LocationEntity" inverseName="item" inverseEntity="LocationEntity"/>
     </entity>
-    <entity name="LocationEntity" representedClassName="LocationEntity" syncable="YES" codeGenerationType="class">
+    <entity name="LocationEntity" representedClassName=".LocationEntity" syncable="YES">
         <attribute name="altitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="course" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="courseAccuracy" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -23,7 +24,7 @@
         <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="locations" inverseEntity="Item"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-211.5546875" positionY="-159.68359375" width="150.41015625" height="148"/>
-        <element name="LocationEntity" positionX="-456.1875" positionY="-75.5234375" width="128" height="208"/>
+        <element name="Item" positionX="-211.5546875" positionY="-158.68359375" width="150.41015625" height="163"/>
+        <element name="LocationEntity" positionX="124.2511596679688" positionY="-129.5940246582031" width="128" height="208"/>
     </elements>
 </model>
