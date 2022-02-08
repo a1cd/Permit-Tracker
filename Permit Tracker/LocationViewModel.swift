@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 import Dispatch
+import UIKit
 
 class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 	@Published var authorizationStatus: CLAuthorizationStatus
@@ -45,12 +46,35 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 	
 	// Methods
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+		self.locationManager.stopMonitoringSignificantLocationChanges()
+		self.locationManager.startUpdatingLocation()
+		if (UIDevice.current.batteryState == .full || UIDevice.current.batteryState == .charging) {
+			self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+			self.locationManager.pausesLocationUpdatesAutomatically = false
+			//FIXME: add more stuff here
+		} else {
+			self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+			self.locationManager.pausesLocationUpdatesAutomatically = true
+		}
+		//FIXME: add code for when the phone starts to overheat
 		self.lastSeenLocation = locations.last
 		self.fetchCountryAndCity(for: locations.last)
 		self.allLocations.append(contentsOf: locations)
 		self.driveDetail = DriveDetails(self.allLocations)
 	}
-
+	func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
+		self.locationManager.stopUpdatingLocation()
+		self.locationManager.startMonitoringSignificantLocationChanges()
+		UserDefaults.standard.set(UserDefaults.standard.string(forKey: "status") ??  "" + "resumed", forKey: "status")
+	}
+	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+		UserDefaults.standard.set(error.localizedDescription + " at " + DateFormatter.localizedString(from: Date(), dateStyle: .long, timeStyle: .medium), forKey: "failed")
+	}
+	
+	func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
+		UserDefaults.standard.set(UserDefaults.standard.string(forKey: "status") ??  "" + "resumed", forKey: "status")
+		self.locationManager.startUpdatingLocation()
+	}
 	func fetchCountryAndCity(for location: CLLocation?) {
 		guard let location = location else { return }
 		let geocoder = CLGeocoder()

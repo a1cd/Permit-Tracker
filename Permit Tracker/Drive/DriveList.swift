@@ -6,16 +6,34 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct DriveList: View {
 	
 	var locationViewModel: LocationViewModel
-	var Drives: FetchedResults<Item>
+	@Environment(\.managedObjectContext) private var viewContext
+	@FetchRequest(
+		sortDescriptors: [NSSortDescriptor(keyPath: \Item.date, ascending: false)],
+		animation: Animation.easeInOut
+	)
+	private var Drives: FetchedResults<Item>
 	
 	@State var tryingToDelete: Bool = false
 	@State var deleteOffset: IndexSet? = nil
 	
-	let deleteItems: (_ offsets: IndexSet) -> Void
+	func deleteItems(_ offsets: IndexSet) -> Void {
+		withAnimation {
+			offsets.map { Drives[$0] }.forEach(viewContext.delete)
+			do {
+				try viewContext.save()
+			} catch {
+				// Replace this implementation with code to handle the error appropriately.
+				// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+				let nsError = error as NSError
+				fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+			}
+		}
+	}
 	
 	func userIsSureOkToDelete() {
 		if deleteOffset != nil {
@@ -40,26 +58,26 @@ struct DriveList: View {
     var body: some View {
 //		NavigationView {
 			List {
-				ForEach(0..<Drives.count, content: {i in
-					if Drives[i].locations != nil {
-						if Drives[i].locations!.count > 0 {
+				ForEach(Drives,id: \.date) {i in
+					if i.locations != nil {
+						if i.locations!.count > 0 {
 							NavigationLink(
 								destination:
 									FullDriveData(
 										locationViewModel: locationViewModel,
-										driveDetail: DriveDetails(item: Drives[i])
+										driveDetail: DriveDetails(item: i)
 									)
 							)
 							{
 								Drive(
 									locationViewModel: locationViewModel,
-									driveDetail: DriveDetails(item: Drives[i]),
-									showMap: i < 2
+									driveDetail: DriveDetails(item: i),
+									showMap: false
 								)
 							}
 						}
 					}
-				})
+				}
 				.onDelete(perform: areYouSure)
 				.alert(isPresented: $tryingToDelete, content: alert)
 			}

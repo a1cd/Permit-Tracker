@@ -10,6 +10,7 @@ import CoreLocation
 import CoreData
 import SwiftUI
 import Solar
+import Dispatch
 
 class DriveDetails {
 	var test: Bool = false
@@ -18,11 +19,11 @@ class DriveDetails {
 		self.test = test
 	}
 	convenience init(item: Item) {
-		
 		var newLocationList: [CLLocation] = []
+		newLocationList.reserveCapacity(item.locations?.count ?? 10)
 		
-		//FIXME - Force unwrap possible null value
-		if let locations = item.locations!.array as? [LocationEntity] {
+		//FIXME: - Force unwrap possible null value
+		if let locations = item.locations?.array as? [LocationEntity] {
 			for entity in locations {
 				
 				let coordinate = CLLocationCoordinate2D(
@@ -44,17 +45,20 @@ class DriveDetails {
 				newLocationList.append(location)
 			}
 		}
-		self.init(newLocationList, weather: Weather(rawValue: Int(item.weather)) ?? .Normal, notes: item.notes ?? "")
+		newLocationList.sort(by: { one, two in
+			return one.timestamp<two.timestamp
+		})
+		self.init(newLocationList, weather: Weather(rawValue: Int(item.weather)) ?? .Normal, notes: item.notes ?? "", distance: item.distance)
 	}
-	init(_ Locations: [CLLocation], weather: Weather = .Normal, notes: String = "") {
+	init(_ Locations: [CLLocation], weather: Weather = .Normal, notes: String = "", distance: Double? = nil) {
 		self.Locations = Locations
 		
 		var locationList: [CLLocation] = []
-		var inaccurateLocations: [(CLLocation, CLLocation)] = []
+		var skippedLocations: [(CLLocation, CLLocation)] = []
 		if var previousLocation = Locations.first {
 			for location in Locations {
 				if location.timestamp.distance(to: previousLocation.timestamp) > 10 {
-					inaccurateLocations.append((previousLocation, location))
+					skippedLocations.append((previousLocation, location))
 				}
 				if location.distance(from: previousLocation) > sqrt(pow(location.verticalAccuracy, 2) + pow(location.horizontalAccuracy, 2)) {
 					locationList.append(location)
@@ -65,10 +69,25 @@ class DriveDetails {
 		self.notes = notes
 		self.weather = weather
 		self.filteredLocations = locationList
-		self.innacurateLocations = inaccurateLocations
+		self.skippedLocations = skippedLocations
+		
+		if (distance != nil) {
+			self.CoreDistance = distance!
+//			print(self.CoreDistance)
+		} else {
+			var totalDistance: Double = 0
+			if var lastLocation = self.Locations.first {
+				for location in self.Locations {
+					totalDistance += location.distance(from: lastLocation)
+					lastLocation = location
+				}
+			}
+			self.CoreDistance = totalDistance
+		}
 	}
 	var weather: Weather = .Normal
 	var notes: String = ""
+	var CoreDistance: Double
 	lazy var StartDate: Date = {
 		return Locations.first?.timestamp ?? Foundation.Date()
 	}()
@@ -77,6 +96,16 @@ class DriveDetails {
 	}
 	var TimeInterval: TimeInterval {
 		return self.StartDate.distance(to: self.EndDate)
+	}
+	func GetDriveDistance() -> (Measurement<UnitLength>, Double) {
+		var totalDistance: Double = 0
+		if var lastLocation = self.Locations.first {
+			for location in self.Locations {
+				totalDistance += location.distance(from: lastLocation)
+				lastLocation = location
+			}
+		}
+		return (Measurement(value: totalDistance, unit: UnitLength.meters), totalDistance)
 	}
 	enum Badge {
 		case Day
@@ -113,19 +142,7 @@ class DriveDetails {
 		}
 	}
 	var driveInterval: DateInterval {DateInterval(start: self.StartDate, end: self.EndDate)}
-//	func isLocationAtNight(_ Location: CLLocation) -> Bool {
-//		let calendar = Calendar.init(identifier: .gregorian)
-//		var sunset: Date = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: Location.timestamp) ?? Location.timestamp.advanced(by: TimeIntervalFrom(Days: 1)))
-//		if let solar = Solar(for: Location.timestamp, coordinate: Location.coordinate) {
-//			if let sunset = solar.sunset {
-//				// if it is past sunset
-//				if sunset < Location.timestamp {
-//					
-//				}
-//			}
-//		}
-//		return false
-//	}
+	
 	
 	func getTotalNightTime() -> TimeInterval {
 		var total: TimeInterval = 0
@@ -198,7 +215,8 @@ class DriveDetails {
 			return locs
 		}
 	}
-	var innacurateLocations: [(CLLocation, CLLocation)]
+	/// location pairs indicatiing when the device pauses location updates
+	var skippedLocations: [(CLLocation, CLLocation)]
 	var filteredLocations: [CLLocation]
 	lazy var maxSpeed: CLLocationSpeed = {
 		var maxSpeed: CLLocationSpeed = 0
@@ -225,6 +243,7 @@ class DriveDetails {
 	func chunkIt(LocationList: [CLLocation], num: Int)  -> [[CLLocation]] {
 		if (LocationList.count <= num) {
 			var end: [[CLLocation]] = []
+			end.reserveCapacity(LocationList.count)
 			for location in LocationList {
 				end.append([location])
 			}

@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct Stats: View {
-	@State var DistanceTraveled: Measurement<UnitLength>
-	@State var TimeTraveled: TimeInterval
-	@State var TotalNightTime: TimeInterval
-	@State var AllDrives: [DriveDetails]
+	@Binding var DistanceTraveled: Measurement<UnitLength>
+	@Binding var TimeTraveled: TimeInterval
+	@Binding var TotalNightTime: TimeInterval
+	@Binding var AllDrives: [DriveDetails]
 	
     var body: some View {
 		ScrollView {
 			VStack {
-				UserStats(DistanceTraveled: DistanceTraveled, TimeTraveled: TimeTraveled, TotalNightTime: TotalNightTime)
-				Graph(List: AllDrives.first?.SpeedGraph(16) ?? [])
+				UserStats(DistanceTraveled: $DistanceTraveled, TimeTraveled: $TimeTraveled, TotalNightTime: $TotalNightTime)
+//				Graph(List: AllDrives.first?.SpeedGraph(16) ?? [])
 			}
 		}
     }
@@ -26,12 +26,12 @@ struct Stats: View {
 struct Stats_Previews: PreviewProvider {
     static var previews: some View {
 		Stats(
-			DistanceTraveled: Measurement(
+			DistanceTraveled: .constant(Measurement(
 				value: 4000,
-				unit: UnitLength.meters),
-			TimeTraveled: Date().distance(to: Date()),
-			TotalNightTime: 19848,
-			AllDrives: []
+				unit: UnitLength.meters)),
+			TimeTraveled: .constant(Date().distance(to: Date())),
+			TotalNightTime: .constant(19848),
+			AllDrives: .constant([])
 		)
     }
 }

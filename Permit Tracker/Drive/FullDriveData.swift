@@ -105,27 +105,27 @@ struct FullDriveData: View {
 				NotesView(notes: realDriveDetail.notes)
 				
 				
-				Text("Speed Graph")
-					.font(.headline)
-					.fontWeight(.semibold)
-					.multilineTextAlignment(.leading)
-				HStack{
-					Graph(List: realDriveDetail.SpeedGraph(50))
-					VStack {
-						Text(String(Measurement(value: realDriveDetail.maxSpeed, unit: UnitSpeed.metersPerSecond).converted(to: .milesPerHour).value.rounded()) + " mph")
-							.font(.caption)
-							.fontWeight(.light)
-							.multilineTextAlignment(.trailing)
-							.lineLimit(1)
-						Spacer()
-						Text("0 mph")
-							.font(.caption)
-							.fontWeight(.light)
-					}
-					.padding()
-				}
-				.padding(.top)
-				.frame(height: 300.0)
+//				Text("Speed Graph")
+//					.font(.headline)
+//					.fontWeight(.semibold)
+//					.multilineTextAlignment(.leading)
+//				HStack{
+//					Graph(List: realDriveDetail.SpeedGraph(50))
+//					VStack {
+//						Text(String(Measurement(value: realDriveDetail.maxSpeed, unit: UnitSpeed.metersPerSecond).converted(to: .milesPerHour).value.rounded()) + " mph")
+//							.font(.caption)
+//							.fontWeight(.light)
+//							.multilineTextAlignment(.trailing)
+//							.lineLimit(1)
+//						Spacer()
+//						Text("0 mph")
+//							.font(.caption)
+//							.fontWeight(.light)
+//					}
+//					.padding()
+//				}
+//				.padding(.top)
+//				.frame(height: 300.0)
 				
 			}
 		}

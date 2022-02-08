@@ -30,14 +30,10 @@ struct ContentView: View {
 	@State var NotesString = ""
 	@State var Supervisor = ""
 	
-	var AllDrives: [DriveDetails] {
-		var list: [DriveDetails] = []
-		for drive in Drives {
-			 list.append(DriveDetails(item: drive))
-		}
-		return list
-	}
-	
+	@State var AllDrives: [DriveDetails] = []
+	@State var totalDistance: Measurement<UnitLength> = Measurement(value: -1, unit: .meters)
+	@State var NightDriving: TimeInterval = -1.0
+	@State var TotalDriveTime: TimeInterval = -1.0
 	let locationManager = CLLocationManager()
 	
 	func CalculateStats(AllDrives: [DriveDetails]) -> Measurement<UnitLength> {
@@ -86,20 +82,37 @@ struct ContentView: View {
 						NavigationView {
 							ScrollView {
 								UserStats(
-									DistanceTraveled: CalculateStats(AllDrives: AllDrives),
-									TimeTraveled: CalculateTotalTime(AllDrives: AllDrives),
-									TotalNightTime: CalculateNightDriving(AllDrives: AllDrives)
+									DistanceTraveled: $totalDistance,
+									TimeTraveled: $TotalDriveTime,
+									TotalNightTime: $NightDriving
 								)
-								.background(Color((colorScheme == ColorScheme.dark) ? UIColor.secondarySystemBackground : UIColor.systemBackground))
+									.background(Color((colorScheme == ColorScheme.dark) ? UIColor.secondarySystemBackground : UIColor.systemBackground))
 									.scaledToFit()
-										
+									.task {
+										print("task")
+										self.AllDrives = []
+										for drive in Drives {
+											drive.update()
+											AllDrives.append(DriveDetails(item: drive))
+										}
+										self.totalDistance = CalculateStats(AllDrives: AllDrives)
+										self.TotalDriveTime = CalculateTotalTime(AllDrives: AllDrives)
+										self.NightDriving = CalculateNightDriving(AllDrives: AllDrives)
+										if (viewContext.hasChanges) {
+											do {
+												try viewContext.save()
+											} catch {
+												//FIXME: handle error
+											}
+										}
+									}
 									.clipped()
 									.cornerRadius(30)
 									.shadow(radius: 1.5, x: 0, y: 2)
 									.padding(.bottom, 3.5)
 								Divider()
 								// Drive list
-								NavigationLink(destination: DriveList(locationViewModel: locationViewModel, Drives: Drives, deleteItems: deleteItems)) {
+								NavigationLink(destination: DriveList(locationViewModel: locationViewModel)) {
 									Image(systemName: "map")
 										.padding(.leading)
 										.imageScale(.large)
@@ -111,7 +124,7 @@ struct ContentView: View {
 									.foregroundColor(.primary)
 								Divider()
 								// Stats
-								NavigationLink(destination: Stats(DistanceTraveled: CalculateStats(AllDrives: AllDrives), TimeTraveled: CalculateTotalTime(AllDrives: AllDrives), TotalNightTime: CalculateNightDriving(AllDrives: AllDrives), AllDrives: AllDrives)) {
+								NavigationLink(destination: Stats(DistanceTraveled: $totalDistance, TimeTraveled: $TotalDriveTime, TotalNightTime: $NightDriving, AllDrives: $AllDrives)) {
 									Image(systemName: "chart.bar")
 										.padding(.leading)
 										.imageScale(.large)
@@ -121,6 +134,15 @@ struct ContentView: View {
 									Spacer()
 								}
 									.foregroundColor(.primary)
+								NavigationLink(destination: DebugDriveStatus()) {
+									Image(systemName: "ant.circle.fill")
+										.padding(.leading)
+										.imageScale(.large)
+									Text("Debug")
+										.multilineTextAlignment(.leading)
+										.padding(.trailing)
+									Spacer()
+								}
 								Spacer()
 							}
 						}
@@ -216,7 +238,7 @@ struct ContentView: View {
 		DataChange()
 	}
 	func isAuthorized(_ andDetermined: Bool = false) -> Bool {
-		print(locationViewModel.authorizationStatus.rawValue, "at: ", #file, #line)
+//		print("auth status = "+ locationViewModel.authorizationStatus)
 		switch locationViewModel.authorizationStatus {
 		case .authorizedAlways:
 			return true

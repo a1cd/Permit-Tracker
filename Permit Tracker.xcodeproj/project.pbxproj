@@ -3,13 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		67E4E3C653AB994DD017DA6F /* Pods_Permit_TrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2147DF3E3F0C3E9137DAD1B /* Pods_Permit_TrackerTests.framework */; };
-		93B5B7895EB7354E509B9AD6 /* Pods_Permit_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0435E6C9A22BC68672D0B4C8 /* Pods_Permit_Tracker.framework */; };
-		984C062779071DCD7A05BA93 /* Pods_Permit_Tracker_Permit_TrackerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF991A9A23EE2B522A4826B6 /* Pods_Permit_Tracker_Permit_TrackerUITests.framework */; };
 		B80C86AE26CEB1AB00CE46B4 /* EndOfDrive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80C86AD26CEB1AB00CE46B4 /* EndOfDrive.swift */; };
 		B80C86B726CEB54300CE46B4 /* WeatherChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80C86B626CEB54300CE46B4 /* WeatherChoice.swift */; };
 		B83F322226C19D3A00A56E26 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F322126C19D3A00A56E26 /* App.swift */; };
@@ -23,6 +20,7 @@
 		B83F326326C1C7E800A56E26 /* Drive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F326226C1C7E800A56E26 /* Drive.swift */; };
 		B83F326826C1C83600A56E26 /* DriveDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F326726C1C83600A56E26 /* DriveDetails.swift */; };
 		B83F326D26C1CCE600A56E26 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F326C26C1CCE600A56E26 /* MapView.swift */; };
+		B84DBCA527AC68AF00D1996D /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B84DBCA427AC68AF00D1996D /* ExternalAccessory.framework */; };
 		B8612FC726C2EDC800C4513C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8612FC626C2EDC800C4513C /* MapKit.framework */; };
 		B861302B26C3007200C4513C /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B861302A26C3007200C4513C /* LocationViewModel.swift */; };
 		B861303026C3016D00C4513C /* RequestLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B861302F26C3016D00C4513C /* RequestLocationView.swift */; };
@@ -39,6 +37,12 @@
 		B88F06BB26C8197F00C33C1B /* GagueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F06BA26C8197F00C33C1B /* GagueView.swift */; };
 		B88F06C526C829C700C33C1B /* GoalsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F06C426C829C700C33C1B /* GoalsDict.swift */; };
 		B88F06D926C82DE700C33C1B /* Goals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F06D826C82DE700C33C1B /* Goals.swift */; };
+		B8A7B21D27B04186001AF846 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A7B21927B04186001AF846 /* Item+CoreDataClass.swift */; };
+		B8A7B21E27B04186001AF846 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A7B21A27B04186001AF846 /* Item+CoreDataProperties.swift */; };
+		B8A7B21F27B04186001AF846 /* LocationEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A7B21B27B04186001AF846 /* LocationEntity+CoreDataClass.swift */; };
+		B8A7B22027B04186001AF846 /* LocationEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A7B21C27B04186001AF846 /* LocationEntity+CoreDataProperties.swift */; };
+		B8C2528D27ADB6270047B776 /* DebugDriveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2528C27ADB6270047B776 /* DebugDriveStatus.swift */; };
+		B8C254D027AF34160047B776 /* Solar in Frameworks */ = {isa = PBXBuildFile; productRef = B8C254CF27AF34160047B776 /* Solar */; };
 		B8D7C29F26CBFF8100255583 /* DriveBadges.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D7C29E26CBFF8100255583 /* DriveBadges.swift */; };
 		B8E5B14226C85E8E00BC21A0 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14126C85E8E00BC21A0 /* Stats.swift */; };
 		B8E5B14826C85F0500BC21A0 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14726C85F0500BC21A0 /* Graph.swift */; };
@@ -62,25 +66,7 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		B8BD9BD126C9F39E00D286FF /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		01C0484EBB6F0008B42631CA /* Pods-Permit TrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Permit TrackerTests.release.xcconfig"; path = "Target Support Files/Pods-Permit TrackerTests/Pods-Permit TrackerTests.release.xcconfig"; sourceTree = "<group>"; };
-		0435E6C9A22BC68672D0B4C8 /* Pods_Permit_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Permit_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F4C28BC56287995DB30816E /* Pods-Permit Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Permit Tracker.release.xcconfig"; path = "Target Support Files/Pods-Permit Tracker/Pods-Permit Tracker.release.xcconfig"; sourceTree = "<group>"; };
-		7845895F03D49A00350E216F /* Pods-Permit Tracker-Permit TrackerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Permit Tracker-Permit TrackerUITests.release.xcconfig"; path = "Target Support Files/Pods-Permit Tracker-Permit TrackerUITests/Pods-Permit Tracker-Permit TrackerUITests.release.xcconfig"; sourceTree = "<group>"; };
-		A2147DF3E3F0C3E9137DAD1B /* Pods_Permit_TrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Permit_TrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B80C86AD26CEB1AB00CE46B4 /* EndOfDrive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndOfDrive.swift; sourceTree = "<group>"; };
 		B80C86B626CEB54300CE46B4 /* WeatherChoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherChoice.swift; sourceTree = "<group>"; };
 		B83F321E26C19D3A00A56E26 /* Permit Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Permit Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +86,7 @@
 		B83F326226C1C7E800A56E26 /* Drive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive.swift; sourceTree = "<group>"; };
 		B83F326726C1C83600A56E26 /* DriveDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveDetails.swift; sourceTree = "<group>"; };
 		B83F326C26C1CCE600A56E26 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		B84DBCA427AC68AF00D1996D /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		B8612FC626C2EDC800C4513C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B8612FCC26C2F0E400C4513C /* Permit Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Permit Tracker.entitlements"; sourceTree = "<group>"; };
 		B861302A26C3007200C4513C /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
@@ -118,14 +105,15 @@
 		B88F06BA26C8197F00C33C1B /* GagueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GagueView.swift; sourceTree = "<group>"; };
 		B88F06C426C829C700C33C1B /* GoalsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsDict.swift; sourceTree = "<group>"; };
 		B88F06D826C82DE700C33C1B /* Goals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goals.swift; sourceTree = "<group>"; };
+		B8A7B21927B04186001AF846 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		B8A7B21A27B04186001AF846 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		B8A7B21B27B04186001AF846 /* LocationEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationEntity+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		B8A7B21C27B04186001AF846 /* LocationEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationEntity+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		B8C2528C27ADB6270047B776 /* DebugDriveStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDriveStatus.swift; sourceTree = "<group>"; };
 		B8D7C29E26CBFF8100255583 /* DriveBadges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveBadges.swift; sourceTree = "<group>"; };
 		B8E5B14126C85E8E00BC21A0 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		B8E5B14726C85F0500BC21A0 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
 		B8E5B14D26C8B3ED00BC21A0 /* FullDriveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullDriveData.swift; sourceTree = "<group>"; };
-		C7F7649550CFF23C24C32588 /* Pods-Permit TrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Permit TrackerTests.debug.xcconfig"; path = "Target Support Files/Pods-Permit TrackerTests/Pods-Permit TrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		DB432E4A44FA7AFEE77FAE68 /* Pods-Permit Tracker-Permit TrackerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Permit Tracker-Permit TrackerUITests.debug.xcconfig"; path = "Target Support Files/Pods-Permit Tracker-Permit TrackerUITests/Pods-Permit Tracker-Permit TrackerUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		E5053878A60A5BBC49213367 /* Pods-Permit Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Permit Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Permit Tracker/Pods-Permit Tracker.debug.xcconfig"; sourceTree = "<group>"; };
-		FF991A9A23EE2B522A4826B6 /* Pods_Permit_Tracker_Permit_TrackerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Permit_Tracker_Permit_TrackerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,8 +121,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8C254D027AF34160047B776 /* Solar in Frameworks */,
+				B84DBCA527AC68AF00D1996D /* ExternalAccessory.framework in Frameworks */,
 				B8612FC726C2EDC800C4513C /* MapKit.framework in Frameworks */,
-				93B5B7895EB7354E509B9AD6 /* Pods_Permit_Tracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,7 +131,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67E4E3C653AB994DD017DA6F /* Pods_Permit_TrackerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,7 +138,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				984C062779071DCD7A05BA93 /* Pods_Permit_Tracker_Permit_TrackerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,7 +164,6 @@
 				B83F324226C19D3C00A56E26 /* Permit TrackerUITests */,
 				B83F321F26C19D3A00A56E26 /* Products */,
 				B8612FC526C2EDC800C4513C /* Frameworks */,
-				F755854AEDFAB4F2F8F18738 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -194,6 +180,10 @@
 		B83F322026C19D3A00A56E26 /* Permit Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				B8A7B21927B04186001AF846 /* Item+CoreDataClass.swift */,
+				B8A7B21A27B04186001AF846 /* Item+CoreDataProperties.swift */,
+				B8A7B21B27B04186001AF846 /* LocationEntity+CoreDataClass.swift */,
+				B8A7B21C27B04186001AF846 /* LocationEntity+CoreDataProperties.swift */,
 				B8612FCC26C2F0E400C4513C /* Permit Tracker.entitlements */,
 				B83F322126C19D3A00A56E26 /* App.swift */,
 				B83F322326C19D3A00A56E26 /* ContentView.swift */,
@@ -201,6 +191,7 @@
 				B8E5B15426C8B40700BC21A0 /* Drive */,
 				B8844BA626C6F90700AB30FB /* Stats */,
 				B8844B4926C45A0A00AB30FB /* ToolBar.swift */,
+				B8C2528B27ADB6020047B776 /* Debug */,
 				B861302A26C3007200C4513C /* LocationViewModel.swift */,
 				B861302F26C3016D00C4513C /* RequestLocationView.swift */,
 				B83F322526C19D3C00A56E26 /* Assets.xcassets */,
@@ -241,10 +232,8 @@
 		B8612FC526C2EDC800C4513C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B84DBCA427AC68AF00D1996D /* ExternalAccessory.framework */,
 				B8612FC626C2EDC800C4513C /* MapKit.framework */,
-				0435E6C9A22BC68672D0B4C8 /* Pods_Permit_Tracker.framework */,
-				FF991A9A23EE2B522A4826B6 /* Pods_Permit_Tracker_Permit_TrackerUITests.framework */,
-				A2147DF3E3F0C3E9137DAD1B /* Pods_Permit_TrackerTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -282,6 +271,14 @@
 			path = Notes;
 			sourceTree = "<group>";
 		};
+		B8C2528B27ADB6020047B776 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				B8C2528C27ADB6270047B776 /* DebugDriveStatus.swift */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
 		B8E5B15426C8B40700BC21A0 /* Drive */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,19 +293,6 @@
 			path = Drive;
 			sourceTree = "<group>";
 		};
-		F755854AEDFAB4F2F8F18738 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E5053878A60A5BBC49213367 /* Pods-Permit Tracker.debug.xcconfig */,
-				3F4C28BC56287995DB30816E /* Pods-Permit Tracker.release.xcconfig */,
-				DB432E4A44FA7AFEE77FAE68 /* Pods-Permit Tracker-Permit TrackerUITests.debug.xcconfig */,
-				7845895F03D49A00350E216F /* Pods-Permit Tracker-Permit TrackerUITests.release.xcconfig */,
-				C7F7649550CFF23C24C32588 /* Pods-Permit TrackerTests.debug.xcconfig */,
-				01C0484EBB6F0008B42631CA /* Pods-Permit TrackerTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -316,18 +300,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B83F324826C19D3C00A56E26 /* Build configuration list for PBXNativeTarget "Permit Tracker" */;
 			buildPhases = (
-				76B191E651D9361A4B8D35C5 /* [CP] Check Pods Manifest.lock */,
 				B83F321A26C19D3A00A56E26 /* Sources */,
 				B83F321B26C19D3A00A56E26 /* Frameworks */,
 				B83F321C26C19D3A00A56E26 /* Resources */,
-				B8BD9BD126C9F39E00D286FF /* Embed App Extensions */,
-				43C627B1BC7E705B0CC25D41 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Permit Tracker";
+			packageProductDependencies = (
+				B8C254CF27AF34160047B776 /* Solar */,
+			);
 			productName = "Permit Tracker";
 			productReference = B83F321E26C19D3A00A56E26 /* Permit Tracker.app */;
 			productType = "com.apple.product-type.application";
@@ -402,6 +386,9 @@
 				Base,
 			);
 			mainGroup = B83F321526C19D3A00A56E26;
+			packageReferences = (
+				B8C254CE27AF34160047B776 /* XCRemoteSwiftPackageReference "Solar" */,
+			);
 			productRefGroup = B83F321F26C19D3A00A56E26 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -440,45 +427,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		43C627B1BC7E705B0CC25D41 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Permit Tracker/Pods-Permit Tracker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Permit Tracker/Pods-Permit Tracker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Permit Tracker/Pods-Permit Tracker-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		76B191E651D9361A4B8D35C5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Permit Tracker-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		BFEAF4E03BC54E1FD8EEE2C6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -547,14 +495,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8A7B21D27B04186001AF846 /* Item+CoreDataClass.swift in Sources */,
 				B83F326D26C1CCE600A56E26 /* MapView.swift in Sources */,
 				B88959D126D0667C00864F63 /* DrivingNotes.swift in Sources */,
 				B8E5B14E26C8B3EE00BC21A0 /* FullDriveData.swift in Sources */,
 				B861303026C3016D00C4513C /* RequestLocationView.swift in Sources */,
 				B8844BA226C6F50E00AB30FB /* UserStats.swift in Sources */,
 				B8D7C29F26CBFF8100255583 /* DriveBadges.swift in Sources */,
+				B8A7B21E27B04186001AF846 /* Item+CoreDataProperties.swift in Sources */,
 				B88959D926D07A4700864F63 /* WeatherView.swift in Sources */,
 				B83F322B26C19D3C00A56E26 /* Persistence.swift in Sources */,
+				B8A7B22027B04186001AF846 /* LocationEntity+CoreDataProperties.swift in Sources */,
 				B88959E726D2921F00864F63 /* Helpers.swift in Sources */,
 				B83F326326C1C7E800A56E26 /* Drive.swift in Sources */,
 				B8E5B14226C85E8E00BC21A0 /* Stats.swift in Sources */,
@@ -564,9 +515,11 @@
 				B88959DE26D07B5A00864F63 /* NotesView.swift in Sources */,
 				B88959C526D050CA00864F63 /* Description.swift in Sources */,
 				B88F06BB26C8197F00C33C1B /* GagueView.swift in Sources */,
+				B8A7B21F27B04186001AF846 /* LocationEntity+CoreDataClass.swift in Sources */,
 				B88959C026D04F8400864F63 /* WeatherIcon.swift in Sources */,
 				B8E5B14826C85F0500BC21A0 /* Graph.swift in Sources */,
 				B83F326826C1C83600A56E26 /* DriveDetails.swift in Sources */,
+				B8C2528D27ADB6270047B776 /* DebugDriveStatus.swift in Sources */,
 				B80C86B726CEB54300CE46B4 /* WeatherChoice.swift in Sources */,
 				B83F322226C19D3A00A56E26 /* App.swift in Sources */,
 				B88F068926C73AD400C33C1B /* DriveList.swift in Sources */,
@@ -661,7 +614,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -716,7 +669,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -728,21 +681,22 @@
 		};
 		B83F324926C19D3C00A56E26 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5053878A60A5BBC49213367 /* Pods-Permit Tracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Permit Tracker/Permit Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Permit Tracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8LM4R9G4S4;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Permit Tracker/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -752,21 +706,22 @@
 		};
 		B83F324A26C19D3C00A56E26 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F4C28BC56287995DB30816E /* Pods-Permit Tracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Permit Tracker/Permit Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Permit Tracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8LM4R9G4S4;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Permit Tracker/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -776,7 +731,6 @@
 		};
 		B83F324C26C19D3C00A56E26 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7F7649550CFF23C24C32588 /* Pods-Permit TrackerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -799,7 +753,6 @@
 		};
 		B83F324D26C19D3C00A56E26 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 01C0484EBB6F0008B42631CA /* Pods-Permit TrackerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -822,7 +775,6 @@
 		};
 		B83F324F26C19D3C00A56E26 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DB432E4A44FA7AFEE77FAE68 /* Pods-Permit Tracker-Permit TrackerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -843,7 +795,6 @@
 		};
 		B83F325026C19D3C00A56E26 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7845895F03D49A00350E216F /* Pods-Permit Tracker-Permit TrackerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -902,6 +853,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B8C254CE27AF34160047B776 /* XCRemoteSwiftPackageReference "Solar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ceeK/Solar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B8C254CF27AF34160047B776 /* Solar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8C254CE27AF34160047B776 /* XCRemoteSwiftPackageReference "Solar" */;
+			productName = Solar;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		B83F322C26C19D3C00A56E26 /* Permit_Tracker.xcdatamodeld */ = {

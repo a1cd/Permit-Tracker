@@ -122,8 +122,7 @@ class Coordinator: NSObject, MKMapViewDelegate {
 		if let routePolyline = overlay as? MKPolyline {
 			let renderer = MKPolylineRenderer(polyline: routePolyline)
 			renderer.strokeColor = UIColor.systemRed
-			renderer.lineWidth = 5
-			renderer.lineDashPattern = [20, 10, 0, 10]
+			renderer.lineWidth = 2
 			return renderer
 		}
 		
