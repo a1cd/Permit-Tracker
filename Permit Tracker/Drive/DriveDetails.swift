@@ -19,13 +19,11 @@ class DriveDetails {
 		self.test = test
 	}
 	convenience init(item: Item) {
-		item.update()
-		
 		var newLocationList: [CLLocation] = []
 		newLocationList.reserveCapacity(item.locations?.count ?? 10)
 		
-		//FIXME - Force unwrap possible null value
-		if let locations = item.locations!.array as? [LocationEntity] {
+		//FIXME: - Force unwrap possible null value
+		if let locations = item.locations?.array as? [LocationEntity] {
 			for entity in locations {
 				
 				let coordinate = CLLocationCoordinate2D(

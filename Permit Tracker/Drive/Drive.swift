@@ -31,9 +31,8 @@ struct Drive: View {
 			return Text("Your drive \(itemFormatter.string(from: driveDetail!.StartDate))")
 		}
 	}
-	var TotalMarkerDistance: Double {
-		return (driveDetail == nil) ? locationViewModel.driveDetail.GetDriveDistance().1 : driveDetail!.CoreDistance
-	}
+	//FIXME: TotalMarkerDistance needs to update after view loads
+	@State var TotalMarkerDistance: Double = 0.0
 	var PredictedDistance: Double {
 		if let lastMarker = realDriveDetail.Locations.last {
 			// getting data
@@ -51,21 +50,26 @@ struct Drive: View {
 	var isDriving: Bool {
 		return driveDetail == nil
 	}
+	@State var badges: [Badge] = []
 	
-	@State var Distance: Measurement<UnitLength> = Measurement.init(value: 0, unit: UnitLength.meters)
+	@State var Distance: Measurement<UnitLength> = Measurement.init(value: 0.0, unit: UnitLength.meters)
 	
 	@State var SpeedTimer = Timer.publish(every: 0.1, tolerance: 0.05, on: .current, in: .default).autoconnect()
 	@State var SecondTimer = Timer.publish(every: 0.1, tolerance: 0.05, on: .current, in: .default).autoconnect()
     var body: some View {
 		GroupBox(label: label) {
 			VStack {
-				HStack {
-					Spacer()
-					ForEach(0..<realDriveDetail.Badges.count, content: { i in
-						Badge(icon: realDriveDetail.Badges[i].icon)
-					})
+				if realDriveDetail.Badges.count > 0 {
+					HStack {
+						Spacer()
+						ForEach(0..<realDriveDetail.Badges.count, content: { i in
+							Badge(icon: realDriveDetail.Badges[i].icon)
+						})
+					}
+					.padding(.horizontal)
+				} else {
+					EmptyView()
 				}
-				.padding(.horizontal)
 //				if showMap {
 //					if isDriving {
 //						MapView(driveDetails: locationViewModel.driveDetail, isDriving: true)
@@ -80,7 +84,7 @@ struct Drive: View {
 					Text("Distance")
 					Spacer()
 					if isDriving {
-						Text(distFormatter.string(from: Distance) )
+						Text(distFormatter.string(from: self.Distance) )
 							.onReceive(SpeedTimer, perform: { _ in
 								Distance = Measurement(value: PredictedDistance, unit: UnitLength.meters)
 							})
@@ -104,6 +108,11 @@ struct Drive: View {
 //					}
 //				})
 				.foregroundColor(Color(UIColor.systemBlue))
+			}
+			.task {
+				Task {
+					self.TotalMarkerDistance = (driveDetail == nil) ? locationViewModel.driveDetail.GetDriveDistance().1 : driveDetail!.CoreDistance
+				}
 			}
 		}
     }

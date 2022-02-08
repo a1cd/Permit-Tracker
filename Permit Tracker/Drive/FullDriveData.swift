@@ -74,13 +74,13 @@ struct FullDriveData: View {
 			VStack {
 				GroupBox(label: label) {
 					VStack {
-//						if isDriving {
-//							MapView(driveDetails: realDriveDetail, isDriving: true)
-//								.frame(height: 400)
-//						} else {
-//							MapView(driveDetails: realDriveDetail, isDriving: false)
-//								.frame(height: 200)
-//						}
+						if isDriving {
+							MapView(driveDetails: realDriveDetail, isDriving: true)
+								.frame(height: 400)
+						} else {
+							MapView(driveDetails: realDriveDetail, isDriving: false)
+								.frame(height: 200)
+						}
 						Group {
 							HStack {
 								Image(systemName: "ruler")

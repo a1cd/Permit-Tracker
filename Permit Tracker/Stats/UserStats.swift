@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct UserStats: View {
-	@State var DistanceTraveled: Measurement<UnitLength>
-	@State var TimeTraveled: TimeInterval
-	@State var TotalNightTime: TimeInterval
+	@Binding var DistanceTraveled: Measurement<UnitLength>
+	@Binding var TimeTraveled: TimeInterval
+	@Binding var TotalNightTime: TimeInterval
 	
 	@State var withIcon: Bool = true
 	@State var iconSize: CGFloat = 80
@@ -75,11 +75,11 @@ struct UserStats: View {
 struct UserStats_Previews: PreviewProvider {
     static var previews: some View {
 		UserStats(
-			DistanceTraveled: Measurement(
+			DistanceTraveled: .constant(Measurement(
 				value: 4000,
-				unit: UnitLength.meters),
-			TimeTraveled: 8481,
-			TotalNightTime: 5*60*60
+				unit: UnitLength.meters)),
+			TimeTraveled: .constant(8481),
+			TotalNightTime: .constant(5*60*60)
 		)
     }
 }

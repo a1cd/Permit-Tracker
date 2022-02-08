@@ -28,8 +28,14 @@ public class Item: NSManagedObject {
 					}
 				}
 			}
-			print("in ns, totalDist =",totalDistance)
+//			print("in ns, totalDist =",totalDistance)
 			self.distance = totalDistance
+		} else {
+//			print("in ns, dist =",self.distance)
+		}
+		if distance == 0.0 {
+			print("0.0")
+			self.managedObjectContext?.delete(self)
 		}
 		return (Measurement(value: distance, unit: UnitLength.meters), distance)
 	}
