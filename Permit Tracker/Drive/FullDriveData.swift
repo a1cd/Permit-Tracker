@@ -69,6 +69,8 @@ struct FullDriveData: View {
 			Array(repeating: .init(.fixed(20)), count: 3)
 	
 	@State private var SpeedTimer = Timer.publish(every: 0.1, tolerance: 0.05, on: .current, in: .default).autoconnect()
+	@State var timeString = ""
+	@State var nightString = ""
 	var body: some View {
 		ScrollView {
 			VStack {
@@ -96,8 +98,16 @@ struct FullDriveData: View {
 									Text(distFormatter.string(from: GetDriveDistance().0))
 								}
 							}
-							MiniStat(icon: "stopwatch", text: "Time", value: GetTimeInterval())
-							MiniStat(icon: "moon.stars.fill", text: "Night Driving", value: realDriveDetail.TotalNightTime.stringFromTimeInterval())
+							MiniStat(icon: "stopwatch", text: "Time", value: $timeString)
+								.task {
+									let holder = GetTimeInterval()
+									timeString = holder
+								}
+							MiniStat(icon: "moon.stars.fill", text: "Night Driving", value: $nightString)
+								.task {
+									let holder = realDriveDetail.TotalNightTime.stringFromTimeInterval()
+									nightString = holder
+								}
 						}
 					}
 				}
@@ -136,18 +146,4 @@ var lengthFormatter: LengthFormatter {
 	let formatter = LengthFormatter()
 	formatter.unitStyle = .long
 	return formatter
-}
-
-struct MiniStat: View {
-	@State var icon: String
-	@State var text: String
-	@State var value: String
-	var body: some View {
-		HStack {
-			Image(systemName: icon)
-			Text(text)
-			Spacer()
-			Text(value)
-		}
-	}
 }

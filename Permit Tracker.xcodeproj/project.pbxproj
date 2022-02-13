@@ -24,6 +24,8 @@
 		B8612FC726C2EDC800C4513C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8612FC626C2EDC800C4513C /* MapKit.framework */; };
 		B861302B26C3007200C4513C /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B861302A26C3007200C4513C /* LocationViewModel.swift */; };
 		B861303026C3016D00C4513C /* RequestLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B861302F26C3016D00C4513C /* RequestLocationView.swift */; };
+		B868D19527B743FC00980BD1 /* MiniStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B868D19427B743FC00980BD1 /* MiniStat.swift */; };
+		B868D19727B74CB500980BD1 /* Record Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = B868D19627B74CB500980BD1 /* Record Button.swift */; };
 		B8844B4A26C45A0A00AB30FB /* ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8844B4926C45A0A00AB30FB /* ToolBar.swift */; };
 		B8844BA226C6F50E00AB30FB /* UserStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8844BA126C6F50E00AB30FB /* UserStats.swift */; };
 		B88959BB26D04D3C00864F63 /* WeatherDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959BA26D04D3C00864F63 /* WeatherDescription.swift */; };
@@ -47,6 +49,7 @@
 		B8E5B14226C85E8E00BC21A0 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14126C85E8E00BC21A0 /* Stats.swift */; };
 		B8E5B14826C85F0500BC21A0 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14726C85F0500BC21A0 /* Graph.swift */; };
 		B8E5B14E26C8B3EE00BC21A0 /* FullDriveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14D26C8B3ED00BC21A0 /* FullDriveData.swift */; };
+		B8E7446027B8078E0013BFCB /* RecordingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E7445F27B8078E0013BFCB /* RecordingStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +95,8 @@
 		B861302A26C3007200C4513C /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		B861302F26C3016D00C4513C /* RequestLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocationView.swift; sourceTree = "<group>"; };
 		B861303426C30B1900C4513C /* MapMyRoute (1).gpx */ = {isa = PBXFileReference; lastKnownFileType = text; name = "MapMyRoute (1).gpx"; path = "../../../../Downloads/MapMyRoute (1).gpx"; sourceTree = "<group>"; };
+		B868D19427B743FC00980BD1 /* MiniStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniStat.swift; sourceTree = "<group>"; };
+		B868D19627B74CB500980BD1 /* Record Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record Button.swift"; sourceTree = "<group>"; };
 		B8844B4926C45A0A00AB30FB /* ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBar.swift; sourceTree = "<group>"; };
 		B8844BA126C6F50E00AB30FB /* UserStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStats.swift; sourceTree = "<group>"; };
 		B88959BA26D04D3C00864F63 /* WeatherDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDescription.swift; sourceTree = "<group>"; };
@@ -114,6 +119,7 @@
 		B8E5B14126C85E8E00BC21A0 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		B8E5B14726C85F0500BC21A0 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
 		B8E5B14D26C8B3ED00BC21A0 /* FullDriveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullDriveData.swift; sourceTree = "<group>"; };
+		B8E7445F27B8078E0013BFCB /* RecordingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,7 +196,7 @@
 				B88959E626D2921F00864F63 /* Helpers.swift */,
 				B8E5B15426C8B40700BC21A0 /* Drive */,
 				B8844BA626C6F90700AB30FB /* Stats */,
-				B8844B4926C45A0A00AB30FB /* ToolBar.swift */,
+				B868D19827B7F2A000980BD1 /* Controls */,
 				B8C2528B27ADB6020047B776 /* Debug */,
 				B861302A26C3007200C4513C /* LocationViewModel.swift */,
 				B861302F26C3016D00C4513C /* RequestLocationView.swift */,
@@ -238,11 +244,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B868D19827B7F2A000980BD1 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				B8844B4926C45A0A00AB30FB /* ToolBar.swift */,
+				B8E7445F27B8078E0013BFCB /* RecordingStatus.swift */,
+				B868D19627B74CB500980BD1 /* Record Button.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
 		B8844BA626C6F90700AB30FB /* Stats */ = {
 			isa = PBXGroup;
 			children = (
 				B8844BA126C6F50E00AB30FB /* UserStats.swift */,
 				B8E5B14126C85E8E00BC21A0 /* Stats.swift */,
+				B868D19427B743FC00980BD1 /* MiniStat.swift */,
 				B8E5B14726C85F0500BC21A0 /* Graph.swift */,
 				B88F06C426C829C700C33C1B /* GoalsDict.swift */,
 				B88F06D826C82DE700C33C1B /* Goals.swift */,
@@ -496,6 +513,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8A7B21D27B04186001AF846 /* Item+CoreDataClass.swift in Sources */,
+				B8E7446027B8078E0013BFCB /* RecordingStatus.swift in Sources */,
 				B83F326D26C1CCE600A56E26 /* MapView.swift in Sources */,
 				B88959D126D0667C00864F63 /* DrivingNotes.swift in Sources */,
 				B8E5B14E26C8B3EE00BC21A0 /* FullDriveData.swift in Sources */,
@@ -508,7 +526,9 @@
 				B8A7B22027B04186001AF846 /* LocationEntity+CoreDataProperties.swift in Sources */,
 				B88959E726D2921F00864F63 /* Helpers.swift in Sources */,
 				B83F326326C1C7E800A56E26 /* Drive.swift in Sources */,
+				B868D19727B74CB500980BD1 /* Record Button.swift in Sources */,
 				B8E5B14226C85E8E00BC21A0 /* Stats.swift in Sources */,
+				B868D19527B743FC00980BD1 /* MiniStat.swift in Sources */,
 				B88F06D926C82DE700C33C1B /* Goals.swift in Sources */,
 				B88959BB26D04D3C00864F63 /* WeatherDescription.swift in Sources */,
 				B83F322426C19D3A00A56E26 /* ContentView.swift in Sources */,
@@ -686,7 +706,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Permit Tracker/Permit Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Permit Tracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8LM4R9G4S4;
 				ENABLE_PREVIEWS = YES;
@@ -696,7 +716,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.3;
+				MARKETING_VERSION = 0.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -711,7 +731,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Permit Tracker/Permit Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Permit Tracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8LM4R9G4S4;
 				ENABLE_PREVIEWS = YES;
@@ -721,7 +741,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.3;
+				MARKETING_VERSION = 0.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

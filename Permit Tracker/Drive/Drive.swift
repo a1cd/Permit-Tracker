@@ -23,7 +23,9 @@ struct Drive: View {
 			return driveDetail!
 		}
 	}
-	
+	@State var distString: String = ""
+	@State var totalString: String = ""
+	@State var nightString: String = ""
 	var label: some View {
 		if (driveDetail == nil) {
 			return Text("Your drive \(itemFormatter.string(from: locationViewModel.driveDetail.StartDate))")
@@ -50,58 +52,76 @@ struct Drive: View {
 	var isDriving: Bool {
 		return driveDetail == nil
 	}
-	@State var badges: [Badge] = []
+	@State var badges: [DriveDetails.Badge]? = nil
 	
 	@State var Distance: Measurement<UnitLength> = Measurement.init(value: 0.0, unit: UnitLength.meters)
 	
 	@State var SpeedTimer = Timer.publish(every: 0.1, tolerance: 0.05, on: .current, in: .default).autoconnect()
 	@State var SecondTimer = Timer.publish(every: 0.1, tolerance: 0.05, on: .current, in: .default).autoconnect()
-    var body: some View {
+	func reloadDataAsync(realDriveDetail: DriveDetails, locationViewModel: LocationViewModel, distFormatter: MeasurementFormatter) async -> (Double, String,String,String, [DriveDetails.Badge])  {
+		let nightStringHolder = realDriveDetail.TotalNightTime.stringFromTimeInterval()
+		
+		let TotalMarkerDistanceHolder = (driveDetail == nil) ? locationViewModel.driveDetail.GetDriveDistance().1 : driveDetail!.CoreDistance
+		let distStringHolder = distFormatter.string(from: Measurement(value: TotalMarkerDistanceHolder, unit: UnitLength.meters))
+		
+		let totalStringHolder = realDriveDetail.TotalDayTime.stringFromTimeInterval()
+		
+		let badgesHolder = realDriveDetail.Badges()
+		
+		return (TotalMarkerDistanceHolder, nightStringHolder, distStringHolder, totalStringHolder, badgesHolder)
+	}
+	
+	var body: some View {
 		GroupBox(label: label) {
 			VStack {
-				if realDriveDetail.Badges.count > 0 {
-					HStack {
+				HStack {
+					if (badges == nil ) {
 						Spacer()
-						ForEach(0..<realDriveDetail.Badges.count, content: { i in
-							Badge(icon: realDriveDetail.Badges[i].icon)
-						})
+						ForEach(0..<2) {_ in
+							Badge(icon: DriveDetails.Badge.Day.icon)
+								.cornerRadius(100)
+								.redacted(reason: .placeholder)
+						}
+					} else {
+						Spacer()
+						ForEach(badges!) {i in
+							Badge(icon: i.icon)
+						}
 					}
-					.padding(.horizontal)
-				} else {
-					EmptyView()
 				}
-//				if showMap {
-//					if isDriving {
-//						MapView(driveDetails: locationViewModel.driveDetail, isDriving: true)
-//							.frame(height: 400)
-//					} else {
+				.padding(.horizontal)
+				.task {
+
+				}
+				if showMap {
+					if isDriving {
+						MapView(driveDetails: locationViewModel.driveDetail, isDriving: true)
+							.frame(height: UIScreen.main.coordinateSpace.bounds.height/2)
+					} else {
 //						MapView(driveDetails: driveDetail!, isDriving: false)
 //							.frame(height: 200)
-//					}
-//				}
+						EmptyView()
+					}
+				}
 				HStack {
-					Image(systemName: "ruler")
-					Text("Distance")
-					Spacer()
 					if isDriving {
-						Text(distFormatter.string(from: self.Distance) )
+						Image(systemName: "ruler")
+						Text("Distance")
+						Spacer()
+						Text(distString)
+							.multilineTextAlignment(.trailing)
 							.onReceive(SpeedTimer, perform: { _ in
-								Distance = Measurement(value: PredictedDistance, unit: UnitLength.meters)
+								distString = distFormatter.string(from: Measurement(value: PredictedDistance, unit: UnitLength.meters))
 							})
 							.font(.system(Font.TextStyle.body, design: Font.Design.monospaced))
 					} else {
-						Text(distFormatter.string(from: Measurement(value: self.TotalMarkerDistance, unit: UnitLength.meters)))
+						MiniStat(icon: "ruler", text: "Distance", value: $distString, placeholderRedacted: "5.00 miles")
 					}
 				}
 				.foregroundColor(Color(UIColor.systemGreen))
-				HStack {
-					Image(systemName: "sun.max.fill")
-					Text("Day Driving")
-					Spacer()
-					Text(realDriveDetail.TotalDayTime.stringFromTimeInterval())
-				}
+				MiniStat(icon: "sun.max.fill", text: "Day Driving", value: $totalString)
 				.foregroundColor(Color(UIColor.systemOrange))
-				MiniStat(icon: "moon.stars.fill", text: "Night Driving", value: realDriveDetail.TotalNightTime.stringFromTimeInterval())
+				MiniStat(icon: "moon.stars.fill", text: "Night Driving", value: $nightString)
 //				.onReceive(SecondTimer, perform: { _ in
 //					if isDriving {
 //						locationViewModel.driveDetail.TotalNightTime = locationViewModel.driveDetail.getTotalNightTime()
@@ -110,8 +130,17 @@ struct Drive: View {
 				.foregroundColor(Color(UIColor.systemBlue))
 			}
 			.task {
-				Task {
-					self.TotalMarkerDistance = (driveDetail == nil) ? locationViewModel.driveDetail.GetDriveDistance().1 : driveDetail!.CoreDistance
+				let fullHolder = await reloadDataAsync(
+					realDriveDetail: self.realDriveDetail,
+					locationViewModel: locationViewModel,
+					distFormatter: distFormatter
+				)
+				withAnimation(Animation.easeInOut(duration: 0.5)) {
+					self.TotalMarkerDistance =  fullHolder.0
+					self.nightString = fullHolder.1
+					self.distString = fullHolder.2
+					self.totalString = fullHolder.3
+					self.badges = fullHolder.4
 				}
 			}
 		}

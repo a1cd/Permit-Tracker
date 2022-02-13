@@ -59,8 +59,8 @@ struct DriveList: View {
 //		NavigationView {
 			List {
 				ForEach(Drives,id: \.date) {i in
-					if i.locations != nil {
-						if i.locations!.count > 0 {
+					if let locations = i.locations {
+						if locations.count > 0 {
 							NavigationLink(
 								destination:
 									FullDriveData(

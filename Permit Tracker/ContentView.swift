@@ -72,6 +72,32 @@ struct ContentView: View {
 	func DataChange() {
 		
 	}
+	
+	func refreshDataTask() async {
+		print("task")
+		let DrivesHolder = self.Drives
+		self.AllDrives = []
+		var holder: [DriveDetails] = []
+		viewContext.performAndWait {
+			for drive in DrivesHolder {
+				drive.update()
+				holder.append(DriveDetails(item: drive))
+			}
+		}
+		withAnimation {
+			AllDrives = holder
+			self.totalDistance = CalculateStats(AllDrives: AllDrives)
+			self.TotalDriveTime = CalculateTotalTime(AllDrives: AllDrives)
+			self.NightDriving = CalculateNightDriving(AllDrives: AllDrives)
+		}
+		if (viewContext.hasChanges) {
+			do {
+				try viewContext.save()
+			} catch {
+				//FIXME: handle error
+			}
+		}
+	}
 	var body: some View {
 		Group {
 			VStack {
@@ -89,22 +115,7 @@ struct ContentView: View {
 									.background(Color((colorScheme == ColorScheme.dark) ? UIColor.secondarySystemBackground : UIColor.systemBackground))
 									.scaledToFit()
 									.task {
-										print("task")
-										self.AllDrives = []
-										for drive in Drives {
-											drive.update()
-											AllDrives.append(DriveDetails(item: drive))
-										}
-										self.totalDistance = CalculateStats(AllDrives: AllDrives)
-										self.TotalDriveTime = CalculateTotalTime(AllDrives: AllDrives)
-										self.NightDriving = CalculateNightDriving(AllDrives: AllDrives)
-										if (viewContext.hasChanges) {
-											do {
-												try viewContext.save()
-											} catch {
-												//FIXME: handle error
-											}
-										}
+										await refreshDataTask()
 									}
 									.clipped()
 									.cornerRadius(30)
@@ -192,6 +203,8 @@ struct ContentView: View {
 			locationViewModel.requestPermission()
 		})
 	}
+	
+	
 	
     func startRecording() {
 		mostRecentDrive = nil

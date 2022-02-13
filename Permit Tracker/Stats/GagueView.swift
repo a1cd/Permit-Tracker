@@ -7,7 +7,15 @@
 
 import SwiftUI
 
-struct GagueSlice {
+struct GagueSlice: Equatable, Identifiable, Hashable {
+	var id: Int {hashValue}
+	
+	
+	static func == (lhs: GagueSlice, rhs: GagueSlice) -> Bool {
+		return lhs.hashValue == rhs.hashValue
+	}
+	
+	var i = 0
 	var lineWidth: CGFloat = 20
 	var color: Color
 	var opacity: Double = 1
@@ -18,9 +26,9 @@ struct GagueSlice {
 }
 
 //MARK - Gague View
-struct GagueView: View {
+struct GagueView: View, Animatable {
 	@State var BaseGague: GagueSlice?
-	@State var Gagues: [GagueSlice]
+	@Binding var Gagues: [GagueSlice]
 	func LevelToFrame(_ Gague: GagueSlice) -> CGFloat {
 		return ((Gague.lineWidth*2)*CGFloat(Gague.level))+Gague.lineWidth
 	}
@@ -36,20 +44,21 @@ struct GagueView: View {
 					.foregroundColor(BaseGague!.color)
 					.frame(width: LevelToFrame(BaseGague!), height: LevelToFrame(BaseGague!))
 			}
-			ForEach(0..<Gagues.count, content: {i in
-				if (Gagues[i].end == nil) {
+			ForEach(Gagues, content: {i in
+				if (i.end == nil) {
 					Circle()
-						.stroke(style: StrokeStyle(lineWidth: Gagues[i].lineWidth, lineCap: Gagues[i].lineCap, lineJoin: .round))
-						.foregroundColor(Gagues[i].color)
-						.opacity(Gagues[i].opacity)
+						.stroke(style: StrokeStyle(lineWidth: i.lineWidth, lineCap: i.lineCap, lineJoin: .round))
+						.foregroundColor(i.color)
+						.opacity(i.opacity)
 						.rotationEffect(.init(degrees: 90*3))
+						.animation(Animation.easeInOut(duration: 10), value: i)
 						.frame(width: LevelToFrame(i), height: LevelToFrame(i))
 				} else {
 					Circle()
-						.trim(from: Gagues[i].start, to: Gagues[i].end!)
-						.stroke(style: StrokeStyle(lineWidth: Gagues[i].lineWidth, lineCap: Gagues[i].lineCap, lineJoin: .round))
-						.foregroundColor(Gagues[i].color)
-						.opacity(Gagues[i].opacity)
+						.trim(from: i.start, to: i.end!)
+						.stroke(style: StrokeStyle(lineWidth: i.lineWidth, lineCap: i.lineCap, lineJoin: .round))
+						.foregroundColor(i.color)
+						.opacity(i.opacity)
 						.rotationEffect(.init(degrees: 90*3))
 						.frame(width: LevelToFrame(i), height: LevelToFrame(i))
 				}
@@ -61,17 +70,23 @@ struct GagueView: View {
 struct GagueView_Previews: PreviewProvider {
     static var previews: some View {
 		let baseGague = GagueSlice(color: .clear, opacity: 1)
-		
-		GagueView(
+		@State var gagues =
+		[
+			GagueSlice(color: .red, start: 0, end: 0.333, level: 4),
+			GagueSlice(color: .green, start: 0, end: 0.666, level: 3),
+			GagueSlice(color: .blue, start: 0, end: 0.4, level: 2),
+			GagueSlice(color: .red, opacity: 0.3, level: 4),
+			GagueSlice(color: .green, opacity: 0.3, level: 3),
+			GagueSlice(color: .blue, opacity: 0.3, level: 2)
+		]
+		return GagueView(
 			BaseGague: baseGague,
-			Gagues: [
-				GagueSlice(color: .red, start: 0, end: 0.333, level: 4),
-				GagueSlice(color: .green, start: 0, end: 0.666, level: 3),
-				GagueSlice(color: .blue, start: 0, end: 0.4, level: 2),
-				GagueSlice(color: .red, opacity: 0.3, level: 4),
-				GagueSlice(color: .green, opacity: 0.3, level: 3),
-				GagueSlice(color: .blue, opacity: 0.3, level: 2)
-			]
+			Gagues: $gagues
 		)
+		.onAppear() {
+			withAnimation(Animation.easeInOut(duration: 5.0)) {
+				gagues[0].end = 0.5
+			}
+		}
     }
 }
