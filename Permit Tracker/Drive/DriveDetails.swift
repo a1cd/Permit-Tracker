@@ -165,9 +165,19 @@ class DriveDetails {
 		if let firstLoc = Locations.first {
 			if let lastLoc = Locations.last {
 				if let firstSol = Solar(for: firstLoc.timestamp, coordinate: firstLoc.coordinate) {
-					let firstInterval = DateInterval(start: firstSol.sunrise ?? firstLoc.timestamp.previousDay().advanced(by: TimeIntervalFrom(Hours: 5)), end: firstSol.sunset ?? firstLoc.timestamp.nextDay())
+					let firstInterval = DateInterval(
+						start: firstSol.sunrise ??
+							firstLoc.timestamp.previousDay().advanced(by: TimeIntervalFrom(Hours: 5)),
+						end: firstSol.sunset ??
+							firstLoc.timestamp.nextDay()
+					)
 					if let lastSol = Solar(for: lastLoc.timestamp, coordinate: lastLoc.coordinate) {
-						let lastInterval = DateInterval(start: lastSol.sunrise ?? lastLoc.timestamp.previousDay().advanced(by: TimeIntervalFrom(Hours: 5)), end: lastSol.sunset ?? lastLoc.timestamp.nextDay())
+						let lastInterval = DateInterval(
+							start: lastSol.sunrise ??
+								lastLoc.timestamp.previousDay().advanced(by: TimeIntervalFrom(Hours: 5)),
+							end: lastSol.sunset ??
+								lastLoc.timestamp.nextDay()
+						)
 						let firstIntervalIntersect = driveInterval.intersection(with: firstInterval)
 						let lastIntervalIntersect = driveInterval.intersection(with: lastInterval)
 

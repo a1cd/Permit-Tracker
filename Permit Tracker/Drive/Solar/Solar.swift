@@ -90,12 +90,16 @@ struct Solar {
     }
     
 	public static func calculate(_ sunriseSunset: SunriseSunset, for date: Date, and zenith: Zenith, at coordinate: CLLocationCoordinate2D) -> Date? {
-		guard let utcTimezone = TimeZone(identifier: "UTC") else { return nil }
+		guard let utcTimezone = TimeZone(identifier: "UTC") else {
+			return nil
+		}
 		
 		// Get the day of the year
 		var calendar = Calendar(identifier: .gregorian)
 		calendar.timeZone = utcTimezone
-		guard let dayInt = calendar.ordinality(of: .day, in: .year, for: date) else { return nil }
+		guard let dayInt = calendar.ordinality(of: .day, in: .year, for: date) else {
+			return nil
+		}
 		let day = Double(dayInt)
 		
 		// Convert longitude to hour value and calculate an approx. time
