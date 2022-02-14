@@ -13,12 +13,12 @@ struct MiniStat: View {
 	@Binding var value: String
 	@State var placeholderRedacted: String = "0.0m"
 	var body: some View {
-		HStack(alignment: .center) {
-			Image(systemName: icon)
-			Text(text)
-				.multilineTextAlignment(.leading)
-			Spacer()
-				.transition(.scale.animation(Animation.linear(duration: 0)))
+		VStack(alignment: .center) {
+			Label(text, systemImage: icon)
+				.labelStyle(IconOnlyLabelStyle())
+//			Spacer()
+//				.transition(.scale.animation(Animation.easeInOut))
+				
 			if (value == "") {
 				Text(placeholderRedacted)
 					.scaledToFill()
@@ -35,7 +35,7 @@ struct MiniStat: View {
 
 struct MiniStat_Previews: PreviewProvider {
     static var previews: some View {
-		MiniStat(icon: "ruler", text: "Ruler", value: .constant("3000"))
+		MiniStat(icon: "ruler", text: "Text", value: .constant("3000-value"))
 			.padding()
     }
 }

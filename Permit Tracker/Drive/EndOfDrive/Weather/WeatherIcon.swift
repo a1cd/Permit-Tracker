@@ -30,7 +30,7 @@ struct WeatherIcon: View {
 			}
 		}
 		.frame(width: 65, height: 65)
-		.background(Color(isSelect ? UIColor.link : UIColor.systemGray2))
+		.background(Color(isSelect ? UIColor.link : UIColor.secondarySystemBackground))
 		.cornerRadius(10)
     }
 }

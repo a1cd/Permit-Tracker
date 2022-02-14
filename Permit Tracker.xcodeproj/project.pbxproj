@@ -45,6 +45,7 @@
 		B8A7B22027B04186001AF846 /* LocationEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A7B21C27B04186001AF846 /* LocationEntity+CoreDataProperties.swift */; };
 		B8C2528D27ADB6270047B776 /* DebugDriveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2528C27ADB6270047B776 /* DebugDriveStatus.swift */; };
 		B8C254D027AF34160047B776 /* Solar in Frameworks */ = {isa = PBXBuildFile; productRef = B8C254CF27AF34160047B776 /* Solar */; };
+		B8C91FF827B9FAF6002FBB03 /* BigStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C91FF727B9FAF6002FBB03 /* BigStat.swift */; };
 		B8D7C29F26CBFF8100255583 /* DriveBadges.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D7C29E26CBFF8100255583 /* DriveBadges.swift */; };
 		B8E5B14226C85E8E00BC21A0 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14126C85E8E00BC21A0 /* Stats.swift */; };
 		B8E5B14826C85F0500BC21A0 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14726C85F0500BC21A0 /* Graph.swift */; };
@@ -115,6 +116,7 @@
 		B8A7B21B27B04186001AF846 /* LocationEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationEntity+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B8A7B21C27B04186001AF846 /* LocationEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationEntity+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		B8C2528C27ADB6270047B776 /* DebugDriveStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDriveStatus.swift; sourceTree = "<group>"; };
+		B8C91FF727B9FAF6002FBB03 /* BigStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigStat.swift; sourceTree = "<group>"; };
 		B8D7C29E26CBFF8100255583 /* DriveBadges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveBadges.swift; sourceTree = "<group>"; };
 		B8E5B14126C85E8E00BC21A0 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		B8E5B14726C85F0500BC21A0 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
@@ -258,8 +260,9 @@
 			isa = PBXGroup;
 			children = (
 				B8844BA126C6F50E00AB30FB /* UserStats.swift */,
-				B8E5B14126C85E8E00BC21A0 /* Stats.swift */,
+				B8C91FF727B9FAF6002FBB03 /* BigStat.swift */,
 				B868D19427B743FC00980BD1 /* MiniStat.swift */,
+				B8E5B14126C85E8E00BC21A0 /* Stats.swift */,
 				B8E5B14726C85F0500BC21A0 /* Graph.swift */,
 				B88F06C426C829C700C33C1B /* GoalsDict.swift */,
 				B88F06D826C82DE700C33C1B /* Goals.swift */,
@@ -542,6 +545,7 @@
 				B8C2528D27ADB6270047B776 /* DebugDriveStatus.swift in Sources */,
 				B80C86B726CEB54300CE46B4 /* WeatherChoice.swift in Sources */,
 				B83F322226C19D3A00A56E26 /* App.swift in Sources */,
+				B8C91FF827B9FAF6002FBB03 /* BigStat.swift in Sources */,
 				B88F068926C73AD400C33C1B /* DriveList.swift in Sources */,
 				B8844B4A26C45A0A00AB30FB /* ToolBar.swift in Sources */,
 				B861302B26C3007200C4513C /* LocationViewModel.swift in Sources */,

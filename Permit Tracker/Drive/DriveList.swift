@@ -20,6 +20,7 @@ struct DriveList: View {
 	
 	@State var tryingToDelete: Bool = false
 	@State var deleteOffset: IndexSet? = nil
+	@State var search = ""
 	
 	func deleteItems(_ offsets: IndexSet) -> Void {
 		withAnimation {
@@ -75,12 +76,14 @@ struct DriveList: View {
 									showMap: false
 								)
 							}
+//							.searchCompletion((i.date ?? Date()).description)
 						}
 					}
 				}
 				.onDelete(perform: areYouSure)
 				.alert(isPresented: $tryingToDelete, content: alert)
 			}
+//			.searchable(text: $search)
 			.navigationTitle("Driving History")
 //			.listStyle(GroupedListStyle())
 //		}

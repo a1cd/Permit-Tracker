@@ -20,14 +20,6 @@ struct FullDriveData: View {
 			return driveDetail!
 		}
 	}
-	
-	var label: some View {
-		if (driveDetail == nil) {
-			return Text("Your drive \(itemFormatter.string(from: locationViewModel.driveDetail.StartDate))")
-		} else {
-			return Text("Your drive \(itemFormatter.string(from: driveDetail!.StartDate))")
-		}
-	}
 	func GetDriveDistance() -> (Measurement<UnitLength>, Double) {
 		var totalDistance: Double = 0
 		if var lastLocation = realDriveDetail.Locations.first {
@@ -38,9 +30,15 @@ struct FullDriveData: View {
 		}
 		return (Measurement(value: totalDistance, unit: UnitLength.meters), totalDistance)
 	}
-	var TotalMarkerDistance: Double {
-		return GetDriveDistance().1
-	}
+
+	@State var distString: String = ""
+	@State var totalString: String = ""
+	@State var totalNum: TimeInterval?
+	@State var nightString: String = ""
+	@State var nightNum: TimeInterval?
+	@State var description: String = ""
+	//FIXME: TotalMarkerDistance needs to update after view loads
+	@State var TotalMarkerDistance: Double = 0.0
 	var PredictedDistance: Double {
 		if let lastMarker = realDriveDetail.Locations.last {
 			// getting data
@@ -58,62 +56,84 @@ struct FullDriveData: View {
 	var isDriving: Bool {
 		return driveDetail == nil
 	}
+	@State var badges: [DriveDetails.Badge]? = nil
 	
-	@State private var Distance: Measurement<UnitLength> = Measurement.init(value: 0, unit: UnitLength.meters)
+	@State var Distance: Measurement<UnitLength> = Measurement.init(value: 0.0, unit: UnitLength.meters)
 	
 	func GetTimeInterval() -> String {
 		return realDriveDetail.TotalDayTime.stringFromTimeInterval(isApptx: !isDriving)
 	}
-	
-	var rows: [GridItem] =
-			Array(repeating: .init(.fixed(20)), count: 3)
-	
+
+	func reloadDataAsync(realDriveDetail: DriveDetails, locationViewModel: LocationViewModel, distFormatter: MeasurementFormatter) async -> (Double, String,String,String, [DriveDetails.Badge], TimeInterval, TimeInterval, String)  {
+		let nightTimeHolder = realDriveDetail.TotalNightTime
+		let nightStringHolder = nightTimeHolder.stringFromTimeInterval()
+		
+		let TotalMarkerDistanceHolder = (driveDetail == nil) ? locationViewModel.driveDetail.GetDriveDistance().1 : driveDetail!.CoreDistance
+		let distStringHolder = distFormatter.string(from: Measurement(value: TotalMarkerDistanceHolder, unit: UnitLength.meters))
+		
+		let totalTimeHolder = realDriveDetail.TotalDayTime
+		let totalStringHolder = totalTimeHolder.stringFromTimeInterval()
+		
+		let badgesHolder = realDriveDetail.Badges()
+		
+		let descriptionHolder = shortItemFormatter.string(from: realDriveDetail.StartDate)
+		
+		return (TotalMarkerDistanceHolder, nightStringHolder, distStringHolder, totalStringHolder, badgesHolder, totalTimeHolder, nightTimeHolder, descriptionHolder)
+	}
+	var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
 	@State private var SpeedTimer = Timer.publish(every: 0.1, tolerance: 0.05, on: .current, in: .default).autoconnect()
-	@State var timeString = ""
-	@State var nightString = ""
 	var body: some View {
 		ScrollView {
 			VStack {
-				GroupBox(label: label) {
-					VStack {
-						if isDriving {
-							MapView(driveDetails: realDriveDetail, isDriving: true)
-								.frame(height: 400)
-						} else {
-							MapView(driveDetails: realDriveDetail, isDriving: false)
-								.frame(height: 200)
-						}
-						Group {
-							HStack {
-								Image(systemName: "ruler")
-								Text("Distance")
-								Spacer()
-								if isDriving {
-									Text(distFormatter.string(from: Distance) )
-										.onReceive(SpeedTimer, perform: { _ in
-											Distance = Measurement(value: PredictedDistance, unit: UnitLength.meters)
-										})
-										.font(.system(Font.TextStyle.body, design: Font.Design.monospaced))
-								} else {
-									Text(distFormatter.string(from: GetDriveDistance().0))
-								}
-							}
-							MiniStat(icon: "stopwatch", text: "Time", value: $timeString)
-								.task {
-									let holder = GetTimeInterval()
-									timeString = holder
-								}
-							MiniStat(icon: "moon.stars.fill", text: "Night Driving", value: $nightString)
-								.task {
-									let holder = realDriveDetail.TotalNightTime.stringFromTimeInterval()
-									nightString = holder
-								}
-						}
+				VStack {
+					if isDriving {
+						MapView(driveDetails: realDriveDetail, isDriving: true)
+							.frame(height: 400)
+					} else {
+						MapView(driveDetails: realDriveDetail, isDriving: false)
+							.frame(height: 200)
 					}
 				}
-				WeatherView(Weather: realDriveDetail.weather)
-				NotesView(notes: realDriveDetail.notes)
-				
+				ZStack {
+					Circle()
+						.scale(1.5)
+						.fill(UIColor.systemBackground.color)
+						.shadow(radius: 5)
+					Image(systemName: realDriveDetail.weather.Icon())
+						.renderingMode(.original)
+						.padding(.all, 5.0)
+						.imageScale(.large)
+						.font(.title)
+						.shadow(radius: 2, x: 1, y: 1)
+				}
+				.offset(x: 0, y: -35)
+				LazyVGrid(columns: columns) {
+					if isDriving {
+						BigStat(icon: "point.topleft.down.curvedto.point.filled.bottomright.up", text: "Distance", value: $distString, placeholderRedacted: "5.00 miles")
+							.multilineTextAlignment(.trailing)
+							.onReceive(SpeedTimer, perform: { _ in
+								distString = distFormatter.string(from: Measurement(value: PredictedDistance, unit: UnitLength.meters))
+							})
+							.font(.system(Font.TextStyle.body, design: Font.Design.monospaced))
+							.foregroundColor(Color(UIColor.systemGreen))
+					} else {
+						BigStat(icon: "point.topleft.down.curvedto.point.filled.bottomright.up", text: "Distance", value: $distString, placeholderRedacted: "5.00 miles")
+							.foregroundColor(Color(UIColor.systemGreen))
+					}
+					if (totalNum != 0.0) {
+						BigStat(icon: "sun.max.fill", text: "Day Driving", value: $totalString)
+							.foregroundColor(Color(UIColor.systemOrange))
+					}
+					if (nightNum != 0.0) {
+						BigStat(icon: "moon.stars.fill", text: "Night Driving", value: $nightString)
+							.foregroundColor(Color(UIColor.systemBlue))
+					}
+					if (realDriveDetail.notes != "") {
+						NotesView(notes: realDriveDetail.notes)
+					}
+				}
+				.padding()
+				.offset(x: 0, y: -35)
 				
 //				Text("Speed Graph")
 //					.font(.headline)
@@ -139,6 +159,24 @@ struct FullDriveData: View {
 				
 			}
 		}
+		.task {
+			let fullHolder = await reloadDataAsync(
+				realDriveDetail: self.realDriveDetail,
+				locationViewModel: locationViewModel,
+				distFormatter: distFormatter
+			)
+			withAnimation(Animation.easeInOut(duration: 0.5)) {
+				self.TotalMarkerDistance =  fullHolder.0
+				self.nightString = fullHolder.1
+				self.distString = fullHolder.2
+				self.totalString = fullHolder.3
+				self.badges = fullHolder.4
+				self.totalNum = fullHolder.5
+				self.nightNum = fullHolder.6
+				self.description = fullHolder.7
+			}
+		}
+		.navigationTitle(description)
 	}
 }
 

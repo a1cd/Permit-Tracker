@@ -46,7 +46,14 @@ struct UserStats: View {
 							.frame(width: 50.0, height: 50.0)
 						Text("Distance Driven").padding(.all)
 						Spacer()
-						Text(MeasurementFormatter().string(from: DistanceTraveled)).padding(.all)
+						if (DistanceTraveled.value<0) {
+							Text(MeasurementFormatter().string(from: DistanceTraveled))
+								.padding(.all)
+								.redacted(reason: .placeholder)
+						} else {
+							Text(MeasurementFormatter().string(from: DistanceTraveled))
+								.padding(.all)
+						}
 					}
 					.padding(.bottom, 5.0)
 					.foregroundColor(.init(UIColor.systemGreen))
@@ -57,9 +64,16 @@ struct UserStats: View {
 							Image(systemName: "stopwatch.fill")
 								.frame(width: 50.0, height: 50.0)
 						}
-						Text("Time Driven").padding(.all)
+						Text("Day Driving").padding(.all)
 						Spacer()
-						Text(TimeTraveled.stringFromTimeInterval()).padding(.all)
+						if (TimeTraveled<0) {
+							Text(TimeTraveled.stringFromTimeInterval())
+								.padding(.all)
+								.redacted(reason: .placeholder)
+						} else {
+							Text(TimeTraveled.stringFromTimeInterval())
+								.padding(.all)
+						}
 					}
 					.padding(.bottom, 5.0)
 					.foregroundColor(.init(UIColor.systemOrange))
@@ -72,7 +86,14 @@ struct UserStats: View {
 						}
 						Text("Night Driving").padding(.all)
 						Spacer()
-						Text(TotalNightTime.stringFromTimeInterval()).padding(.all)
+						if (TotalNightTime<0) {
+							Text(TotalNightTime.stringFromTimeInterval())
+								.padding(.all)
+								.redacted(reason: .placeholder)
+						} else {
+							Text(TotalNightTime.stringFromTimeInterval())
+								.padding(.all)
+						}
 					}
 					.foregroundColor(.init(UIColor.systemBlue))
 				}

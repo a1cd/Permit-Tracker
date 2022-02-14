@@ -304,6 +304,13 @@ let itemFormatter: DateFormatter = {
 	formatter.doesRelativeDateFormatting = true
     return formatter
 }()
+let shortItemFormatter: DateFormatter = {
+	let formatter = DateFormatter()
+	formatter.dateStyle = .short
+	formatter.timeStyle = .short
+	formatter.doesRelativeDateFormatting = true
+	return formatter
+}()
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
