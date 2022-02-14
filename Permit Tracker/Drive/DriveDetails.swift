@@ -162,46 +162,40 @@ class DriveDetails {
 	
 	func getTotalNightTime() -> TimeInterval {
 		var total: TimeInterval = 0
-		if let firstLoc = Locations.first {
-			if let lastLoc = Locations.last {
-				if let firstSol = Solar(for: firstLoc.timestamp, coordinate: firstLoc.coordinate) {
-					let firstInterval = DateInterval(
-						start: firstSol.sunrise ??
-							firstLoc.timestamp.previousDay().advanced(by: TimeIntervalFrom(Hours: 5)),
-						end: firstSol.sunset ??
-							firstLoc.timestamp.nextDay()
-					)
-					if let lastSol = Solar(for: lastLoc.timestamp, coordinate: lastLoc.coordinate) {
-						let lastInterval = DateInterval(
-							start: lastSol.sunrise ??
-								lastLoc.timestamp.previousDay().advanced(by: TimeIntervalFrom(Hours: 5)),
-							end: lastSol.sunset ??
-								lastLoc.timestamp.nextDay()
-						)
-						let firstIntervalIntersect = driveInterval.intersection(with: firstInterval)
-						let lastIntervalIntersect = driveInterval.intersection(with: lastInterval)
+		guard let firstLoc = Locations.first else {return total}
+		guard let lastLoc = Locations.last else {return total}
+		let firstInterval = DateInterval(
+			start: Solar.calculate(.sunrise, for: firstLoc.timestamp, and: .official, at: firstLoc.coordinate) ??
+				firstLoc.timestamp.previousDay().advanced(by: TimeIntervalFrom(Hours: 5)),
+			end: Solar.calculate(.sunset, for: firstLoc.timestamp, and: .official, at: firstLoc.coordinate) ??
+				firstLoc.timestamp.nextDay()
+		)
+		let lastInterval = DateInterval(
+			start: Solar.calculate(.sunrise, for: lastLoc.timestamp, and: .official, at: lastLoc.coordinate) ??
+				lastLoc.timestamp.previousDay().advanced(by: TimeIntervalFrom(Hours: 5)),
+			end: Solar.calculate(.sunset, for: lastLoc.timestamp, and: .official, at: lastLoc.coordinate) ??
+				lastLoc.timestamp.nextDay()
+		)
+		let firstIntervalIntersect = driveInterval.intersection(with: firstInterval)
+		let lastIntervalIntersect = driveInterval.intersection(with: lastInterval)
 
-						var totalIntervalIntersect: TimeInterval = 0
+		var totalIntervalIntersect: TimeInterval = 0
 
-						// check to see if they are the same
-						if (firstInterval.start == lastInterval.start) && (firstInterval.end == lastInterval.end) {
-							totalIntervalIntersect = firstIntervalIntersect?.duration ?? 0
-						} else {
-							totalIntervalIntersect += firstIntervalIntersect?.duration ?? 0
-							totalIntervalIntersect += lastIntervalIntersect?.duration ?? 0
+		// check to see if they are the same
+		if (firstInterval.start == lastInterval.start) && (firstInterval.end == lastInterval.end) {
+			totalIntervalIntersect = firstIntervalIntersect?.duration ?? 0
+		} else {
+			totalIntervalIntersect += firstIntervalIntersect?.duration ?? 0
+			totalIntervalIntersect += lastIntervalIntersect?.duration ?? 0
 
-							// subtract intersection intersection from total intersection
-							if (firstIntervalIntersect != nil) && (lastIntervalIntersect != nil) {
-								totalIntervalIntersect -= firstIntervalIntersect!.intersection(with: lastIntervalIntersect!)?.duration ?? 0
-							}
-						}
-						// set the total to the total driving time
-						total = driveInterval.duration
-						total -= totalIntervalIntersect
-					}
-				}
+			// subtract intersection intersection from total intersection
+			if (firstIntervalIntersect != nil) && (lastIntervalIntersect != nil) {
+				totalIntervalIntersect -= firstIntervalIntersect!.intersection(with: lastIntervalIntersect!)?.duration ?? 0
 			}
 		}
+		// set the total to the total driving time
+		total = driveInterval.duration
+		total -= totalIntervalIntersect
 		return total
 	}
 	lazy var TotalNightTime: TimeInterval = getTotalNightTime()
