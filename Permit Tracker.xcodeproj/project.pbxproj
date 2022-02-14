@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,11 @@
 		B861303026C3016D00C4513C /* RequestLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B861302F26C3016D00C4513C /* RequestLocationView.swift */; };
 		B868D19527B743FC00980BD1 /* MiniStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B868D19427B743FC00980BD1 /* MiniStat.swift */; };
 		B868D19727B74CB500980BD1 /* Record Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = B868D19627B74CB500980BD1 /* Record Button.swift */; };
+		B8713CDD27BAD2250051E81E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B8713CDC27BAD2250051E81E /* README.md */; };
+		B8713CDF27BAD22D0051E81E /* solar-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B8713CDE27BAD22C0051E81E /* solar-logo.png */; };
+		B8713CE127BAD2780051E81E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B8713CE027BAD2780051E81E /* LICENSE */; };
+		B8713CE227BAD3F00051E81E /* Solar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8713CD927BAD20F0051E81E /* Solar.swift */; };
+		B8713CE327BAD3F20051E81E /* Solar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8713CD927BAD20F0051E81E /* Solar.swift */; };
 		B8844B4A26C45A0A00AB30FB /* ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8844B4926C45A0A00AB30FB /* ToolBar.swift */; };
 		B8844BA226C6F50E00AB30FB /* UserStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8844BA126C6F50E00AB30FB /* UserStats.swift */; };
 		B88959BB26D04D3C00864F63 /* WeatherDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959BA26D04D3C00864F63 /* WeatherDescription.swift */; };
@@ -44,7 +49,6 @@
 		B8A7B21F27B04186001AF846 /* LocationEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A7B21B27B04186001AF846 /* LocationEntity+CoreDataClass.swift */; };
 		B8A7B22027B04186001AF846 /* LocationEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A7B21C27B04186001AF846 /* LocationEntity+CoreDataProperties.swift */; };
 		B8C2528D27ADB6270047B776 /* DebugDriveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2528C27ADB6270047B776 /* DebugDriveStatus.swift */; };
-		B8C254D027AF34160047B776 /* Solar in Frameworks */ = {isa = PBXBuildFile; productRef = B8C254CF27AF34160047B776 /* Solar */; };
 		B8C91FF827B9FAF6002FBB03 /* BigStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C91FF727B9FAF6002FBB03 /* BigStat.swift */; };
 		B8D7C29F26CBFF8100255583 /* DriveBadges.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D7C29E26CBFF8100255583 /* DriveBadges.swift */; };
 		B8E5B14226C85E8E00BC21A0 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E5B14126C85E8E00BC21A0 /* Stats.swift */; };
@@ -98,6 +102,13 @@
 		B861303426C30B1900C4513C /* MapMyRoute (1).gpx */ = {isa = PBXFileReference; lastKnownFileType = text; name = "MapMyRoute (1).gpx"; path = "../../../../Downloads/MapMyRoute (1).gpx"; sourceTree = "<group>"; };
 		B868D19427B743FC00980BD1 /* MiniStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniStat.swift; sourceTree = "<group>"; };
 		B868D19627B74CB500980BD1 /* Record Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record Button.swift"; sourceTree = "<group>"; };
+		B8713CD527BAD1990051E81E /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		B8713CD627BAD1990051E81E /* CorrectResults.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CorrectResults.json; sourceTree = "<group>"; };
+		B8713CD727BAD1990051E81E /* SolarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarTests.swift; sourceTree = "<group>"; };
+		B8713CD927BAD20F0051E81E /* Solar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solar.swift; sourceTree = "<group>"; };
+		B8713CDC27BAD2250051E81E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Permit_Tracker-adyapgausmbnsehcgznobtrwhdkc/SourcePackages/checkouts/Solar/README.md"; sourceTree = "<group>"; };
+		B8713CDE27BAD22C0051E81E /* solar-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "solar-logo.png"; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Permit_Tracker-adyapgausmbnsehcgznobtrwhdkc/SourcePackages/checkouts/Solar/solar-logo.png"; sourceTree = "<group>"; };
+		B8713CE027BAD2780051E81E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B8844B4926C45A0A00AB30FB /* ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBar.swift; sourceTree = "<group>"; };
 		B8844BA126C6F50E00AB30FB /* UserStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStats.swift; sourceTree = "<group>"; };
 		B88959BA26D04D3C00864F63 /* WeatherDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDescription.swift; sourceTree = "<group>"; };
@@ -129,7 +140,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C254D027AF34160047B776 /* Solar in Frameworks */,
 				B84DBCA527AC68AF00D1996D /* ExternalAccessory.framework in Frameworks */,
 				B8612FC726C2EDC800C4513C /* MapKit.framework in Frameworks */,
 			);
@@ -222,6 +232,7 @@
 		B83F323726C19D3C00A56E26 /* Permit TrackerTests */ = {
 			isa = PBXGroup;
 			children = (
+				B8713CD427BAD18E0051E81E /* Solar */,
 				B83F323826C19D3C00A56E26 /* Permit_TrackerTests.swift */,
 				B83F323A26C19D3C00A56E26 /* Info.plist */,
 			);
@@ -254,6 +265,27 @@
 				B868D19627B74CB500980BD1 /* Record Button.swift */,
 			);
 			path = Controls;
+			sourceTree = "<group>";
+		};
+		B8713CD427BAD18E0051E81E /* Solar */ = {
+			isa = PBXGroup;
+			children = (
+				B8713CD527BAD1990051E81E /* City.swift */,
+				B8713CD627BAD1990051E81E /* CorrectResults.json */,
+				B8713CD727BAD1990051E81E /* SolarTests.swift */,
+			);
+			path = Solar;
+			sourceTree = "<group>";
+		};
+		B8713CD827BAD20F0051E81E /* Solar */ = {
+			isa = PBXGroup;
+			children = (
+				B8713CE027BAD2780051E81E /* LICENSE */,
+				B8713CDE27BAD22C0051E81E /* solar-logo.png */,
+				B8713CDC27BAD2250051E81E /* README.md */,
+				B8713CD927BAD20F0051E81E /* Solar.swift */,
+			);
+			path = Solar;
 			sourceTree = "<group>";
 		};
 		B8844BA626C6F90700AB30FB /* Stats */ = {
@@ -304,6 +336,7 @@
 			children = (
 				B80C86B226CEB1B000CE46B4 /* EndOfDrive */,
 				B88F068826C73AD400C33C1B /* DriveList.swift */,
+				B8713CD827BAD20F0051E81E /* Solar */,
 				B8E5B14D26C8B3ED00BC21A0 /* FullDriveData.swift */,
 				B83F326226C1C7E800A56E26 /* Drive.swift */,
 				B8D7C29E26CBFF8100255583 /* DriveBadges.swift */,
@@ -330,7 +363,6 @@
 			);
 			name = "Permit Tracker";
 			packageProductDependencies = (
-				B8C254CF27AF34160047B776 /* Solar */,
 			);
 			productName = "Permit Tracker";
 			productReference = B83F321E26C19D3A00A56E26 /* Permit Tracker.app */;
@@ -407,7 +439,6 @@
 			);
 			mainGroup = B83F321526C19D3A00A56E26;
 			packageReferences = (
-				B8C254CE27AF34160047B776 /* XCRemoteSwiftPackageReference "Solar" */,
 			);
 			productRefGroup = B83F321F26C19D3A00A56E26 /* Products */;
 			projectDirPath = "";
@@ -425,8 +456,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8713CE127BAD2780051E81E /* LICENSE in Resources */,
 				B83F322926C19D3C00A56E26 /* Preview Assets.xcassets in Resources */,
+				B8713CDD27BAD2250051E81E /* README.md in Resources */,
 				B83F322626C19D3C00A56E26 /* Assets.xcassets in Resources */,
+				B8713CDF27BAD22D0051E81E /* solar-logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,6 +572,7 @@
 				B88959DE26D07B5A00864F63 /* NotesView.swift in Sources */,
 				B88959C526D050CA00864F63 /* Description.swift in Sources */,
 				B88F06BB26C8197F00C33C1B /* GagueView.swift in Sources */,
+				B8713CE227BAD3F00051E81E /* Solar.swift in Sources */,
 				B8A7B21F27B04186001AF846 /* LocationEntity+CoreDataClass.swift in Sources */,
 				B88959C026D04F8400864F63 /* WeatherIcon.swift in Sources */,
 				B8E5B14826C85F0500BC21A0 /* Graph.swift in Sources */,
@@ -560,6 +595,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B83F323926C19D3C00A56E26 /* Permit_TrackerTests.swift in Sources */,
+				B8713CE327BAD3F20051E81E /* Solar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,6 +723,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -710,7 +747,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Permit Tracker/Permit Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Permit Tracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8LM4R9G4S4;
 				ENABLE_PREVIEWS = YES;
@@ -720,7 +757,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.6;
+				MARKETING_VERSION = 0.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -735,17 +772,18 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Permit Tracker/Permit Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Permit Tracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8LM4R9G4S4;
 				ENABLE_PREVIEWS = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = "Permit Tracker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.6;
+				MARKETING_VERSION = 0.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -761,7 +799,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8LM4R9G4S4;
 				INFOPLIST_FILE = "Permit TrackerTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -783,7 +821,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8LM4R9G4S4;
 				INFOPLIST_FILE = "Permit TrackerTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -877,25 +915,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		B8C254CE27AF34160047B776 /* XCRemoteSwiftPackageReference "Solar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ceeK/Solar.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		B8C254CF27AF34160047B776 /* Solar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B8C254CE27AF34160047B776 /* XCRemoteSwiftPackageReference "Solar" */;
-			productName = Solar;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		B83F322C26C19D3C00A56E26 /* Permit_Tracker.xcdatamodeld */ = {
