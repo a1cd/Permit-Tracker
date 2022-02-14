@@ -49,12 +49,16 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 		self.locationManager.stopMonitoringSignificantLocationChanges()
 		self.locationManager.startUpdatingLocation()
 		if (UIDevice.current.batteryState == .full || UIDevice.current.batteryState == .charging) {
-			self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+			self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
 			self.locationManager.pausesLocationUpdatesAutomatically = false
 			//FIXME: add more stuff here
 		} else {
-			self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+			self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
 			self.locationManager.pausesLocationUpdatesAutomatically = true
+			if (UIDevice.current.batteryLevel < 0.25) {
+				self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+				self.locationManager.distanceFilter = 110
+			}
 		}
 		//FIXME: add code for when the phone starts to overheat
 		self.lastSeenLocation = locations.last
