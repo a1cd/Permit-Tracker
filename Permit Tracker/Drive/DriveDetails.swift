@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 import CoreData
 import SwiftUI
-import Solar
+//import Solar
 import Dispatch
 
 class DriveDetails {
@@ -85,6 +85,19 @@ class DriveDetails {
 			self.CoreDistance = totalDistance
 		}
 	}
+	var Locations: [CLLocation] = []
+	var Locations2d: [CLLocationCoordinate2D] {
+		get {
+			var locs: [CLLocationCoordinate2D] = []
+			for i in Locations {
+				locs.append(i.coordinate)
+			}
+			return locs
+		}
+	}
+	/// location pairs indicatiing when the device pauses location updates
+	var skippedLocations: [(CLLocation, CLLocation)]
+	var filteredLocations: [CLLocation]
 	var weather: Weather = .Normal
 	var notes: String = ""
 	var CoreDistance: Double
@@ -142,41 +155,47 @@ class DriveDetails {
 			return [.Day, .Twilight, .Night, .Sun, .Cloudy, .Rain, .Snow, .Fog, .Sleet]
 		}
 	}
-	var driveInterval: DateInterval {DateInterval(start: self.StartDate, end: self.EndDate)}
+	var driveInterval: DateInterval {
+		return DateInterval(start: self.StartDate, end: self.EndDate)
+	}
 	
 	
 	func getTotalNightTime() -> TimeInterval {
 		var total: TimeInterval = 0
-		if let firstLoc = Locations.first {
-			if let lastLoc = Locations.last {
-				if let firstSol = Solar(for: firstLoc.timestamp, coordinate: firstLoc.coordinate) {
-					let firstInterval = DateInterval(start: firstSol.sunrise ?? firstLoc.timestamp.previousDay().advanced(by: TimeIntervalFrom(Hours: 5)), end: firstSol.sunset ?? firstLoc.timestamp.nextDay())
-					if let lastSol = Solar(for: lastLoc.timestamp, coordinate: lastLoc.coordinate) {
-						let lastInterval = DateInterval(start: lastSol.sunrise ?? lastLoc.timestamp.previousDay().advanced(by: TimeIntervalFrom(Hours: 5)), end: lastSol.sunset ?? lastLoc.timestamp.nextDay())
-						let firstIntervalIntersect = driveInterval.intersection(with: firstInterval)
-						let lastIntervalIntersect = driveInterval.intersection(with: lastInterval)
-						
-						var totalIntervalIntersect: TimeInterval = 0
-						
-						// check to see if they are the same
-						if (firstInterval.start == lastInterval.start) && (firstInterval.end == lastInterval.end) {
-							totalIntervalIntersect = firstIntervalIntersect?.duration ?? 0
-						} else {
-							totalIntervalIntersect += firstIntervalIntersect?.duration ?? 0
-							totalIntervalIntersect += lastIntervalIntersect?.duration ?? 0
-							
-							// subtract intersection intersection from total intersection
-							if (firstIntervalIntersect != nil) && (lastIntervalIntersect != nil) {
-								totalIntervalIntersect -= firstIntervalIntersect!.intersection(with: lastIntervalIntersect!)?.duration ?? 0
-							}
-						}
-						// set the total to the total driving time
-						total = driveInterval.duration
-						total -= totalIntervalIntersect
-					}
-				}
+		guard let firstLoc = Locations.first else {return total}
+		guard let lastLoc = Locations.last else {return total}
+		let firstInterval = DateInterval(
+			start: Solar.calculate(.sunrise, for: firstLoc.timestamp, and: .civil, at: lastLoc.coordinate) ??
+				firstLoc.timestamp.previousDay().advanced(by: TimeIntervalFrom(Hours: 5)),
+			end: Solar.calculate(.sunset, for: firstLoc.timestamp, and: .civil, at: lastLoc.coordinate) ??
+				firstLoc.timestamp.nextDay()
+		)
+		let lastInterval = DateInterval(
+			start: Solar.calculate(.sunrise, for: lastLoc.timestamp, and: .civil, at: lastLoc.coordinate) ??
+				lastLoc.timestamp.previousDay().advanced(by: TimeIntervalFrom(Hours: 5)),
+			end: Solar.calculate(.sunset, for: lastLoc.timestamp, and: .civil, at: lastLoc.coordinate) ??
+				lastLoc.timestamp.nextDay()
+		)
+		let firstIntervalIntersect = driveInterval.intersection(with: firstInterval)
+		let lastIntervalIntersect = driveInterval.intersection(with: lastInterval)
+		
+		var totalIntervalIntersect: TimeInterval = 0
+		
+		// check to see if they are the same
+		if (firstInterval.start == lastInterval.start) && (firstInterval.end == lastInterval.end) {
+			totalIntervalIntersect = firstIntervalIntersect?.duration ?? 0
+		} else {
+			totalIntervalIntersect += firstIntervalIntersect?.duration ?? 0
+			totalIntervalIntersect += lastIntervalIntersect?.duration ?? 0
+			
+			// subtract intersection intersection from total intersection
+			if (firstIntervalIntersect != nil) && (lastIntervalIntersect != nil) {
+				totalIntervalIntersect -= firstIntervalIntersect!.intersection(with: lastIntervalIntersect!)?.duration ?? 0
 			}
 		}
+		// set the total to the total driving time
+		total = driveInterval.duration
+		total -= totalIntervalIntersect
 		return total
 	}
 	lazy var TotalNightTime: TimeInterval = getTotalNightTime()
@@ -185,44 +204,31 @@ class DriveDetails {
 		return self.Badges()
 	}
 	func Badges() -> [Badge] {
+		return Badges(locations: self.filteredLocations)
+	}
+	func Badges(locations: [CLLocation]) -> [Badge] {
 		if self.test {
 			return Badge.Cloudy.all
 		}
 		// FIXME: -
 		// time badges
 		var badges: [Badge] = []
-		for (_, Location) in filteredLocations.enumerated() {
-			if var solar = Solar(for: Location.timestamp, coordinate: Location.coordinate) {
-				solar.calculate()
-				if !badges.contains(.Day) && solar.isDaytime {
-					badges.append(.Day)
+		for (_, Location) in locations.enumerated() {
+			if !badges.contains(.Day) && self.TotalDayTime>5 {
+				badges.append(.Day)
+			}
+			if !badges.contains(.Day) && self.TotalNightTime>5 {
+				if !badges.contains(.Night) {
+					badges.append(.Night)
 				}
-				if !solar.isDaytime {
-					if !badges.contains(.Night) {
-						badges.append(.Night)
-					}
-				}
-				if !badges.contains(.Twilight) && !(solar.civilSunset! > Location.timestamp) && !solar.isDaytime {
-					badges.append(.Twilight)
-				}
+			}
+			if !badges.contains(.Twilight) && !(Solar.calculate(.sunset, for: Location.timestamp, and: .civil, at: Location.coordinate)! > Location.timestamp) && self.TotalDayTime == 0 {
+				badges.append(.Twilight)
 			}
 		}
 		return badges
 	}
 	lazy var lazyBadges: [Badge] = Badges()
-	var Locations: [CLLocation] = []
-	var Locations2d: [CLLocationCoordinate2D] {
-		get {
-			var locs: [CLLocationCoordinate2D] = []
-			for i in Locations {
-				locs.append(i.coordinate)
-			}
-			return locs
-		}
-	}
-	/// location pairs indicatiing when the device pauses location updates
-	var skippedLocations: [(CLLocation, CLLocation)]
-	var filteredLocations: [CLLocation]
 	func maxSpeed() -> CLLocationSpeed {
 		var maxSpeed: CLLocationSpeed = 0
 		for location in filteredLocations {

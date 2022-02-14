@@ -64,35 +64,16 @@ struct Drive: View {
 		let totalTimeHolder = realDriveDetail.TotalDayTime
 		let totalStringHolder = totalTimeHolder.stringFromTimeInterval()
 		
-		let badgesHolder = realDriveDetail.Badges()
+		let badgesHolder = await realDriveDetail.asyncBadges()
 		
 		let descriptionHolder = itemFormatter.string(from: realDriveDetail.StartDate)
 		
 		return (TotalMarkerDistanceHolder, nightStringHolder, distStringHolder, totalStringHolder, badgesHolder, totalTimeHolder, nightTimeHolder, descriptionHolder)
 	}
-	
+	var rows: [GridItem] = Array(repeating: GridItem(.flexible()), count: 2)
 	var body: some View {
 		GroupBox(content: {
 			VStack {
-				HStack {
-					if (badges == nil ) {
-						Spacer()
-						ForEach(0..<2) {_ in
-							Badge(icon: DriveDetails.Badge.Day.icon)
-								.cornerRadius(100)
-								.redacted(reason: .placeholder)
-						}
-					} else {
-						Spacer()
-						ForEach(badges!) {i in
-							Badge(icon: i.icon)
-						}
-					}
-				}
-				.padding(.horizontal)
-				.task {
-					
-				}
 				if showMap {
 					if isDriving {
 						MapView(driveDetails: locationViewModel.driveDetail, isDriving: true)
@@ -104,6 +85,20 @@ struct Drive: View {
 					}
 				}
 				HStack {
+					LazyHGrid(rows: rows) {
+						if (badges == nil ) {
+							ForEach(0..<4) {_ in
+								Badge(icon: DriveDetails.Badge.Day.icon)
+									.cornerRadius(100)
+									.redacted(reason: .placeholder)
+							}
+						} else {
+							ForEach(badges!) {i in
+								Badge(icon: i.icon)
+							}
+						}
+					}
+					.padding(.horizontal)
 					if isDriving {
 						MiniStat(icon: "point.topleft.down.curvedto.point.filled.bottomright.up", text: "Distance", value: $distString, placeholderRedacted: "5.00 miles")
 							.multilineTextAlignment(.trailing)

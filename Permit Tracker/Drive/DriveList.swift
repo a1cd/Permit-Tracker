@@ -12,6 +12,7 @@ struct DriveList: View {
 	
 	var locationViewModel: LocationViewModel
 	@Environment(\.managedObjectContext) private var viewContext
+	@Environment(\.editMode) var editMode
 	@FetchRequest(
 		sortDescriptors: [NSSortDescriptor(keyPath: \Item.date, ascending: false)],
 		animation: Animation.easeInOut
@@ -21,12 +22,15 @@ struct DriveList: View {
 	@State var tryingToDelete: Bool = false
 	@State var deleteOffset: IndexSet? = nil
 	@State var search = ""
-	
 	func deleteItems(_ offsets: IndexSet) -> Void {
-		withAnimation {
+		withAnimation(Animation.interactiveSpring()) {
 			offsets.map { Drives[$0] }.forEach(viewContext.delete)
 			do {
-				try viewContext.save()
+				try Task {
+					try await viewContext.perform {
+						try viewContext.save()
+					}
+				}
 			} catch {
 				// Replace this implementation with code to handle the error appropriately.
 				// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -70,19 +74,28 @@ struct DriveList: View {
 									)
 							)
 							{
+								
 								Drive(
 									locationViewModel: locationViewModel,
 									driveDetail: DriveDetails(item: i),
 									showMap: false
 								)
+//									.contextMenu(menuItems: {
+//										Button("Delete", role: ButtonRole.destructive, action: {
+//											withAnimation({
+//												viewContext.delete(i)
+//											})
+//										})
+//									})
 							}
 //							.searchCompletion((i.date ?? Date()).description)
 						}
 					}
 				}
-				.onDelete(perform: areYouSure)
+				.onDelete(perform: (editMode?.wrappedValue.isEditing ?? false) ? deleteItems : nil)
 				.alert(isPresented: $tryingToDelete, content: alert)
 			}
+			.toolbar {EditButton()}
 //			.searchable(text: $search)
 			.navigationTitle("Driving History")
 //			.listStyle(GroupedListStyle())

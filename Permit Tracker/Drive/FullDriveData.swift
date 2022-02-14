@@ -97,7 +97,7 @@ struct FullDriveData: View {
 				ZStack {
 					Circle()
 						.scale(1.5)
-						.fill(UIColor.systemBackground.color)
+						.fill(UIColor.secondarySystemBackground.color)
 						.shadow(radius: 5)
 					Image(systemName: realDriveDetail.weather.Icon())
 						.renderingMode(.original)
