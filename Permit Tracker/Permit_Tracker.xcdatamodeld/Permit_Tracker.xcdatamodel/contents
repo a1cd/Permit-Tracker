@@ -24,7 +24,7 @@
         <relationship name="item" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Item" inverseName="locations" inverseEntity="Item"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-211.5546875" positionY="-160.68359375" width="150.41015625" height="163"/>
+        <element name="Item" positionX="-211.5546875" positionY="-159.68359375" width="150.41015625" height="163"/>
         <element name="LocationEntity" positionX="124.2511596679688" positionY="-129.5940246582031" width="128" height="208"/>
     </elements>
 </model>

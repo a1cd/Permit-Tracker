@@ -20,7 +20,7 @@ class DriveDetails {
 	}
 	convenience init(item: Item) {
 		var newLocationList: [CLLocation] = []
-		newLocationList.reserveCapacity(item.locations?.count ?? 10)
+		newLocationList.reserveCapacity((item.locations ?? NSOrderedSet()).count)
 		
 		//FIXME: - Force unwrap possible null value
 		if let locations = item.locations?.array as? [LocationEntity] {
@@ -107,16 +107,17 @@ class DriveDetails {
 		}
 		return (Measurement(value: totalDistance, unit: UnitLength.meters), totalDistance)
 	}
-	enum Badge {
-		case Day
-		case Twilight
-		case Night
-		case Sun
-		case Cloudy
-		case Rain
-		case Snow
-		case Fog
-		case Sleet
+	enum Badge: Int, Identifiable {
+		var id: RawValue {rawValue}
+		case Day = 0
+		case Twilight = 1
+		case Night = 2
+		case Sun = 3
+		case Cloudy = 4
+		case Rain = 5
+		case Snow = 6
+		case Fog = 7
+		case Sleet = 8
 		var icon: (String, Bool, Color?) {
 			switch self {
 			case .Cloudy:
@@ -180,7 +181,10 @@ class DriveDetails {
 	}
 	lazy var TotalNightTime: TimeInterval = getTotalNightTime()
 	lazy var TotalDayTime: TimeInterval = self.TimeInterval - self.TotalNightTime
-	lazy var Badges: [Badge] = {
+	func asyncBadges() async -> [Badge] {
+		return self.Badges()
+	}
+	func Badges() -> [Badge] {
 		if self.test {
 			return Badge.Cloudy.all
 		}
@@ -204,7 +208,8 @@ class DriveDetails {
 			}
 		}
 		return badges
-	}()
+	}
+	lazy var lazyBadges: [Badge] = Badges()
 	var Locations: [CLLocation] = []
 	var Locations2d: [CLLocationCoordinate2D] {
 		get {
@@ -218,7 +223,7 @@ class DriveDetails {
 	/// location pairs indicatiing when the device pauses location updates
 	var skippedLocations: [(CLLocation, CLLocation)]
 	var filteredLocations: [CLLocation]
-	lazy var maxSpeed: CLLocationSpeed = {
+	func maxSpeed() -> CLLocationSpeed {
 		var maxSpeed: CLLocationSpeed = 0
 		for location in filteredLocations {
 			if maxSpeed < (location.speed - (location.speedAccuracy/2)) {
@@ -226,7 +231,8 @@ class DriveDetails {
 			}
 		}
 		return maxSpeed
-	}()
+	}
+	lazy var lazyMaxSpeed: CLLocationSpeed = maxSpeed()
 	func SpeedGraph(_ num: Int = 15) -> [CGFloat] {
 		let chunks = chunkIt(LocationList: filteredLocations, num: num)
 		

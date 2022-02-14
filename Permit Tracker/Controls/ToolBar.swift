@@ -20,23 +20,9 @@ struct ToolBar: View {
 	@State var locationAccess: CLAuthorizationStatus
 	@State var cannotAccessLocation: Bool
 	
-	
-	func RecordImage() -> some View {
-		if (self.Recording) {
-			return Image(systemName: "stop.circle")
-				.font(.system(size: 25))
-		} else {
-			return Image(systemName: "record.circle")
-				.font(.system(size: 25))
-		}
-	}
-	
     var body: some View {
 		HStack{
-			RecordImage()
-				.padding(.horizontal)
-				.imageScale(.large)
-				.foregroundColor(.red)
+			RecordButton(recording: $Recording)
 				.onTapGesture {
 					if (Recording) {
 						StopRecording()

@@ -17,14 +17,18 @@ struct NotesView: View {
 		}
 	}
     var body: some View {
-		GroupBox(label: Text("Notes"), content: {
+		GroupBox(content: {
 			Text(processedNotes)
 				.font(.body)
 				.multilineTextAlignment(.leading)
-				.padding()
+				.padding(1.0)
+		}, label: {
+			Text("Notes")
+				.font(.body)
+				.multilineTextAlignment(.leading)
 		})
-		.padding()
-		.cornerRadius(10.0)
+			.padding(10.0)
+			.cornerRadius(10.0)
     }
 }
 
