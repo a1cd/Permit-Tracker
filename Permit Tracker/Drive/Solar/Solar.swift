@@ -90,12 +90,14 @@ struct Solar {
     }
     
 	public static func calculate(_ sunriseSunset: SunriseSunset, for date: Date, and zenith: Zenith, at coordinate: CLLocationCoordinate2D) -> Date? {
-		guard let utcTimezone = TimeZone(identifier: "UTC") else {
+		guard let utcTimezone = TimeZone.utc else {
 			return nil
 		}
 		
 		// Get the day of the year
-		var calendar = Calendar(identifier: .gregorian)
+		guard var calendar = Calendar.Solar else {
+			return nil
+		}
 		calendar.timeZone = utcTimezone
 		guard let dayInt = calendar.ordinality(of: .day, in: .year, for: date) else {
 			return nil
@@ -185,7 +187,7 @@ struct Solar {
 		components.minute = Int(minute)
 		components.second = Int(second)
 		
-		calendar.timeZone = utcTimezone
+		calendar.timeZone = TimeZone.utc!
 		return calendar.date(from: components)
     }
     

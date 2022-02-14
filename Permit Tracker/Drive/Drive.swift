@@ -96,6 +96,12 @@ struct Drive: View {
 							ForEach(badges!) {i in
 								Badge(icon: i.icon)
 							}
+							if badges.count<4 {
+								ForEach(0..<(badges.count-4)) {i in
+									Badge(icon: i.icon)
+										.redacted(reason: <#T##RedactionReasons#>)
+								}
+							}
 						}
 					}
 					.padding(.horizontal)
