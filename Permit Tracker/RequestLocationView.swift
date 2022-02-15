@@ -66,3 +66,10 @@ struct TrackingView: View {
 		locationViewModel.lastSeenLocation?.coordinate
 	}
 }
+
+struct RequestLocationView_Preview: PreviewProvider {
+	static var previews: some View {
+		RequestLocationView()
+			.environmentObject(LocationViewModel())
+	}
+}

@@ -103,7 +103,8 @@ struct Drive: View {
 						MiniStat(icon: "point.topleft.down.curvedto.point.filled.bottomright.up", text: "Distance", value: $distString, placeholderRedacted: "5.00 miles")
 							.multilineTextAlignment(.trailing)
 							.onReceive(SpeedTimer, perform: { _ in
-								distString = distFormatter.string(from: Measurement(value: PredictedDistance, unit: UnitLength.meters))
+								TotalMarkerDistance = realDriveDetail.GetDriveDistance().1
+								distString = distFormatter.string(from: Measurement<UnitLength>(value: PredictedDistance, unit: UnitLength.meters))
 							})
 							.font(.system(Font.TextStyle.body, design: Font.Design.monospaced))
 							.foregroundColor(Color(UIColor.systemGreen))
