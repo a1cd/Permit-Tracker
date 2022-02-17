@@ -31,6 +31,15 @@
 		B8713CE127BAD2780051E81E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B8713CE027BAD2780051E81E /* LICENSE */; };
 		B8713CE227BAD3F00051E81E /* Solar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8713CD927BAD20F0051E81E /* Solar.swift */; };
 		B8713CE327BAD3F20051E81E /* Solar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8713CD927BAD20F0051E81E /* Solar.swift */; };
+		B874AE5A27BEDC2500A2736B /* Stat_WidgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B874AE5927BEDC2500A2736B /* Stat_WidgetApp.swift */; };
+		B874AE5C27BEDC2500A2736B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B874AE5B27BEDC2500A2736B /* ContentView.swift */; };
+		B874AE5E27BEDC2700A2736B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B874AE5D27BEDC2700A2736B /* Assets.xcassets */; };
+		B874AE6127BEDC2700A2736B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B874AE6027BEDC2700A2736B /* Preview Assets.xcassets */; };
+		B874AE6D27BEDC2700A2736B /* Stat_WidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B874AE6C27BEDC2700A2736B /* Stat_WidgetTests.swift */; };
+		B874AE7727BEDC2700A2736B /* Stat_WidgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B874AE7627BEDC2700A2736B /* Stat_WidgetUITests.swift */; };
+		B874AE7927BEDC2700A2736B /* Stat_WidgetUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B874AE7827BEDC2700A2736B /* Stat_WidgetUITestsLaunchTests.swift */; };
+		B874AE7C27BEDC2800A2736B /* Stat Widget.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = B874AE5727BEDC2500A2736B /* Stat Widget.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B874AE8727BEDC5F00A2736B /* Permit_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B83F322C26C19D3C00A56E26 /* Permit_Tracker.xcdatamodeld */; };
 		B8844B4A26C45A0A00AB30FB /* ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8844B4926C45A0A00AB30FB /* ToolBar.swift */; };
 		B8844BA226C6F50E00AB30FB /* UserStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8844BA126C6F50E00AB30FB /* UserStats.swift */; };
 		B88959BB26D04D3C00864F63 /* WeatherDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959BA26D04D3C00864F63 /* WeatherDescription.swift */; };
@@ -72,7 +81,42 @@
 			remoteGlobalIDString = B83F321D26C19D3A00A56E26;
 			remoteInfo = "Permit Tracker";
 		};
+		B874AE6927BEDC2700A2736B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B83F321626C19D3A00A56E26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B874AE5627BEDC2500A2736B;
+			remoteInfo = "Stat Widget";
+		};
+		B874AE7327BEDC2700A2736B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B83F321626C19D3A00A56E26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B874AE5627BEDC2500A2736B;
+			remoteInfo = "Stat Widget";
+		};
+		B874AE7A27BEDC2800A2736B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B83F321626C19D3A00A56E26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B874AE5627BEDC2500A2736B;
+			remoteInfo = "Stat Widget";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B874AE7D27BEDC2800A2736B /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				B874AE7C27BEDC2800A2736B /* Stat Widget.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B80C86AD26CEB1AB00CE46B4 /* EndOfDrive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndOfDrive.swift; sourceTree = "<group>"; };
@@ -109,6 +153,18 @@
 		B8713CDC27BAD2250051E81E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Permit_Tracker-adyapgausmbnsehcgznobtrwhdkc/SourcePackages/checkouts/Solar/README.md"; sourceTree = "<group>"; };
 		B8713CDE27BAD22C0051E81E /* solar-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "solar-logo.png"; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Permit_Tracker-adyapgausmbnsehcgznobtrwhdkc/SourcePackages/checkouts/Solar/solar-logo.png"; sourceTree = "<group>"; };
 		B8713CE027BAD2780051E81E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B874AE5727BEDC2500A2736B /* Stat Widget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stat Widget.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B874AE5927BEDC2500A2736B /* Stat_WidgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stat_WidgetApp.swift; sourceTree = "<group>"; };
+		B874AE5B27BEDC2500A2736B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B874AE5D27BEDC2700A2736B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B874AE6027BEDC2700A2736B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B874AE6227BEDC2700A2736B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B874AE6327BEDC2700A2736B /* Stat_Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Stat_Widget.entitlements; sourceTree = "<group>"; };
+		B874AE6827BEDC2700A2736B /* Stat WidgetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stat WidgetTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B874AE6C27BEDC2700A2736B /* Stat_WidgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stat_WidgetTests.swift; sourceTree = "<group>"; };
+		B874AE7227BEDC2700A2736B /* Stat WidgetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Stat WidgetUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B874AE7627BEDC2700A2736B /* Stat_WidgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stat_WidgetUITests.swift; sourceTree = "<group>"; };
+		B874AE7827BEDC2700A2736B /* Stat_WidgetUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stat_WidgetUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B8844B4926C45A0A00AB30FB /* ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBar.swift; sourceTree = "<group>"; };
 		B8844BA126C6F50E00AB30FB /* UserStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStats.swift; sourceTree = "<group>"; };
 		B88959BA26D04D3C00864F63 /* WeatherDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDescription.swift; sourceTree = "<group>"; };
@@ -159,6 +215,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B874AE5427BEDC2500A2736B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B874AE6527BEDC2700A2736B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B874AE6F27BEDC2700A2736B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -180,6 +257,9 @@
 				B83F322026C19D3A00A56E26 /* Permit Tracker */,
 				B83F323726C19D3C00A56E26 /* Permit TrackerTests */,
 				B83F324226C19D3C00A56E26 /* Permit TrackerUITests */,
+				B874AE5827BEDC2500A2736B /* Stat Widget */,
+				B874AE6B27BEDC2700A2736B /* Stat WidgetTests */,
+				B874AE7527BEDC2700A2736B /* Stat WidgetUITests */,
 				B83F321F26C19D3A00A56E26 /* Products */,
 				B8612FC526C2EDC800C4513C /* Frameworks */,
 			);
@@ -191,6 +271,9 @@
 				B83F321E26C19D3A00A56E26 /* Permit Tracker.app */,
 				B83F323426C19D3C00A56E26 /* Permit TrackerTests.xctest */,
 				B83F323F26C19D3C00A56E26 /* Permit TrackerUITests.xctest */,
+				B874AE5727BEDC2500A2736B /* Stat Widget.app */,
+				B874AE6827BEDC2700A2736B /* Stat WidgetTests.xctest */,
+				B874AE7227BEDC2700A2736B /* Stat WidgetUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -288,6 +371,44 @@
 			path = Solar;
 			sourceTree = "<group>";
 		};
+		B874AE5827BEDC2500A2736B /* Stat Widget */ = {
+			isa = PBXGroup;
+			children = (
+				B874AE5927BEDC2500A2736B /* Stat_WidgetApp.swift */,
+				B874AE5B27BEDC2500A2736B /* ContentView.swift */,
+				B874AE5D27BEDC2700A2736B /* Assets.xcassets */,
+				B874AE6227BEDC2700A2736B /* Info.plist */,
+				B874AE6327BEDC2700A2736B /* Stat_Widget.entitlements */,
+				B874AE5F27BEDC2700A2736B /* Preview Content */,
+			);
+			path = "Stat Widget";
+			sourceTree = "<group>";
+		};
+		B874AE5F27BEDC2700A2736B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B874AE6027BEDC2700A2736B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B874AE6B27BEDC2700A2736B /* Stat WidgetTests */ = {
+			isa = PBXGroup;
+			children = (
+				B874AE6C27BEDC2700A2736B /* Stat_WidgetTests.swift */,
+			);
+			path = "Stat WidgetTests";
+			sourceTree = "<group>";
+		};
+		B874AE7527BEDC2700A2736B /* Stat WidgetUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B874AE7627BEDC2700A2736B /* Stat_WidgetUITests.swift */,
+				B874AE7827BEDC2700A2736B /* Stat_WidgetUITestsLaunchTests.swift */,
+			);
+			path = "Stat WidgetUITests";
+			sourceTree = "<group>";
+		};
 		B8844BA626C6F90700AB30FB /* Stats */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,10 +477,12 @@
 				B83F321A26C19D3A00A56E26 /* Sources */,
 				B83F321B26C19D3A00A56E26 /* Frameworks */,
 				B83F321C26C19D3A00A56E26 /* Resources */,
+				B874AE7D27BEDC2800A2736B /* Embed App Clips */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B874AE7B27BEDC2800A2736B /* PBXTargetDependency */,
 			);
 			name = "Permit Tracker";
 			packageProductDependencies = (
@@ -407,13 +530,66 @@
 			productReference = B83F323F26C19D3C00A56E26 /* Permit TrackerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		B874AE5627BEDC2500A2736B /* Stat Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B874AE8427BEDC2800A2736B /* Build configuration list for PBXNativeTarget "Stat Widget" */;
+			buildPhases = (
+				B874AE5327BEDC2500A2736B /* Sources */,
+				B874AE5427BEDC2500A2736B /* Frameworks */,
+				B874AE5527BEDC2500A2736B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Stat Widget";
+			productName = "Stat Widget";
+			productReference = B874AE5727BEDC2500A2736B /* Stat Widget.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
+		};
+		B874AE6727BEDC2700A2736B /* Stat WidgetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B874AE8527BEDC2800A2736B /* Build configuration list for PBXNativeTarget "Stat WidgetTests" */;
+			buildPhases = (
+				B874AE6427BEDC2700A2736B /* Sources */,
+				B874AE6527BEDC2700A2736B /* Frameworks */,
+				B874AE6627BEDC2700A2736B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B874AE6A27BEDC2700A2736B /* PBXTargetDependency */,
+			);
+			name = "Stat WidgetTests";
+			productName = "Stat WidgetTests";
+			productReference = B874AE6827BEDC2700A2736B /* Stat WidgetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B874AE7127BEDC2700A2736B /* Stat WidgetUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B874AE8627BEDC2800A2736B /* Build configuration list for PBXNativeTarget "Stat WidgetUITests" */;
+			buildPhases = (
+				B874AE6E27BEDC2700A2736B /* Sources */,
+				B874AE6F27BEDC2700A2736B /* Frameworks */,
+				B874AE7027BEDC2700A2736B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B874AE7427BEDC2700A2736B /* PBXTargetDependency */,
+			);
+			name = "Stat WidgetUITests";
+			productName = "Stat WidgetUITests";
+			productReference = B874AE7227BEDC2700A2736B /* Stat WidgetUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		B83F321626C19D3A00A56E26 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					B83F321D26C19D3A00A56E26 = {
@@ -426,6 +602,17 @@
 					B83F323E26C19D3C00A56E26 = {
 						CreatedOnToolsVersion = 12.4;
 						TestTargetID = B83F321D26C19D3A00A56E26;
+					};
+					B874AE5627BEDC2500A2736B = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					B874AE6727BEDC2700A2736B = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = B874AE5627BEDC2500A2736B;
+					};
+					B874AE7127BEDC2700A2736B = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = B874AE5627BEDC2500A2736B;
 					};
 				};
 			};
@@ -447,6 +634,9 @@
 				B83F321D26C19D3A00A56E26 /* Permit Tracker */,
 				B83F323326C19D3C00A56E26 /* Permit TrackerTests */,
 				B83F323E26C19D3C00A56E26 /* Permit TrackerUITests */,
+				B874AE5627BEDC2500A2736B /* Stat Widget */,
+				B874AE6727BEDC2700A2736B /* Stat WidgetTests */,
+				B874AE7127BEDC2700A2736B /* Stat WidgetUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -472,6 +662,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B83F323D26C19D3C00A56E26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B874AE5527BEDC2500A2736B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B874AE6127BEDC2700A2736B /* Preview Assets.xcassets in Resources */,
+				B874AE5E27BEDC2700A2736B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B874AE6627BEDC2700A2736B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B874AE7027BEDC2700A2736B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -607,6 +820,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B874AE5327BEDC2500A2736B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B874AE8727BEDC5F00A2736B /* Permit_Tracker.xcdatamodeld in Sources */,
+				B874AE5C27BEDC2500A2736B /* ContentView.swift in Sources */,
+				B874AE5A27BEDC2500A2736B /* Stat_WidgetApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B874AE6427BEDC2700A2736B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B874AE6D27BEDC2700A2736B /* Stat_WidgetTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B874AE6E27BEDC2700A2736B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B874AE7927BEDC2700A2736B /* Stat_WidgetUITestsLaunchTests.swift in Sources */,
+				B874AE7727BEDC2700A2736B /* Stat_WidgetUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -619,6 +859,21 @@
 			isa = PBXTargetDependency;
 			target = B83F321D26C19D3A00A56E26 /* Permit Tracker */;
 			targetProxy = B83F324026C19D3C00A56E26 /* PBXContainerItemProxy */;
+		};
+		B874AE6A27BEDC2700A2736B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B874AE5627BEDC2500A2736B /* Stat Widget */;
+			targetProxy = B874AE6927BEDC2700A2736B /* PBXContainerItemProxy */;
+		};
+		B874AE7427BEDC2700A2736B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B874AE5627BEDC2500A2736B /* Stat Widget */;
+			targetProxy = B874AE7327BEDC2700A2736B /* PBXContainerItemProxy */;
+		};
+		B874AE7B27BEDC2800A2736B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B874AE5627BEDC2500A2736B /* Stat Widget */;
+			targetProxy = B874AE7A27BEDC2800A2736B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -743,6 +998,7 @@
 		B83F324926C19D3C00A56E26 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Permit Tracker/Permit Tracker.entitlements";
@@ -768,6 +1024,7 @@
 		B83F324A26C19D3C00A56E26 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Permit Tracker/Permit Tracker.entitlements";
@@ -875,6 +1132,156 @@
 			};
 			name = Release;
 		};
+		B874AE7E27BEDC2800A2736B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = "Stat Widget/Stat_Widget.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Stat Widget/Preview Content\"";
+				DEVELOPMENT_TEAM = 8LM4R9G4S4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Stat Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Permit Tracker";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker.Clip";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B874AE7F27BEDC2800A2736B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = "Stat Widget/Stat_Widget.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Stat Widget/Preview Content\"";
+				DEVELOPMENT_TEAM = 8LM4R9G4S4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Stat Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Permit Tracker";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker.Clip";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B874AE8027BEDC2800A2736B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8LM4R9G4S4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker.Stat-WidgetTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stat Widget.app/Stat Widget";
+			};
+			name = Debug;
+		};
+		B874AE8127BEDC2800A2736B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8LM4R9G4S4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker.Stat-WidgetTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Stat Widget.app/Stat Widget";
+			};
+			name = Release;
+		};
+		B874AE8227BEDC2800A2736B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8LM4R9G4S4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker.Stat-WidgetUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Stat Widget";
+			};
+			name = Debug;
+		};
+		B874AE8327BEDC2800A2736B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8LM4R9G4S4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker.Stat-WidgetUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Stat Widget";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -910,6 +1317,33 @@
 			buildConfigurations = (
 				B83F324F26C19D3C00A56E26 /* Debug */,
 				B83F325026C19D3C00A56E26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B874AE8427BEDC2800A2736B /* Build configuration list for PBXNativeTarget "Stat Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B874AE7E27BEDC2800A2736B /* Debug */,
+				B874AE7F27BEDC2800A2736B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B874AE8527BEDC2800A2736B /* Build configuration list for PBXNativeTarget "Stat WidgetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B874AE8027BEDC2800A2736B /* Debug */,
+				B874AE8127BEDC2800A2736B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B874AE8627BEDC2800A2736B /* Build configuration list for PBXNativeTarget "Stat WidgetUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B874AE8227BEDC2800A2736B /* Debug */,
+				B874AE8327BEDC2800A2736B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
