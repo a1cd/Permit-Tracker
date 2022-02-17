@@ -55,15 +55,9 @@ struct TrackingView: View {
 	
 	var body: some View {
 		VStack {
-			VStack {
-				Drive(locationViewModel: locationViewModel)
-			}
+			Drive(locationViewModel: locationViewModel)
 			.padding()
 		}
-	}
-	
-	var coordinate: CLLocationCoordinate2D? {
-		locationViewModel.lastSeenLocation?.coordinate
 	}
 }
 

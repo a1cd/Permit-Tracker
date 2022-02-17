@@ -11,7 +11,6 @@ struct Stats: View {
 	@Binding var DistanceTraveled: Measurement<UnitLength>
 	@Binding var TimeTraveled: TimeInterval
 	@Binding var TotalNightTime: TimeInterval
-	@Binding var AllDrives: [DriveDetails]
 	
     var body: some View {
 		ScrollView {
@@ -30,8 +29,7 @@ struct Stats_Previews: PreviewProvider {
 				value: 4000,
 				unit: UnitLength.meters)),
 			TimeTraveled: .constant(Date().distance(to: Date())),
-			TotalNightTime: .constant(19848),
-			AllDrives: .constant([])
+			TotalNightTime: .constant(19848)
 		)
     }
 }

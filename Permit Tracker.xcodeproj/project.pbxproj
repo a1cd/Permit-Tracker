@@ -31,6 +31,7 @@
 		B8713CE127BAD2780051E81E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B8713CE027BAD2780051E81E /* LICENSE */; };
 		B8713CE227BAD3F00051E81E /* Solar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8713CD927BAD20F0051E81E /* Solar.swift */; };
 		B8713CE327BAD3F20051E81E /* Solar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8713CD927BAD20F0051E81E /* Solar.swift */; };
+		B8713CE527BC36340051E81E /* RecordingControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8713CE427BC36330051E81E /* RecordingControls.swift */; };
 		B8844B4A26C45A0A00AB30FB /* ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8844B4926C45A0A00AB30FB /* ToolBar.swift */; };
 		B8844BA226C6F50E00AB30FB /* UserStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8844BA126C6F50E00AB30FB /* UserStats.swift */; };
 		B88959BB26D04D3C00864F63 /* WeatherDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959BA26D04D3C00864F63 /* WeatherDescription.swift */; };
@@ -109,6 +110,7 @@
 		B8713CDC27BAD2250051E81E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Permit_Tracker-adyapgausmbnsehcgznobtrwhdkc/SourcePackages/checkouts/Solar/README.md"; sourceTree = "<group>"; };
 		B8713CDE27BAD22C0051E81E /* solar-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "solar-logo.png"; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Permit_Tracker-adyapgausmbnsehcgznobtrwhdkc/SourcePackages/checkouts/Solar/solar-logo.png"; sourceTree = "<group>"; };
 		B8713CE027BAD2780051E81E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B8713CE427BC36330051E81E /* RecordingControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingControls.swift; sourceTree = "<group>"; };
 		B8844B4926C45A0A00AB30FB /* ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBar.swift; sourceTree = "<group>"; };
 		B8844BA126C6F50E00AB30FB /* UserStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStats.swift; sourceTree = "<group>"; };
 		B88959BA26D04D3C00864F63 /* WeatherDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDescription.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 		B868D19827B7F2A000980BD1 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				B8713CE427BC36330051E81E /* RecordingControls.swift */,
 				B8844B4926C45A0A00AB30FB /* ToolBar.swift */,
 				B8E7445F27B8078E0013BFCB /* RecordingStatus.swift */,
 				B868D19627B74CB500980BD1 /* Record Button.swift */,
@@ -563,6 +566,7 @@
 				B8A7B22027B04186001AF846 /* LocationEntity+CoreDataProperties.swift in Sources */,
 				B88959E726D2921F00864F63 /* Helpers.swift in Sources */,
 				B83F326326C1C7E800A56E26 /* Drive.swift in Sources */,
+				B8713CE527BC36340051E81E /* RecordingControls.swift in Sources */,
 				B868D19727B74CB500980BD1 /* Record Button.swift in Sources */,
 				B8E5B14226C85E8E00BC21A0 /* Stats.swift in Sources */,
 				B868D19527B743FC00980BD1 /* MiniStat.swift in Sources */,

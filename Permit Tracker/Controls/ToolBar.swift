@@ -8,16 +8,15 @@
 import SwiftUI
 import CoreLocation
 
+
 struct ToolBar: View {
 	
 	@Environment(\.managedObjectContext) private var viewContext
 	
 	@Binding var Recording: Bool
-	@State var Saving: Bool = false
 	
 	var StartRecording: () -> Void
 	var StopRecording: () -> Void
-	@State var locationAccess: CLAuthorizationStatus
 	@State var cannotAccessLocation: Bool
 	
     var body: some View {
@@ -59,7 +58,6 @@ struct ToolBar_Previews: PreviewProvider {
 			Recording: .constant(false),
 			StartRecording: Nothing,
 			StopRecording: Nothing,
-			locationAccess: CLAuthorizationStatus.authorizedAlways,
 			cannotAccessLocation: !true
 		)
     }

@@ -34,6 +34,7 @@ struct ContentView: View {
 	@State var totalDistance: Measurement<UnitLength> = Measurement(value: -1, unit: .meters)
 	@State var NightDriving: TimeInterval = -1.0
 	@State var TotalDriveTime: TimeInterval = -1.0
+	@State var isAuthorizedToUseLocation: Bool = false
 	let locationManager = CLLocationManager()
 	
 	func CalculateStats(AllDrives: [DriveDetails]) -> Measurement<UnitLength> {
@@ -99,106 +100,64 @@ struct ContentView: View {
 		}
 	}
 	var body: some View {
-		Group {
-			VStack {
-				VStack {
-					if (Recording) {
+		TabView {
+			// MARK: - User Statistics
+			Stats(DistanceTraveled: $totalDistance, TimeTraveled: $TotalDriveTime, TotalNightTime: $NightDriving)
+				.tabItem({Label("Stats", systemImage: "chart.bar")})
+			
+			//MARK: - Recording controls
+			Group {
+				if Recording {
+					VStack {
 						TrackingView(locationViewModel: locationViewModel)
-					} else {
-						NavigationView {
-							ScrollView {
-								UserStats(
-									DistanceTraveled: $totalDistance,
-									TimeTraveled: $TotalDriveTime,
-									TotalNightTime: $NightDriving
-								)
-									.background(Color((colorScheme == ColorScheme.dark) ? UIColor.secondarySystemBackground : UIColor.systemBackground))
-									.scaledToFit()
-									.task {
-										await refreshDataTask()
-									}
-									.clipped()
-									.cornerRadius(30)
-									.shadow(radius: 1.5, x: 0, y: 2)
-									.padding(.bottom, 3.5)
-								Divider()
-								// Drive list
-								NavigationLink(destination: DriveList(locationViewModel: locationViewModel)) {
-									Image(systemName: "map")
-										.padding(.leading)
-										.imageScale(.large)
-									Text("Drive History")
-										.multilineTextAlignment(.leading)
-										.padding(.trailing)
-									Spacer()
-								}
-									.foregroundColor(.primary)
-								Divider()
-								// Stats
-								NavigationLink(destination: Stats(DistanceTraveled: $totalDistance, TimeTraveled: $TotalDriveTime, TotalNightTime: $NightDriving, AllDrives: $AllDrives)) {
-									Image(systemName: "chart.bar")
-										.padding(.leading)
-										.imageScale(.large)
-									Text("Stats")
-										.multilineTextAlignment(.leading)
-										.padding(.trailing)
-									Spacer()
-								}
-									.foregroundColor(.primary)
-								NavigationLink(destination: DebugDriveStatus()) {
-									Image(systemName: "ant.circle.fill")
-										.padding(.leading)
-										.imageScale(.large)
-									Text("Debug")
-										.multilineTextAlignment(.leading)
-										.padding(.trailing)
-									Spacer()
-								}
-								Spacer()
-							}
+						Button(action: {
+							stopRecording()
+						}, label: {
+							Label("Stop", systemImage: "stop.circle.fill")
+						})
+							.buttonStyle(BorderedButtonStyle())
+					}
+				} else {
+					RecordingControls(Recording: $Recording, StartRecording: startRecording, StopRecording: stopRecording, locationAccess: $locationViewModel.authorizationStatus, cannotAccessLocation: $isAuthorizedToUseLocation)
+				}
+			}
+			.tabItem({Label("Recording", systemImage: "car.circle")})
+			
+			// MARK: - Driving History
+			DriveList(locationViewModel: locationViewModel)
+				.tabItem({Label("Drive History", systemImage: "map")})
+		}
+		.task {
+			await refreshDataTask()
+		}
+		.sheet(isPresented: $WriteNotes) {
+			EndOfDrive(working: $WriteNotes, weather: $WeatherInt, notes: $NotesString, Supervisor: $Supervisor)
+				.onDisappear(perform: {
+					print(mostRecentDrive != nil)
+					if mostRecentDrive != nil {
+						print("Saving to most recent drive")
+						print("Weather", WeatherInt)
+						print("Notes", NotesString)
+						mostRecentDrive!.weather = Int16(WeatherInt)
+						mostRecentDrive!.notes = NotesString
+						
+						// save the new data
+						do {
+							print("saving context")
+							try viewContext.save()
+							print("Context Saved")
+						} catch {
+							print("context error")
+							// Replace this implementation with code to handle the error appropriately.
+							// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+				//				let nsError = error as NSError
+							print("error", error)
+				//				fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
 						}
 					}
-				}
-				HStack {
-					ToolBar(
-						Recording: $Recording,
-						StartRecording: startRecording,
-						StopRecording: stopRecording,
-						locationAccess: locationViewModel.authorizationStatus,
-						cannotAccessLocation: !isAuthorized(true)
-					)
-					.sheet(isPresented: $WriteNotes) {
-						EndOfDrive(working: $WriteNotes, weather: $WeatherInt, notes: $NotesString, Supervisor: $Supervisor)
-							.onDisappear(perform: {
-								print(mostRecentDrive != nil)
-								if mostRecentDrive != nil {
-									print("Saving to most recent drive")
-									print("Weather", WeatherInt)
-									print("Notes", NotesString)
-									mostRecentDrive!.weather = Int16(WeatherInt)
-									mostRecentDrive!.notes = NotesString
-									
-									// save the new data
-									do {
-										print("saving context")
-										try viewContext.save()
-										print("Context Saved")
-									} catch {
-										print("context error")
-										// Replace this implementation with code to handle the error appropriately.
-										// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-							//				let nsError = error as NSError
-										print("error", error)
-							//				fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-									}
-									
-								}
-							})
-					}
-				}
-				.background(Color(UIColor.systemBackground))
-			}
+				})
 		}
+		.onReceive(locationViewModel.$authorizationStatus, perform: {_ in isAuthorizedToUseLocation = isAuthorized(true)})
 		.onAppear(perform: {
 			locationViewModel.requestPermission()
 		})
@@ -250,6 +209,7 @@ struct ContentView: View {
 		
 		DataChange()
 	}
+	
 	func isAuthorized(_ andDetermined: Bool = false) -> Bool {
 //		print("auth status = "+ locationViewModel.authorizationStatus)
 		switch locationViewModel.authorizationStatus {

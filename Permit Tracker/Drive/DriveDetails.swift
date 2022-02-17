@@ -12,7 +12,7 @@ import SwiftUI
 //import Solar
 import Dispatch
 
-class DriveDetails {
+class DriveDetails: ObservableObject {
 	var test: Bool = false
 	convenience init(_ locations: [CLLocation], test: Bool) {
 		self.init(locations)
