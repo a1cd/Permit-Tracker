@@ -32,6 +32,38 @@
 		B8713CE227BAD3F00051E81E /* Solar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8713CD927BAD20F0051E81E /* Solar.swift */; };
 		B8713CE327BAD3F20051E81E /* Solar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8713CD927BAD20F0051E81E /* Solar.swift */; };
 		B8713CE527BC36340051E81E /* RecordingControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8713CE427BC36330051E81E /* RecordingControls.swift */; };
+		B874AEB427BF188900A2736B /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B874AEB327BF188900A2736B /* Intents.framework */; };
+		B874AEB727BF188900A2736B /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B874AEB627BF188900A2736B /* IntentHandler.swift */; };
+		B874AEBF27BF188A00A2736B /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B874AEBE27BF188A00A2736B /* IntentsUI.framework */; };
+		B874AEC227BF188A00A2736B /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B874AEC127BF188A00A2736B /* IntentViewController.swift */; };
+		B874AEC527BF188A00A2736B /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B874AEC327BF188A00A2736B /* MainInterface.storyboard */; };
+		B874AEC927BF188A00A2736B /* Driving Tracker IntentsUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B874AEBD27BF188A00A2736B /* Driving Tracker IntentsUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B874AECC27BF188A00A2736B /* Driving Tracker Intents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B874AEB227BF188900A2736B /* Driving Tracker Intents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B874AED527BF1AAE00A2736B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B874AED427BF1AAE00A2736B /* AppDelegate.swift */; };
+		B874AEDA27BF24F900A2736B /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B874AED927BF24F900A2736B /* Intents.intentdefinition */; };
+		B874AEDB27BF259700A2736B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B83F322526C19D3C00A56E26 /* Assets.xcassets */; };
+		B874AEDC27BF259800A2736B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B83F322526C19D3C00A56E26 /* Assets.xcassets */; };
+		B874AEDF27BF386800A2736B /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B861302A26C3007200C4513C /* LocationViewModel.swift */; };
+		B874AEE027BF3ACA00A2736B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B874AED427BF1AAE00A2736B /* AppDelegate.swift */; };
+		B874AEE127BF3D1800A2736B /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A7B21927B04186001AF846 /* Item+CoreDataClass.swift */; };
+		B874AEE227BF3D1B00A2736B /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A7B21A27B04186001AF846 /* Item+CoreDataProperties.swift */; };
+		B874AEE427BF3D1F00A2736B /* LocationEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A7B21B27B04186001AF846 /* LocationEntity+CoreDataClass.swift */; };
+		B874AEE527BF3D2100A2736B /* LocationEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A7B21C27B04186001AF846 /* LocationEntity+CoreDataProperties.swift */; };
+		B874AEE627BF3D2B00A2736B /* Permit_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B83F322C26C19D3C00A56E26 /* Permit_Tracker.xcdatamodeld */; };
+		B874AEE727BF3D9100A2736B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F322A26C19D3C00A56E26 /* Persistence.swift */; };
+		B874AEE827BF4E9100A2736B /* DriveDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F326726C1C83600A56E26 /* DriveDetails.swift */; };
+		B874AEE927BF4EB500A2736B /* Solar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8713CD927BAD20F0051E81E /* Solar.swift */; };
+		B874AEEA27BF4EDA00A2736B /* WeatherIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959BF26D04F8400864F63 /* WeatherIcon.swift */; };
+		B874AEEB27BF4EDF00A2736B /* WeatherChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80C86B626CEB54300CE46B4 /* WeatherChoice.swift */; };
+		B874AEEC27BF4EDF00A2736B /* WeatherDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959BA26D04D3C00864F63 /* WeatherDescription.swift */; };
+		B874AEED27BF4EDF00A2736B /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959D826D07A4700864F63 /* WeatherView.swift */; };
+		B874AEEE27BF4EE900A2736B /* EndOfDrive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80C86AD26CEB1AB00CE46B4 /* EndOfDrive.swift */; };
+		B874AEEF27BF4EE900A2736B /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959DD26D07B5A00864F63 /* NotesView.swift */; };
+		B874AEF027BF4EE900A2736B /* Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959C426D050CA00864F63 /* Description.swift */; };
+		B874AEF127BF4EE900A2736B /* DrivingNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959D026D0667C00864F63 /* DrivingNotes.swift */; };
+		B874AEF227BFCFCD00A2736B /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959E626D2921F00864F63 /* Helpers.swift */; };
+		B874AEF427BFD17C00A2736B /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B874AED927BF24F900A2736B /* Intents.intentdefinition */; };
+		B874AEF527BFD17F00A2736B /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B874AEB627BF188900A2736B /* IntentHandler.swift */; };
 		B8844B4A26C45A0A00AB30FB /* ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8844B4926C45A0A00AB30FB /* ToolBar.swift */; };
 		B8844BA226C6F50E00AB30FB /* UserStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8844BA126C6F50E00AB30FB /* UserStats.swift */; };
 		B88959BB26D04D3C00864F63 /* WeatherDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88959BA26D04D3C00864F63 /* WeatherDescription.swift */; };
@@ -73,7 +105,36 @@
 			remoteGlobalIDString = B83F321D26C19D3A00A56E26;
 			remoteInfo = "Permit Tracker";
 		};
+		B874AEC727BF188A00A2736B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B83F321626C19D3A00A56E26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B874AEBC27BF188A00A2736B;
+			remoteInfo = "Driving Tracker IntentsUI";
+		};
+		B874AECA27BF188A00A2736B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B83F321626C19D3A00A56E26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B874AEB127BF188900A2736B;
+			remoteInfo = "Driving Tracker Intents";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B874AECD27BF188A00A2736B /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B874AEC927BF188A00A2736B /* Driving Tracker IntentsUI.appex in Embed App Extensions */,
+				B874AECC27BF188A00A2736B /* Driving Tracker Intents.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B80C86AD26CEB1AB00CE46B4 /* EndOfDrive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndOfDrive.swift; sourceTree = "<group>"; };
@@ -111,6 +172,17 @@
 		B8713CDE27BAD22C0051E81E /* solar-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "solar-logo.png"; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Permit_Tracker-adyapgausmbnsehcgznobtrwhdkc/SourcePackages/checkouts/Solar/solar-logo.png"; sourceTree = "<group>"; };
 		B8713CE027BAD2780051E81E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B8713CE427BC36330051E81E /* RecordingControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingControls.swift; sourceTree = "<group>"; };
+		B874AEB227BF188900A2736B /* Driving Tracker Intents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Driving Tracker Intents.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B874AEB327BF188900A2736B /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		B874AEB627BF188900A2736B /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		B874AEB827BF188900A2736B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B874AEBD27BF188A00A2736B /* Driving Tracker IntentsUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Driving Tracker IntentsUI.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B874AEBE27BF188A00A2736B /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		B874AEC127BF188A00A2736B /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
+		B874AEC427BF188A00A2736B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		B874AEC627BF188A00A2736B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B874AED427BF1AAE00A2736B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B874AED927BF24F900A2736B /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		B8844B4926C45A0A00AB30FB /* ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBar.swift; sourceTree = "<group>"; };
 		B8844BA126C6F50E00AB30FB /* UserStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStats.swift; sourceTree = "<group>"; };
 		B88959BA26D04D3C00864F63 /* WeatherDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDescription.swift; sourceTree = "<group>"; };
@@ -161,6 +233,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B874AEAF27BF188900A2736B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B874AEB427BF188900A2736B /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B874AEBA27BF188A00A2736B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B874AEBF27BF188A00A2736B /* IntentsUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -182,6 +270,8 @@
 				B83F322026C19D3A00A56E26 /* Permit Tracker */,
 				B83F323726C19D3C00A56E26 /* Permit TrackerTests */,
 				B83F324226C19D3C00A56E26 /* Permit TrackerUITests */,
+				B874AEB527BF188900A2736B /* Driving Tracker Intents */,
+				B874AEC027BF188A00A2736B /* Driving Tracker IntentsUI */,
 				B83F321F26C19D3A00A56E26 /* Products */,
 				B8612FC526C2EDC800C4513C /* Frameworks */,
 			);
@@ -193,6 +283,8 @@
 				B83F321E26C19D3A00A56E26 /* Permit Tracker.app */,
 				B83F323426C19D3C00A56E26 /* Permit TrackerTests.xctest */,
 				B83F323F26C19D3C00A56E26 /* Permit TrackerUITests.xctest */,
+				B874AEB227BF188900A2736B /* Driving Tracker Intents.appex */,
+				B874AEBD27BF188A00A2736B /* Driving Tracker IntentsUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -206,12 +298,14 @@
 				B8A7B21C27B04186001AF846 /* LocationEntity+CoreDataProperties.swift */,
 				B8612FCC26C2F0E400C4513C /* Permit Tracker.entitlements */,
 				B83F322126C19D3A00A56E26 /* App.swift */,
+				B874AED427BF1AAE00A2736B /* AppDelegate.swift */,
 				B83F322326C19D3A00A56E26 /* ContentView.swift */,
 				B88959E626D2921F00864F63 /* Helpers.swift */,
 				B8E5B15426C8B40700BC21A0 /* Drive */,
 				B8844BA626C6F90700AB30FB /* Stats */,
 				B868D19827B7F2A000980BD1 /* Controls */,
 				B8C2528B27ADB6020047B776 /* Debug */,
+				B874AEF727BFD1AC00A2736B /* Intents */,
 				B861302A26C3007200C4513C /* LocationViewModel.swift */,
 				B861302F26C3016D00C4513C /* RequestLocationView.swift */,
 				B83F322526C19D3C00A56E26 /* Assets.xcassets */,
@@ -255,6 +349,8 @@
 			children = (
 				B84DBCA427AC68AF00D1996D /* ExternalAccessory.framework */,
 				B8612FC626C2EDC800C4513C /* MapKit.framework */,
+				B874AEB327BF188900A2736B /* Intents.framework */,
+				B874AEBE27BF188A00A2736B /* IntentsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -289,6 +385,33 @@
 				B8713CD927BAD20F0051E81E /* Solar.swift */,
 			);
 			path = Solar;
+			sourceTree = "<group>";
+		};
+		B874AEB527BF188900A2736B /* Driving Tracker Intents */ = {
+			isa = PBXGroup;
+			children = (
+				B874AEB827BF188900A2736B /* Info.plist */,
+			);
+			path = "Driving Tracker Intents";
+			sourceTree = "<group>";
+		};
+		B874AEC027BF188A00A2736B /* Driving Tracker IntentsUI */ = {
+			isa = PBXGroup;
+			children = (
+				B874AEC127BF188A00A2736B /* IntentViewController.swift */,
+				B874AEC327BF188A00A2736B /* MainInterface.storyboard */,
+				B874AEC627BF188A00A2736B /* Info.plist */,
+			);
+			path = "Driving Tracker IntentsUI";
+			sourceTree = "<group>";
+		};
+		B874AEF727BFD1AC00A2736B /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				B874AEB627BF188900A2736B /* IntentHandler.swift */,
+				B874AED927BF24F900A2736B /* Intents.intentdefinition */,
+			);
+			path = Intents;
 			sourceTree = "<group>";
 		};
 		B8844BA626C6F90700AB30FB /* Stats */ = {
@@ -359,10 +482,13 @@
 				B83F321A26C19D3A00A56E26 /* Sources */,
 				B83F321B26C19D3A00A56E26 /* Frameworks */,
 				B83F321C26C19D3A00A56E26 /* Resources */,
+				B874AECD27BF188A00A2736B /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B874AEC827BF188A00A2736B /* PBXTargetDependency */,
+				B874AECB27BF188A00A2736B /* PBXTargetDependency */,
 			);
 			name = "Permit Tracker";
 			packageProductDependencies = (
@@ -410,13 +536,47 @@
 			productReference = B83F323F26C19D3C00A56E26 /* Permit TrackerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		B874AEB127BF188900A2736B /* Driving Tracker Intents */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B874AED327BF188A00A2736B /* Build configuration list for PBXNativeTarget "Driving Tracker Intents" */;
+			buildPhases = (
+				B874AEAE27BF188900A2736B /* Sources */,
+				B874AEAF27BF188900A2736B /* Frameworks */,
+				B874AEB027BF188900A2736B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Driving Tracker Intents";
+			productName = "Driving Tracker Intents";
+			productReference = B874AEB227BF188900A2736B /* Driving Tracker Intents.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		B874AEBC27BF188A00A2736B /* Driving Tracker IntentsUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B874AED227BF188A00A2736B /* Build configuration list for PBXNativeTarget "Driving Tracker IntentsUI" */;
+			buildPhases = (
+				B874AEB927BF188A00A2736B /* Sources */,
+				B874AEBA27BF188A00A2736B /* Frameworks */,
+				B874AEBB27BF188A00A2736B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Driving Tracker IntentsUI";
+			productName = "Driving Tracker IntentsUI";
+			productReference = B874AEBD27BF188A00A2736B /* Driving Tracker IntentsUI.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		B83F321626C19D3A00A56E26 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					B83F321D26C19D3A00A56E26 = {
@@ -429,6 +589,12 @@
 					B83F323E26C19D3C00A56E26 = {
 						CreatedOnToolsVersion = 12.4;
 						TestTargetID = B83F321D26C19D3A00A56E26;
+					};
+					B874AEB127BF188900A2736B = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					B874AEBC27BF188A00A2736B = {
+						CreatedOnToolsVersion = 13.2.1;
 					};
 				};
 			};
@@ -450,6 +616,8 @@
 				B83F321D26C19D3A00A56E26 /* Permit Tracker */,
 				B83F323326C19D3C00A56E26 /* Permit TrackerTests */,
 				B83F323E26C19D3C00A56E26 /* Permit TrackerUITests */,
+				B874AEB127BF188900A2736B /* Driving Tracker Intents */,
+				B874AEBC27BF188A00A2736B /* Driving Tracker IntentsUI */,
 			);
 		};
 /* End PBXProject section */
@@ -478,6 +646,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B874AEB027BF188900A2736B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B874AEDB27BF259700A2736B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B874AEBB27BF188A00A2736B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B874AEDC27BF259800A2736B /* Assets.xcassets in Resources */,
+				B874AEC527BF188A00A2736B /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,12 +739,15 @@
 			files = (
 				B8A7B21D27B04186001AF846 /* Item+CoreDataClass.swift in Sources */,
 				B8E7446027B8078E0013BFCB /* RecordingStatus.swift in Sources */,
+				B874AEF427BFD17C00A2736B /* Intents.intentdefinition in Sources */,
 				B83F326D26C1CCE600A56E26 /* MapView.swift in Sources */,
+				B874AEF527BFD17F00A2736B /* IntentHandler.swift in Sources */,
 				B88959D126D0667C00864F63 /* DrivingNotes.swift in Sources */,
 				B8E5B14E26C8B3EE00BC21A0 /* FullDriveData.swift in Sources */,
 				B861303026C3016D00C4513C /* RequestLocationView.swift in Sources */,
 				B8844BA226C6F50E00AB30FB /* UserStats.swift in Sources */,
 				B8D7C29F26CBFF8100255583 /* DriveBadges.swift in Sources */,
+				B874AED527BF1AAE00A2736B /* AppDelegate.swift in Sources */,
 				B8A7B21E27B04186001AF846 /* Item+CoreDataProperties.swift in Sources */,
 				B88959D926D07A4700864F63 /* WeatherView.swift in Sources */,
 				B83F322B26C19D3C00A56E26 /* Persistence.swift in Sources */,
@@ -611,6 +799,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B874AEAE27BF188900A2736B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B874AEE227BF3D1B00A2736B /* Item+CoreDataProperties.swift in Sources */,
+				B874AEF227BFCFCD00A2736B /* Helpers.swift in Sources */,
+				B874AEE427BF3D1F00A2736B /* LocationEntity+CoreDataClass.swift in Sources */,
+				B874AEE127BF3D1800A2736B /* Item+CoreDataClass.swift in Sources */,
+				B874AEEB27BF4EDF00A2736B /* WeatherChoice.swift in Sources */,
+				B874AEE927BF4EB500A2736B /* Solar.swift in Sources */,
+				B874AEF127BF4EE900A2736B /* DrivingNotes.swift in Sources */,
+				B874AEE527BF3D2100A2736B /* LocationEntity+CoreDataProperties.swift in Sources */,
+				B874AEE027BF3ACA00A2736B /* AppDelegate.swift in Sources */,
+				B874AEED27BF4EDF00A2736B /* WeatherView.swift in Sources */,
+				B874AEEF27BF4EE900A2736B /* NotesView.swift in Sources */,
+				B874AEDA27BF24F900A2736B /* Intents.intentdefinition in Sources */,
+				B874AEE827BF4E9100A2736B /* DriveDetails.swift in Sources */,
+				B874AEE627BF3D2B00A2736B /* Permit_Tracker.xcdatamodeld in Sources */,
+				B874AEDF27BF386800A2736B /* LocationViewModel.swift in Sources */,
+				B874AEEC27BF4EDF00A2736B /* WeatherDescription.swift in Sources */,
+				B874AEEE27BF4EE900A2736B /* EndOfDrive.swift in Sources */,
+				B874AEB727BF188900A2736B /* IntentHandler.swift in Sources */,
+				B874AEE727BF3D9100A2736B /* Persistence.swift in Sources */,
+				B874AEF027BF4EE900A2736B /* Description.swift in Sources */,
+				B874AEEA27BF4EDA00A2736B /* WeatherIcon.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B874AEB927BF188A00A2736B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B874AEC227BF188A00A2736B /* IntentViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -624,7 +848,28 @@
 			target = B83F321D26C19D3A00A56E26 /* Permit Tracker */;
 			targetProxy = B83F324026C19D3C00A56E26 /* PBXContainerItemProxy */;
 		};
+		B874AEC827BF188A00A2736B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B874AEBC27BF188A00A2736B /* Driving Tracker IntentsUI */;
+			targetProxy = B874AEC727BF188A00A2736B /* PBXContainerItemProxy */;
+		};
+		B874AECB27BF188A00A2736B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B874AEB127BF188900A2736B /* Driving Tracker Intents */;
+			targetProxy = B874AECA27BF188A00A2736B /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B874AEC327BF188A00A2736B /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B874AEC427BF188A00A2736B /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B83F324626C19D3C00A56E26 /* Debug */ = {
@@ -747,6 +992,7 @@
 		B83F324926C19D3C00A56E26 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Permit Tracker/Permit Tracker.entitlements";
@@ -772,6 +1018,7 @@
 		B83F324A26C19D3C00A56E26 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Permit Tracker/Permit Tracker.entitlements";
@@ -879,6 +1126,114 @@
 			};
 			name = Release;
 		};
+		B874AECE27BF188A00A2736B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8LM4R9G4S4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Driving Tracker Intents/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Driving Tracker Intents";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker.Driving-Tracker-Intents";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B874AECF27BF188A00A2736B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8LM4R9G4S4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Driving Tracker Intents/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Driving Tracker Intents";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker.Driving-Tracker-Intents";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B874AED027BF188A00A2736B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8LM4R9G4S4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Driving Tracker IntentsUI/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Driving Tracker IntentsUI";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker.Driving-Tracker-IntentsUI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B874AED127BF188A00A2736B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8LM4R9G4S4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Driving Tracker IntentsUI/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Driving Tracker IntentsUI";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker.Driving-Tracker-IntentsUI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -914,6 +1269,24 @@
 			buildConfigurations = (
 				B83F324F26C19D3C00A56E26 /* Debug */,
 				B83F325026C19D3C00A56E26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B874AED227BF188A00A2736B /* Build configuration list for PBXNativeTarget "Driving Tracker IntentsUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B874AED027BF188A00A2736B /* Debug */,
+				B874AED127BF188A00A2736B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B874AED327BF188A00A2736B /* Build configuration list for PBXNativeTarget "Driving Tracker Intents" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B874AECE27BF188A00A2736B /* Debug */,
+				B874AECF27BF188A00A2736B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

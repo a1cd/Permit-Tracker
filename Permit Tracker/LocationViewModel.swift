@@ -16,7 +16,7 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 	@Published var currentPlacemark: CLPlacemark?
 	@Published var allLocations: [CLLocation] = []
 	@Published var driveDetail: DriveDetails = DriveDetails([])
-	var AuthChange: () -> Void = Nothing
+	var AuthChange: () -> Void = {}
 	
 	let locationManager: CLLocationManager
 	

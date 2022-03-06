@@ -7,9 +7,12 @@
 
 import SwiftUI
 import CoreLocation
+import UIKit
 
 @main
 struct Permit_TrackerApp: App {
+	@UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+	
     let persistenceController = PersistenceController.shared
 	
     var body: some Scene {

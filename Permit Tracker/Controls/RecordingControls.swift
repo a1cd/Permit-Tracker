@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreLocation
+import Intents
 
 struct RecordingControls: View {
 	@Binding var Recording: Bool
@@ -48,7 +49,8 @@ struct RecordingControls: View {
 				.buttonStyle(BorderedProminentButtonStyle())
 				.padding(2.5)
 				.shadow(radius: 4)
-				
+			
+			StartDriveIntent.siri
 				
 //			RecordButton(recording: $Recording)
 //				.onTapGesture {

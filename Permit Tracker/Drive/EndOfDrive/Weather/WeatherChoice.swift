@@ -19,7 +19,7 @@ enum Weather: Int {
 	func Color() -> Color? {
 		switch self {
 		case .None:
-			return UIColor.white.color
+			return SwiftUI.Color.white
 		default:
 			return nil
 		}
@@ -42,8 +42,9 @@ enum Weather: Int {
 			return "thermometer.snowflake"
 		case .Fog:
 			return "cloud.fog.fill"
+		default:
+			return "exclamationmark.triangle.fill"
 		}
-		return "exclamationmark.triangle.fill"
 	}
 	func Text() -> String {
 		switch self {
@@ -63,8 +64,9 @@ enum Weather: Int {
 			return "Freezing Rain"
 		case .Fog:
 			return "Fog"
+		default:
+			return "No weather? (Possible error)"
 		}
-		return "No weather? (Possible error)"
 	}
 	func Description() -> Description {
 		switch self {
