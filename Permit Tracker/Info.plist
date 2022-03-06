@@ -6,17 +6,6 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Permit Tracker</string>
-	<key>CFBundleDocumentTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeName</key>
-			<string>MKDirectionsRequest</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>com.apple.maps.directionsrequest</string>
-			</array>
-		</dict>
-	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -41,11 +30,11 @@
 		<string>MKDirectionsModeStreetCar</string>
 	</array>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>To record location while driving. This helps to predict weather where you drive and weather you followed road regulations.</string>
+	<string>To record location while driving.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>To record location while driving. This helps to predict weather where you drive and weather you followed road regulations.</string>
+	<string>To record your driving location while your device is off.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>To record location while driving. This helps to predict weather where you drive and weather you followed road regulations.</string>
+	<string>Record your driving location while the app is open.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -65,7 +54,7 @@
 	<array>
 		<string>location-services</string>
 		<string>gps</string>
-		<string>armv7</string>
+		<string>location-services</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

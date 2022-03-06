@@ -48,6 +48,7 @@
 		B8A7B21E27B04186001AF846 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A7B21A27B04186001AF846 /* Item+CoreDataProperties.swift */; };
 		B8A7B21F27B04186001AF846 /* LocationEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A7B21B27B04186001AF846 /* LocationEntity+CoreDataClass.swift */; };
 		B8A7B22027B04186001AF846 /* LocationEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A7B21C27B04186001AF846 /* LocationEntity+CoreDataProperties.swift */; };
+		B8BE86AC27D56F3D003BF8C4 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BE86AB27D56F3D003BF8C4 /* Info.swift */; };
 		B8C2528D27ADB6270047B776 /* DebugDriveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2528C27ADB6270047B776 /* DebugDriveStatus.swift */; };
 		B8C91FF827B9FAF6002FBB03 /* BigStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C91FF727B9FAF6002FBB03 /* BigStat.swift */; };
 		B8D7C29F26CBFF8100255583 /* DriveBadges.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D7C29E26CBFF8100255583 /* DriveBadges.swift */; };
@@ -126,6 +127,7 @@
 		B8A7B21A27B04186001AF846 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		B8A7B21B27B04186001AF846 /* LocationEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationEntity+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B8A7B21C27B04186001AF846 /* LocationEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationEntity+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		B8BE86AB27D56F3D003BF8C4 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		B8C2528C27ADB6270047B776 /* DebugDriveStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDriveStatus.swift; sourceTree = "<group>"; };
 		B8C91FF727B9FAF6002FBB03 /* BigStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigStat.swift; sourceTree = "<group>"; };
 		B8D7C29E26CBFF8100255583 /* DriveBadges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveBadges.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				B8844BA626C6F90700AB30FB /* Stats */,
 				B868D19827B7F2A000980BD1 /* Controls */,
 				B8C2528B27ADB6020047B776 /* Debug */,
+				B8BE86A827D56F1B003BF8C4 /* Info */,
 				B861302A26C3007200C4513C /* LocationViewModel.swift */,
 				B861302F26C3016D00C4513C /* RequestLocationView.swift */,
 				B83F322526C19D3C00A56E26 /* Assets.xcassets */,
@@ -321,6 +324,14 @@
 				B88959DD26D07B5A00864F63 /* NotesView.swift */,
 			);
 			path = Notes;
+			sourceTree = "<group>";
+		};
+		B8BE86A827D56F1B003BF8C4 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				B8BE86AB27D56F3D003BF8C4 /* Info.swift */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 		B8C2528B27ADB6020047B776 /* Debug */ = {
@@ -552,6 +563,7 @@
 				B8A7B21D27B04186001AF846 /* Item+CoreDataClass.swift in Sources */,
 				B8E7446027B8078E0013BFCB /* RecordingStatus.swift in Sources */,
 				B83F326D26C1CCE600A56E26 /* MapView.swift in Sources */,
+				B8BE86AC27D56F3D003BF8C4 /* Info.swift in Sources */,
 				B88959D126D0667C00864F63 /* DrivingNotes.swift in Sources */,
 				B8E5B14E26C8B3EE00BC21A0 /* FullDriveData.swift in Sources */,
 				B861303026C3016D00C4513C /* RequestLocationView.swift in Sources */,
@@ -747,7 +759,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Permit Tracker/Permit Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"Permit Tracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8LM4R9G4S4;
 				ENABLE_PREVIEWS = YES;
@@ -757,7 +769,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.7;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -772,7 +784,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Permit Tracker/Permit Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"Permit Tracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8LM4R9G4S4;
 				ENABLE_PREVIEWS = YES;
@@ -783,7 +795,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.7;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.everettwilber.Permit-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

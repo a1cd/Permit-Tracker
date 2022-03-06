@@ -145,11 +145,21 @@ struct ContentView: View {
 									Spacer()
 								}
 									.foregroundColor(.primary)
-								NavigationLink(destination: DebugDriveStatus()) {
-									Image(systemName: "ant.circle.fill")
+//								NavigationLink(destination: DebugDriveStatus()) {
+//									Image(systemName: "ant.circle.fill")
+//										.padding(.leading)
+//										.imageScale(.large)
+//									Text("Debug")
+//										.multilineTextAlignment(.leading)
+//										.padding(.trailing)
+//									Spacer()
+//								}
+								Divider()
+								NavigationLink(destination: Info()) {
+									Image(systemName: "info.circle")
 										.padding(.leading)
 										.imageScale(.large)
-									Text("Debug")
+									Text("Info")
 										.multilineTextAlignment(.leading)
 										.padding(.trailing)
 									Spacer()
